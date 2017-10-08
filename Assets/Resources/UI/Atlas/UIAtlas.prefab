@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1732667944943956}
+  m_IsPrefabParent: 1
+--- !u!1 &1732667944943956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4411698708898440}
+  - component: {fileID: 114384180748638634}
+  m_Layer: 0
+  m_Name: UIAtlas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4411698708898440
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732667944943956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114384180748638634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732667944943956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f86dc94876ff5340a975850d9001ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mSprites:
+  - {fileID: 21300000, guid: 9a811dfe1dbcb8f49a9844579ff1ffc4, type: 3}
+  - {fileID: 21300000, guid: 883d2a644fa43a644ba180d9258f2f4a, type: 3}
+  - {fileID: 21300000, guid: ba555b2ee2dedd147b6d65e83016ebf2, type: 3}
+  - {fileID: 21300000, guid: ae14cf53097282745a1be1fa45cf84c2, type: 3}
+  - {fileID: 21300000, guid: 8cfbb8a1ec0614d2e8d70758d36daec1, type: 3}
+  - {fileID: 21300000, guid: f6da58422d147a941ae6c2381e1b32b6, type: 3}
+  - {fileID: 21300000, guid: 26e9438f69c8ef645bb5ce019912f9d0, type: 3}
+  - {fileID: 21300000, guid: 919ec82b9e8836345aca85a71eb1d1b1, type: 3}
+  - {fileID: 21300000, guid: 972fc4b64b845514d9537df4f119194e, type: 3}
+  - {fileID: 21300000, guid: 0eb1bd41297154a9e9346277df7d56e1, type: 3}
+  - {fileID: 21300000, guid: 4eb5c451e908dbc43a9410670ee8bd12, type: 3}
+  - {fileID: 21300000, guid: 8fbc80cf0feaba9449fc1b82ef91f106, type: 3}
+  - {fileID: 21300000, guid: 02b2af5706ab18245976178b26b3aa88, type: 3}
+  - {fileID: 21300000, guid: 8bf3fbfcdd70cc04795fbf7689124442, type: 3}
+  - {fileID: 21300000, guid: b41f9e6ed0ac2734a9ca4cabc3f9898e, type: 3}
+  - {fileID: 21300000, guid: 0fd744ce3b5a463488445fde628bf4dc, type: 3}
+  - {fileID: 21300000, guid: 27cc288277fb4c24da19c57f9dc640ee, type: 3}
+  - {fileID: 21300000, guid: b5c1fefa2aedad649a59b1969cfd04d8, type: 3}
+  - {fileID: 21300000, guid: d59cc34d26012f6478c33d9207317790, type: 3}
+  - {fileID: 21300000, guid: 7cee71b634392034c8c82dca0363c388, type: 3}
+  - {fileID: 21300000, guid: 5f545d97fdb4cb44fba84917ce33bb5f, type: 3}
+  - {fileID: 21300000, guid: 7c783cdb615c61948800d91c8cb917d4, type: 3}
+  - {fileID: 21300000, guid: 1e7f87666b5e04eaf8b76086fe83bc67, type: 3}
+  - {fileID: 21300000, guid: d1b777ff0c2704942bb60d2aca869cfe, type: 3}
+  - {fileID: 21300000, guid: d2a678c4d7a9fd1429ee370d3afa7022, type: 3}
+  - {fileID: 21300000, guid: ae4d4461448f8c24281064da2ef4b858, type: 3}
+  - {fileID: 21300000, guid: 879628525aba45949bc7305fdff43b36, type: 3}
+  - {fileID: 21300000, guid: c7a9aacb8630abb4ea9c84f117c18e23, type: 3}
+  - {fileID: 21300000, guid: 701d5c8a513b7b54f8616dd1d6d613fe, type: 3}
+  - {fileID: 21300000, guid: 8b2fbd6408db67f4da35ab06bc881048, type: 3}
+  - {fileID: 21300000, guid: a4cfe1ec31cfc6c42bd6fb382d536ec2, type: 3}
+  - {fileID: 21300000, guid: 48240e31b573efc4591c464010772e2b, type: 3}
+  - {fileID: 21300000, guid: caf548831b898964a8957982f38fd4e6, type: 3}
+  - {fileID: 21300000, guid: af5bf5da8dce6044ebe0a79b56ed73a1, type: 3}
+  - {fileID: 21300000, guid: 6c6ef4cb4b3a5bf4e9ecbfa00183b0db, type: 3}
+  - {fileID: 21300000, guid: c19359e570fca5742bb16a9d0a848340, type: 3}
+  - {fileID: 21300000, guid: 5f6fbaf23e20c2749b4453151dbc83f6, type: 3}
+  - {fileID: 21300000, guid: d43e93c4780e309489274066fb2b671d, type: 3}
+  mSpriteNames:
+  - button
+  - button_pressed
+  - close
+  - close_pressed
+  - close_web
+  - cloud
+  - coin
+  - coins_frame
+  - dollar_sign
+  - finger
+  - home_btn
+  - home_btn_pressed
+  - indicator_dot_selected
+  - indicator_dot_unselected
+  - insufficient_coins_cn
+  - insufficient_coins_en
+  - insufficient_coins_tcn
+  - lock_tag
+  - lock1
+  - lock2
+  - next
+  - next_pressed
+  - noticeBg
+  - remove_ads
+  - restore_purchase_btn
+  - restore_purchase_btn_pressed
+  - rmb_sign
+  - star
+  - star_grey
+  - start_btn
+  - "\u5341\u5B57\u7BAD\u5934"
+  - "\u5355\u7BAD\u5934"
+  - "\u5355\u7BAD\u5934 \u70B9"
+  - "\u5355\u7BAD\u5934 \u7BAD\u5934"
+  - "\u53CC\u7BAD\u5934"
+  - "\u5706\u7BAD\u5934"
+  - "\u624B1"
+  - "\u624B2"
+  mAndroidOverride: 1
+  miOSOverride: 1
+  mAndroidTextureFormat: 7
+  miOSTextureFormat: 7

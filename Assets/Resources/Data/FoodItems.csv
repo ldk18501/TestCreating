@@ -1,0 +1,6 @@
+ID,LockAtBeginning,CoinUnlockCost,LocalizedKey,LocalizedDescriptionKey,IconForSell,DefaultPrice_CNY,DefaultPrice_USD
+item_finished_pizza,true,200,Img_Pizza_Name,Img_Pizza_Desc,UIFoodAtlas/pizza_for_sell,3.00,0.99
+item_finished_cupcake,false,0,Img_Cupcake_Name,,,,
+item_finished_sushi,false,0,Img_Sushi_Name,,,,
+item_finished_salad,false,0,Img_Salad_Name,,,,
+item_finished_hamburger,false,0,Img_Hamburger_Name,,,,
