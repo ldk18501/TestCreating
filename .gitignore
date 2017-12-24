@@ -40,3 +40,6 @@ Release/
 
 build/android
 build/xcode
+
+.vs/
+UnityPackageManager/
