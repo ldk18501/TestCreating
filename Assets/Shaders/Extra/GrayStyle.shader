@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Extra/GrayStyle" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
@@ -39,7 +41,7 @@ Shader "Triniti/Extra/GrayStyle" {
 			{
 				VertexOutput output;
 				
-				output.position_ = mul(UNITY_MATRIX_MVP, input.vertex);
+				output.position_ = UnityObjectToClipPos(input.vertex);
 				output.uv = input.texcoord;
 				
 				return output;

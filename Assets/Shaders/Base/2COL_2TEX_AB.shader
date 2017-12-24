@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 //作者 朱云"翔"
 //作用 角色身上部分纹理闪光
 Shader "Triniti/Character/2COL_2TEX_AB"
@@ -52,7 +54,7 @@ Shader "Triniti/Character/2COL_2TEX_AB"
 					{
 						v2f o;
 
-						o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+						o.pos = UnityObjectToClipPos (v.vertex);
 						o.texcoord0 = TRANSFORM_TEX(v.texcoord, _MainTex);
 						o.texcoord1.xy = TRANSFORM_TEX(v.texcoord, _SkinTex);
 						o.texcoord1.z = sin(_Time.y * _TimeScale);

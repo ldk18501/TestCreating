@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Model/RotateUV"
 {
     Properties
@@ -47,7 +49,7 @@ Shader "Triniti/Model/RotateUV"
                 {
                     v2f o;
                    
-                    o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+                    o.pos = UnityObjectToClipPos (v.vertex);
                     ///o.normal = mul (UNITY_MATRIX_MV, float4(v.normal,0));
 					//o.normal = normalize(o.normal);
                     o.texcoord = v.texcoord;//TRANSFORM_TEX(v.texcoord, _MainTex);

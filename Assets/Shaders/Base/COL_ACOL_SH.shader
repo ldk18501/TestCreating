@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 
@@ -40,7 +42,7 @@ Shader "Triniti/Character/COL_ACOL_SH"
 			v2f vert (appdata_base v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				
 				half3 worldNormal = mul((half3x3)unity_ObjectToWorld, v.normal.xyz);
 				

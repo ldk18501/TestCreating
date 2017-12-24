@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 //小猪哥友情提供
 //2012,8,29
 Shader "Triniti/Extra/LightHalo_Color"
@@ -52,7 +54,7 @@ Shader "Triniti/Extra/LightHalo_Color"
 			v2f vert (VertexInput v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.uv.xy = TRANSFORM_TEX(v.texcoord,_MainTex);
 				o.uv1.xy = TRANSFORM_TEX(v.texcoord1,_Halo);

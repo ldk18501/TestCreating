@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 
 Shader "Triniti/Scene/COL_LM_LMCOL_BR_BM"
 {
@@ -52,7 +54,7 @@ Shader "Triniti/Scene/COL_LM_LMCOL_BR_BM"
 			VertexOutput VertexProgram(VertexInput input)
 			{
 				VertexOutput output;
-				output.position_ = mul(UNITY_MATRIX_MVP, input.vertex);
+				output.position_ = UnityObjectToClipPos(input.vertex);
 
 				output.uv = TRANSFORM_TEX(input.texcoord,_MainTex);
 				output.uvLM = input.texcoord1;

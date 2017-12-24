@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Lean;
+using Lean.Pool;
 
 public class EffectCenter : DoozyUI.Singleton<EffectCenter>
 {
@@ -35,12 +35,9 @@ public class EffectCenter : DoozyUI.Singleton<EffectCenter>
         if (obj == null)
             return null;
 
-        LeanPool pool = LeanPool.GetOrCreateInstance(obj, nameOk);
-        pool.transform.SetParent(transform);
-        var clone = pool.FastSpawn(pos, Quaternion.Euler(angle), null);
+        var clone = LeanPool.Spawn(obj, pos, Quaternion.Euler(angle), null);
         if (clone != null)
         {
-            LeanPool.AllLinks.Add(clone, pool);
             return clone.gameObject.AddMissingComponent<ParticleCtrller>();
         }
 

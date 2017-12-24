@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 
 Shader "Triniti/Scene/COL_LM_VC"
 {
@@ -57,7 +59,7 @@ Shader "Triniti/Scene/COL_LM_VC"
 			v2f vert (V2In v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.uv = TRANSFORM_TEX(v.texcoord,_MainTex);
 				

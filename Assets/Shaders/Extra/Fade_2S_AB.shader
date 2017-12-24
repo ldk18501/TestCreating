@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Particle/Fade_2S_AB" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
@@ -55,7 +57,7 @@ Shader "Triniti/Particle/Fade_2S_AB" {
 			v2f vert (v2i v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.uv0.xy = TRANSFORM_TEX(v.texcoord,_MainTex);
 				o.uv1.xy = TRANSFORM_TEX(v.texcoord1,_SecondTex);
 				o.uv2.xy = TRANSFORM_TEX(v.texcoord,_AlphaTex);

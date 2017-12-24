@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Particle/AAAB_COL_DO_P2"
 {
 	Properties
@@ -52,7 +54,7 @@ Shader "Triniti/Particle/AAAB_COL_DO_P2"
 			v2f vert (appdata_col v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				
 				o.uv.xy = TRANSFORM_TEX(v.texcoord.xy,_MainTex);
 
@@ -70,7 +72,7 @@ Shader "Triniti/Particle/AAAB_COL_DO_P2"
 			v2f vert2 (appdata_col v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				
 				o.uv.xy = TRANSFORM_TEX(v.texcoord.xy,_MainTex2);
 

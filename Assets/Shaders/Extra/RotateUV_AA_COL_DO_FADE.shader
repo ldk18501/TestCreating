@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Particle/RotateUV_AA_COL_DO_FADE"
 {
     Properties
@@ -60,7 +62,7 @@ Shader "Triniti/Particle/RotateUV_AA_COL_DO_FADE"
                 {
                     v2f o;
                    
-                    o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+                    o.pos = UnityObjectToClipPos (v.vertex);
                     o.texcoord0 = TRANSFORM_TEX(v.texcoord, _MainTex);
 					o.texcoord0.xy -= 0.5*(_MainTex_ST - 1);
 					half sinThta = sin(_Thta);

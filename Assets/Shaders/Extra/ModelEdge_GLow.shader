@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Model/ModelEdge_Alphe"
 {
     Properties
@@ -61,7 +63,7 @@ Shader "Triniti/Model/ModelEdge_Alphe"
                 {
                     v2f o;
                    
-                    o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+                    o.pos = UnityObjectToClipPos (v.vertex);
                     o.normal = mul (UNITY_MATRIX_MV, float4(v.normal,0));//mul (UNITY_MATRIX_MVP,v.normal.xyzz).xyz;
 					o.normal = normalize(o.normal);
 					o.pos.xy +=  o.normal.xy * _Outline;

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using DoozyUI;
 using System.Collections.Generic;
 
-namespace UncleBear
+namespace smallone
 {
     public class BootStrap : MonoBehaviour
     {
@@ -16,7 +16,7 @@ namespace UncleBear
         void Awake()
         {
 			#region multiTouch
-			Input.multiTouchEnabled = false;
+			//Input.multiTouchEnabled = false;
 			#endregion
 
             #region set traget frame rate
@@ -45,11 +45,6 @@ namespace UncleBear
             ItemManager.GetOrCreateInstance();
             #endregion
 
-            #region init AudioSource pool
-            //initialize audio source pool
-            AudioSourcePool.GetOrCreateInstance().Preload(5);
-            #endregion
-
             #region init lean touch
             //create lean touch
             GameObject leanTouchObj = new GameObject("LeanTouch");
@@ -67,12 +62,11 @@ namespace UncleBear
         // Use this for initialization
         void Start()
         {
+            LevelManager.Instance.ChangeLevel(LevelEnum.Main);
         }
 
         void InitGame()
         {
-            CameraManager.GetOrCreateInstance();
-            GuideManager.GetOrCreateInstance();
             EffectCenter.GetOrCreateInstance();
 
             #region init 2d UI

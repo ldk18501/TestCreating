@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Particle/ABAA_COL_DO_OnePass"
 {
 	Properties
@@ -65,7 +67,7 @@ Shader "Triniti/Particle/ABAA_COL_DO_OnePass"
                 {
                     v2f o;
                    
-                    o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+                    o.pos = UnityObjectToClipPos (v.vertex);
 
                     o.texcoord1 = TRANSFORM_TEX(v.texcoord, _MainTex);
 					o.texcoord2 = TRANSFORM_TEX(v.texcoord, _MainTex2);

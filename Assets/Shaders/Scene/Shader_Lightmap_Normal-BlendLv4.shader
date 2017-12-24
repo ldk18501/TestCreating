@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
 
 
@@ -131,7 +133,7 @@ Shader "Triniti/Scene/Shader_Lightmap_Normal-BlendLv4"
 			v2f vert (V2In v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				
 				o.uv_BlendTex = TRANSFORM_TEX(v.texcoord,_BlendTex);
 

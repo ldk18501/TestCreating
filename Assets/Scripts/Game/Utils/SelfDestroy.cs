@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UncleBear
+namespace smallone
 {
     //掉落太低的东西自我销毁
     public class SelfDestroy : MonoBehaviour

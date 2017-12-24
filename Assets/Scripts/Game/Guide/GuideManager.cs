@@ -4,7 +4,7 @@ using UnityEngine;
 using DoozyUI;
 using Lean.Touch;
 
-namespace UncleBear
+namespace smallone
 {
     public class GuideManager : DoozyUI.Singleton<GuideManager>
     {

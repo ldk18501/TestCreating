@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Extra/WaterWiggle_AB"
 {
 Properties {
@@ -57,7 +59,7 @@ SubShader {
 			v2f vert (appdata_water v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				
 				o.uv_MainTex   = TRANSFORM_TEX(v.texcoord,_MainTex);
 				o.uv_WiggleTex = TRANSFORM_TEX(v.texcoord1,_WiggleTex);

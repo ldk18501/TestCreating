@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 using DoozyUI;
-using UncleBear;
+using smallone;
 
 public class UIGameHUD : UIPanel {
 

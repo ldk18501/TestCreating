@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DoozyUI;
-using UncleBear;
+using smallone;
 using DG.Tweening;
 
 public class UIPanelGuide : UIPanel

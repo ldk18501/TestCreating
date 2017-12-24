@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Particle/AB_COL_DO_UV_ANIM"
 {
 	Properties
@@ -61,7 +63,7 @@ Shader "Triniti/Particle/AB_COL_DO_UV_ANIM"
 			v2f vert (v2i v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				
 				half temp = _Time.y/_width_height_max.x * _frame;
 				

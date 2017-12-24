@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 
 Shader "Triniti/Particle/ScreenRefraction" {
     Properties {
@@ -30,7 +32,7 @@ Shader "Triniti/Particle/ScreenRefraction" {
 		{
 			v2f o;
 			
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);	
+			o.pos = UnityObjectToClipPos (v.vertex);	
 			o.uv.xy = o.pos.xy/o.pos.w*0.5+0.5;//TRANSFORM_TEX(v.texcoord, _MainTex);
 			o.uv.zw = TRANSFORM_TEX(v.texcoord, _NoiseTex);
 					

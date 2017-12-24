@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: commented out 'float4x4 _CameraToWorld', a built-in variable
 // Upgrade NOTE: replaced '_CameraToWorld' with 'unity_CameraToWorld'
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
@@ -99,7 +101,7 @@ Shader "Triniti/Scene/shadowProject_VC_DO_VL4" {
 			VertexOutput VertexProgram(VertexInput input)
 			{
 				VertexOutput output;
-				output.position_ = mul(UNITY_MATRIX_MVP, input.vertex);
+				output.position_ = UnityObjectToClipPos(input.vertex);
 				float4 shadowPos = mul(_ShadowMatrix, input.vertex);
 				float2 shadowUV = float2(shadowPos.x/shadowPos.w,-shadowPos.y/shadowPos.w)*0.5 + 0.5;
 				output.uv = input.texcoord;

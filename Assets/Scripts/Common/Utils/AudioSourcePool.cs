@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Lean;
+using Lean.Pool;
 
 //Kevin.Zhang, 1/23/2017
 /// <summary>
@@ -9,7 +9,6 @@ using Lean;
 /// </summary>
 public class AudioSourcePool : DoozyUI.Singleton<AudioSourcePool>
 {
-    private LeanPool _mLeanPoolInstance;
     private GameObject _mPrefab;
 
     void Awake()
@@ -20,18 +19,12 @@ public class AudioSourcePool : DoozyUI.Singleton<AudioSourcePool>
         _mPrefab.transform.SetParent(this.transform);
         //_mPrefab.hideFlags = HideFlags.HideInHierarchy;
         _mPrefab.SetActive(false);
-
-        _mLeanPoolInstance = LeanPool.GetOrCreateInstance(_mPrefab);
-        _mLeanPoolInstance.gameObject.name = "Pool";
-        _mLeanPoolInstance.TimeScaleIndependent = true;
-        //turn off notification, avoid using SendMessage
-        _mLeanPoolInstance.Notification = LeanPool.NotificationType.None;
-        _mLeanPoolInstance.transform.SetParent(this.transform);
     }
 
-    public AudioSource Spawn(AudioClip clip, Vector3 position)
+    public AudioSource Spawn(AudioClip clip, Vector3 position, Transform parent = null)
     {
-        AudioSource aSource = LeanPool.Spawn(_mPrefab, position, Quaternion.identity, _mLeanPoolInstance.transform).GetComponent<AudioSource>();
+        AudioSource aSource = LeanPool.Spawn(_mPrefab, position, Quaternion.identity, parent).GetComponent<AudioSource>();
+        aSource.transform.parent = this.transform;
         aSource.gameObject.name = "Audio - " + clip.name;
         aSource.clip = clip;
         if (aSource.isPlaying)
@@ -47,10 +40,5 @@ public class AudioSourcePool : DoozyUI.Singleton<AudioSourcePool>
     {
         if (audioSource != null)
             LeanPool.Despawn(audioSource.gameObject, delay);
-    }
-
-    public void Preload(int count)
-    {
-        _mLeanPoolInstance.Load(5);
     }
 }

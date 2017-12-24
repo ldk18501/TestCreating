@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Particle/AA_COL_DO_FADE_P2_Dissolve"
 {
 	Properties
@@ -57,7 +59,7 @@ Shader "Triniti/Particle/AA_COL_DO_FADE_P2_Dissolve"
 			v2f vert (appdata_col v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				
 				o.uv.xy = TRANSFORM_TEX(v.texcoord,_MainTex);
 				

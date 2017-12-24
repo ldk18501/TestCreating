@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-namespace UncleBear
+namespace smallone
 {
     public class CameraManager : DoozyUI.Singleton<CameraManager>
     {

@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Triniti/Model/CartoonRendering" {
 	
 	Properties {
@@ -58,7 +60,7 @@ Shader "Triniti/Model/CartoonRendering" {
 				
 				v2 = v;
 				v2.vertex.xyz = v.vertex.xyz + v.normal* _Outline;
-				o.pos = mul(UNITY_MATRIX_MVP, v2.vertex);
+				o.pos = UnityObjectToClipPos(v2.vertex);
 				o.uv = TRANSFORM_TEX (v2.texcoord, _MainTex);
 				o.color = _OutlineColor;
 				return o;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
 
 public class ParticleCtrller : MonoBehaviour {
     public float m_Time = 0;
@@ -121,12 +122,12 @@ public class ParticleCtrller : MonoBehaviour {
 
             if (stop || m_Time > m_maxTime + 5)//一般duration不会超过5
             {
-                Lean.LeanPool.Despawn(gameObject);
+                LeanPool.Despawn(gameObject);
             }
         }
         else
         {
-            Lean.LeanPool.Despawn(gameObject);
+            LeanPool.Despawn(gameObject);
         }
     }
 }

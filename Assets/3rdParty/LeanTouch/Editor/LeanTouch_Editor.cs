@@ -68,7 +68,6 @@ namespace Lean.Touch
 			DrawTitle("Settings");
 			DrawDefault("TapThreshold");
 			DrawDefault("SwipeThreshold");
-			DrawDefault("HeldThreshold");
 			DrawDefault("ReferenceDpi");
 			DrawDefault("GuiLayers");
 			
