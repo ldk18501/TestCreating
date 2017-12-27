@@ -62,7 +62,7 @@ namespace smallone
         // Use this for initialization
         void Start()
         {
-            LevelManager.Instance.ChangeLevel(LevelEnum.Main);
+            // LevelManager.Instance.ChangeLevel(LevelEnum.Main);
         }
 
         void InitGame()

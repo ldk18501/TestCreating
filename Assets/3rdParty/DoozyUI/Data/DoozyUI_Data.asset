@@ -30,7 +30,6 @@ MonoBehaviour:
   - elementName: UIContinueButton
   - elementName: UICover
   - elementName: UIGameHUD
-  - elementName: UIHomeButton
   - elementName: UIInsufficientCoins
   - elementName: UILoading
   - elementName: UIPanelDishJudgement
@@ -61,7 +60,6 @@ MonoBehaviour:
   - buttonName: GoToQuitMenu
   - buttonName: GoToSettingsMenu
   - buttonName: GoToShopMenu
-  - buttonName: HomeButton
   - buttonName: ToggleMusic
   - buttonName: TogglePause
   - buttonName: ToggleSound
