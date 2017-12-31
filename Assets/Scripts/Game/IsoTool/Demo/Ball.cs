@@ -29,7 +29,6 @@ public class Ball : MyIsoObject {
 		if(distance < speed){
 			m_nodeX = Mathf.FloorToInt(point.x/world.cellSize);
 			m_nodeZ = Mathf.FloorToInt(point.z/world.cellSize);
-			GetComponentInParent<IsoScene>().SortIsoObject(this);
 			return true;
 		}
 
@@ -38,8 +37,6 @@ public class Ball : MyIsoObject {
 		m_pos3D.x += Mathf.FloorToInt((point.x - x)/moveNum);
 		m_pos3D.z += Mathf.FloorToInt((point.z - z)/moveNum);
 		UpdateScreenPos();
-
-//		GetComponentInParent<IsoScene>().SortIsoObject(this);
 		return false;	
 	}
 

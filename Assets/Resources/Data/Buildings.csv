@@ -1,0 +1,4 @@
+ID,Icon,Prefab,Description
+bd_forest,,Prefabs/Temp/ForestObject,
+bd_host,,Prefabs/Temp/HostObject,
+bd_stove,,Prefabs/Temp/StoveObject,

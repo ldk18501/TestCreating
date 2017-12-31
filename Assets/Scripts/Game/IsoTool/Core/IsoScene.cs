@@ -5,8 +5,6 @@ using System.Collections.Generic;
 namespace ISO
 {
 	public class IsoScene : IsoObject {
-
-		private int m_SortVersion = 0;//0,1
 		
 		private List<IsoObject> m_sprites = new List<IsoObject>();
 		private bool m_OrderInvalid = false;
@@ -25,65 +23,14 @@ namespace ISO
 			base.Start();
 		}
 
-		public void AddIsoObject(IsoObject obj,bool isSort = true){
+		public void AddIsoObject(IsoObject obj){
 			obj.transform.parent=transform;
 			m_sprites.Add(obj);
-			if(isSort){
-				SortIsoObject(obj);
-			}
 		}
 
 		public void RemoveIsoObject(IsoObject obj){
 			m_sprites.Remove(obj);
 			Destroy(obj.gameObject);
-		}
-
-		public void SortIsoObject(IsoObject obj){
-			if(obj.spanX!=obj.spanZ) {
-				m_SortVersion = 1;
-			}
-
-			if(m_SortVersion==0)
-			{
-				Vector3 pos = obj.transform.localPosition;
-				pos.z = obj.depth;
-				obj.transform.localPosition = pos;
-			}
-			else
-			{
-				obj.transform.SetAsFirstSibling();
-				for(int i = transform.childCount-1 ; i>0 ; --i)
-				{
-					IsoObject target= transform.GetChild(i).GetComponent<IsoObject>() ;
-					if(target && target!=obj && this.SortCompare(target,obj)<0)
-					{
-						obj.transform.SetSiblingIndex(i );
-						m_OrderInvalid = true;
-						break ;
-					}
-				}
-			}
-		}
-
-		public void SortAll(){
-			m_SortVersion = 0;
-			foreach(IsoObject obj in m_sprites){
-				SortIsoObject(obj);
-				obj.isSort = false ;
-			}
-		}
-
-		private int SortCompare(IsoObject target,IsoObject item){
-			var targetRect = target.boundRect ;
-			var itemRect = item.boundRect ;
-			if(targetRect.x>itemRect.x+itemRect.width || targetRect.y>itemRect.y+itemRect.height || target.y>item.y){
-				return 1;
-			}else if(targetRect.x==itemRect.x+itemRect.width &&  targetRect.y==itemRect.y+itemRect.height && target.y==item.y){
-				float temp  = target.depth - item.depth;
-				if(temp==0) return 0;
-				else if(temp<0) return 1;
-			}
-			return -1;
 		}
 
 		public override void UpdateFrame()
@@ -95,7 +42,6 @@ namespace ISO
 					Transform child = transform.GetChild(i);
 					IsoObject obj = child.GetComponent<IsoObject>();
 					obj.UpdateFrame();
-					obj.isSort = false;
 
 					Vector3 v = child.localPosition;
 					v.z = -i;
@@ -106,10 +52,6 @@ namespace ISO
 			{
 				foreach( IsoObject obj in m_sprites ) {
 					obj.UpdateFrame();
-					if(obj.isSort)	{
-						SortIsoObject(obj);
-						obj.isSort = false ;
-					}
 				}
 			}
 		}

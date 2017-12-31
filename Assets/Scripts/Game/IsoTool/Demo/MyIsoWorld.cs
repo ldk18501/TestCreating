@@ -45,7 +45,7 @@ public class MyIsoWorld :IsoWorld {
 			if(obj!=buildingScene && obj!=ball) //exclude ball
 			{
 				obj.world = this;
-				buildingScene.AddIsoObject(obj,false);
+				buildingScene.AddIsoObject(obj);
 				obj.SetWalkable(false,gridData);
 			}
 		}
@@ -54,12 +54,10 @@ public class MyIsoWorld :IsoWorld {
 			if(obj!=groundScene)
 			{
 				obj.world = this;
-				groundScene.AddIsoObject(obj,false);
+				groundScene.AddIsoObject(obj);
 				obj.SetWalkable(false,gridData);
 			}
 		}
-		buildingScene.SortAll();
-		groundScene.SortAll();
 	}
 	
 	// Update is called once per frame
@@ -93,11 +91,10 @@ public class MyIsoWorld :IsoWorld {
 				obj.world = this;
 				obj.SetNodePosition(nodeX,nodeZ);
 				if(obj.GetWalkable(gridData)){
-					buildingScene.AddIsoObject(obj,false);
+					buildingScene.AddIsoObject(obj);
 					obj.SetNodePosition(nodeX,nodeZ);
 					obj.transform.localScale = Vector3.one;
 					obj.SetWalkable(false,gridData);
-					obj.Sort();
 				}
 				else
 				{

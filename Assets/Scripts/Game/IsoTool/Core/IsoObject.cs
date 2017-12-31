@@ -35,8 +35,6 @@ namespace ISO
 		[SerializeField]
 		protected float m_centerOffsetY = 0;
 
-		protected internal bool isSort = false;
-
 		[Header("Size")]
 		public int spanX = 1;
 		public int spanZ = 1;
@@ -107,10 +105,6 @@ namespace ISO
 
 		protected virtual void Start(){
 			if(world)m_centerOffsetY = world.cellSize*spanX*0.005f;
-		}
-
-		public virtual void Sort(){
-			isSort = true;
 		}
 
 		public virtual void RotateX( bool value){
