@@ -63,7 +63,7 @@ namespace smallone
         {
             yield return null;
             UIPanelManager.Instance.ShowPanel("UIStartPanel");
-            UIPanelManager.Instance.GetPanel("UICover").GetComponentInChildren<SpriteFrameAnim>().Play();
+            // UIPanelManager.Instance.GetPanel("UICover").GetComponentInChildren<SpriteFrameAnim>().Play();
         }
         #endregion
     }

@@ -62,7 +62,7 @@ namespace smallone
                     break;
                 case LevelEnum.Main:
                     {
-                        sceneName = "Main";
+                        sceneName = "Demo";
                         if (_bGameStarted)
                         {
                             StartCoroutine(UnloadAdditiveLevelScene(levelType, "Game"));
@@ -148,7 +148,7 @@ namespace smallone
                         break;
                     case LevelEnum.Main:
                         {
-                            _dicLevels.Add(_nCurLevelId, new LevelBase());
+                            _dicLevels.Add(_nCurLevelId, new LevelMain());
                         }
                         break;
                     default:

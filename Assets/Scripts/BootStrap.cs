@@ -42,7 +42,7 @@ namespace smallone
             #endregion
 
             #region create ItemManager instance and load data
-            ItemManager.GetOrCreateInstance();
+            BuildingManager.GetOrCreateInstance();
             #endregion
 
             #region init lean touch
@@ -62,12 +62,12 @@ namespace smallone
         // Use this for initialization
         void Start()
         {
-            // LevelManager.Instance.ChangeLevel(LevelEnum.Main);
+            LevelManager.Instance.ChangeLevel(LevelEnum.Main);
         }
 
         void InitGame()
         {
-            EffectCenter.GetOrCreateInstance();
+            // EffectCenter.GetOrCreateInstance();
 
             #region init 2d UI
             Canvas canvas2dUI = UIManager.GetUiContainer.GetComponent<Canvas>();
@@ -78,7 +78,6 @@ namespace smallone
             #endregion
 
             GameData.Init();
-            UIPanelManager.Instance.ShowPanel("UIStartPanel");
         }
 	}
 }

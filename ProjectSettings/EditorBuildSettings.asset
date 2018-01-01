@@ -7,5 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/BootStrap.unity
+    guid: ee21f3112118c124b995e89865d49555
   - enabled: 1
     path: Assets/Scenes/Loading.unity
+    guid: 096a7165f864caf4cb4e9bcb41f2e4c3
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: cb7f3aa8de2af7848a4c371b0b29b82a
+  - enabled: 1
+    path: Assets/Scenes/Demo.unity
+    guid: a291e51601bda4fc7a485f73bbbcdfec

@@ -37,7 +37,7 @@ namespace smallone
             {
                 objs.ForEach(p =>
                 {
-                    var inited = GameObject.Instantiate(ItemManager.Instance.GetItem(p.ObjId).Prefab, Vector3.one * 500, Quaternion.identity);
+                    var inited = GameObject.Instantiate(BuildingManager.Instance.GetItem(p.ObjId).Prefab, Vector3.one * 500, Quaternion.identity);
                     inited.name = p.ObjName;
                     if (inited.GetComponent<ParticleSystem>() != null)
                         inited.SetActive(false);

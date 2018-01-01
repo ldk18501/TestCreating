@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-public class ItemManager : DoozyUI.Singleton<ItemManager>
+public class BuildingManager : DoozyUI.Singleton<BuildingManager>
 {
     private Dictionary<string, Item> _mItemDic = new Dictionary<string, Item>();
 
 	void Awake()
     {
-        List<Item> items = SerializationManager.LoadFromCSV<Item>("Data/Items");
+        List<Item> items = SerializationManager.LoadFromCSV<Item>("Data/Buildings");
         for (int i = 0; i < items.Count; ++i)
         {
             _mItemDic.Add(items[i].ID, items[i]);
