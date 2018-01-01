@@ -76,6 +76,7 @@ namespace CreativeSpore.SpriteSorting
             X,
             Y,
             Z,
+            YthenX,
             XY,
             YZ,
             ZX,
@@ -95,7 +96,7 @@ namespace CreativeSpore.SpriteSorting
         /// <summary>
         /// Sorting axis
         /// </summary>
-        public eSortingAxis SortingAxis = eSortingAxis.Y;
+        public eSortingAxis SortingAxis = eSortingAxis.YthenX;
         public Vector3 SorterPositionOffset = new Vector3();
 
         /// <summary>
@@ -273,6 +274,14 @@ namespace CreativeSpore.SpriteSorting
                         case eSortingAxis.YZ: listSortedIsoSpr.Sort((a, b) => !a || !b ? 0 : Vector3.Dot(s_vYZ, (b.SorterPositionOffset + b.transform.position) - (a.SorterPositionOffset + a.transform.position)).CompareTo(0f)); break;
                         case eSortingAxis.ZX: listSortedIsoSpr.Sort((a, b) => !a || !b ? 0 : Vector3.Dot(s_vZX, (b.SorterPositionOffset + b.transform.position) - (a.SorterPositionOffset + a.transform.position)).CompareTo(0f)); break;
                         case eSortingAxis.CameraForward: listSortedIsoSpr.Sort((a, b) => Vector3.Dot(Camera.main.transform.forward, (b.SorterPositionOffset + b.transform.position) - (a.SorterPositionOffset + a.transform.position)).CompareTo(0f)); break;
+                        case eSortingAxis.YthenX:
+                            listSortedIsoSpr.Sort((a, b) =>
+                            {
+                                int yCompare = (b.SorterPositionOffset.y + b.transform.position.y).CompareTo(a.SorterPositionOffset.y + a.transform.position.y);
+                                int xCompare = (b.SorterPositionOffset.x + b.transform.position.x).CompareTo(a.SorterPositionOffset.x + a.transform.position.x);
+                                return !a || !b ? 0 : yCompare == 0 ? xCompare : yCompare;
+                            });
+                            break;
                     }
                 }
             }
