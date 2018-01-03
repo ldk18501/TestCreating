@@ -8,14 +8,14 @@ public class UIGameHUD : UIPanel {
 
     void OnEnable()
     {
-        EventCenter.Instance.RegisterButtonEvent("HomeButton", OnHomeBtnClicked);
+        // EventCenter.Instance.RegisterButtonEvent("HomeButton", OnHomeBtnClicked);
     }
 
     void OnDisable()
     {
         if (EventCenter.Instance != null)
         {
-            EventCenter.Instance.UnregisterButtonEvent("HomeButton", OnHomeBtnClicked);
+            // EventCenter.Instance.UnregisterButtonEvent("HomeButton", OnHomeBtnClicked);
         }
     }
 
@@ -49,7 +49,7 @@ public class UIGameHUD : UIPanel {
 
     void OnHomeBtnClicked()
     {
-        (UIPanelManager.Instance.HidePanel("UIGameHUD") as UIPanel).HideSubElements("UIHomeButton");
+        // (UIPanelManager.Instance.HidePanel("UIGameHUD") as UIPanel).HideSubElements("UIHomeButton");
 
         UIPanelManager.Instance.ShowPanel("UICover").DoOnShowCompleted((panel) =>
         {

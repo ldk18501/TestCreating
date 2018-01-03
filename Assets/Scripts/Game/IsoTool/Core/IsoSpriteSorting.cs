@@ -294,6 +294,8 @@ namespace CreativeSpore.SpriteSorting
         void UpdateSorting()
         {
             int iSortingAxis = (int)SortingAxis;
+            if (s_axisData == null)
+                return;
             AxisData axisData = s_axisData[iSortingAxis];
             List<IsoSpriteSorting> listSortedIsoSpr = axisData.ListSortedIsoSprs;
             for (int i = 0; i < listSortedIsoSpr.Count; ++i)

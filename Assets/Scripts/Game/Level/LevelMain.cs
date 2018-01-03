@@ -57,7 +57,7 @@ namespace smallone
             yield return null;
 
             UIPanelManager.Instance.HidePanel("UILoading");
-            (UIPanelManager.Instance.ShowPanel("UIGameHUD") as UIPanel).ShowSubElements("UIHomeButton");
+            UIPanelManager.Instance.ShowPanel("UIGameHUD");
         }
         IEnumerator EnterGame()
         {

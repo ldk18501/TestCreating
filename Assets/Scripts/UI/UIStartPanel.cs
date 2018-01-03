@@ -29,7 +29,7 @@ public class UIStartPanel : UIPanel
     {
         UIPanelManager.Instance.HidePanel(this).DoOnHideCompleted((panel) =>
             {
-                (UIPanelManager.Instance.ShowPanel("UIGameHUD") as UIPanel).ShowSubElements("UIHomeButton");
+                UIPanelManager.Instance.ShowPanel("UIGameHUD");
                 UIPanelManager.Instance.HidePanel("UICover");
             });
     }
