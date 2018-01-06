@@ -35,13 +35,13 @@ MonoBehaviour:
   - elementName: UIPanelDishJudgement
   - elementName: UIPanelDishLevel
   - elementName: UIPanelGuide
+  - elementName: UIPanelInventory
   - elementName: UIParentNote
   - elementName: UIParentVerification
   - elementName: UIPromotionWebView
   - elementName: UIRenderChara
   - elementName: UIReturnButton
   - elementName: UIStartPanel
-  - elementName: UIStartPanel_Parent
   - elementName: UIStartPanel_Promotion
   - elementName: UIUnlockFood
   elementSounds:

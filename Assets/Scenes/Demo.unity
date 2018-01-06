@@ -266,7 +266,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 341330578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -140, y: 15, z: 0}
+  m_LocalPosition: {x: -56.15, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1415653806}
@@ -548,7 +548,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1263373795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -243.99997, y: 189.77998, z: 0}
+  m_LocalPosition: {x: -327.89996, y: 189.77998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 341330579}
@@ -558,8 +558,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 156, y: -35.22}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 72.1, y: -35.22}
+  m_SizeDelta: {x: 132.3, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1263373797
 MonoBehaviour:
@@ -616,7 +616,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1415653805
 GameObject:
   m_ObjectHideFlags: 0
