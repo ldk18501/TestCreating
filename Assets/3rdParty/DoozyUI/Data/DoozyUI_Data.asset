@@ -34,15 +34,16 @@ MonoBehaviour:
   - elementName: UILoading
   - elementName: UIPanelDishJudgement
   - elementName: UIPanelDishLevel
+  - elementName: UIPanelEquipment
   - elementName: UIPanelGuide
   - elementName: UIPanelInventory
   - elementName: UIParentNote
   - elementName: UIParentVerification
+  - elementName: UIPlayerLvlInfo
   - elementName: UIPromotionWebView
   - elementName: UIRenderChara
   - elementName: UIReturnButton
   - elementName: UIStartPanel
-  - elementName: UIStartPanel_Promotion
   - elementName: UIUnlockFood
   elementSounds:
   - soundName: ~No Sound~
@@ -65,4 +66,3 @@ MonoBehaviour:
   - buttonName: ToggleSound
   buttonSounds:
   - onClickSound: ~No Sound~
-  - onClickSound: "1\u6309\u952E"

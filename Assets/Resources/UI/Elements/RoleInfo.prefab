@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114501565026259216}
   - component: {fileID: 114686216962753260}
   - component: {fileID: 114152985962021114}
+  - component: {fileID: 114890025604793812}
   m_Layer: 5
   m_Name: RoleInfo
   m_TagString: Untagged
@@ -216,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonName: ~Button Name~
-  onClickSound: "1\u6309\u952E"
+  onClickSound: ~No Sound~
   showHelp: 0
   allowMultipleClicks: 0
   disableButtonInterval: 0.5
@@ -451,7 +452,7 @@ MonoBehaviour:
   showElements: []
   hideElements: []
   gameEvents:
-  - OpenBag
+  - OpenEquipment
   animationManager: {fileID: 114686216962753260}
 --- !u!114 &114283640462292310
 MonoBehaviour:
@@ -752,6 +753,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114890025604793812
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1226564288578266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed47e9dfcd985724097d41f944f47ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btRole: {fileID: 114501565026259216}
+  imgHeroIcon: {fileID: 114447850241246956}
+  imgAlert: {fileID: 114091944516648344}
 --- !u!222 &222051151596883982
 CanvasRenderer:
   m_ObjectHideFlags: 1
