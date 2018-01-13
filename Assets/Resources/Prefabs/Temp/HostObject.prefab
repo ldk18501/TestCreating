@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 444260}
   - component: {fileID: 11441366}
   - component: {fileID: 114836493125654576}
+  - component: {fileID: 114994399496906540}
   m_Layer: 0
   m_Name: HostObject
   m_TagString: Untagged
@@ -150,3 +151,14 @@ MonoBehaviour:
   SortingAxis: 3
   SorterPositionOffset: {x: 0, y: -1.05, z: 0}
   IncludeInactiveRenderer: 1
+--- !u!114 &114994399496906540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092c8b64be3b518448205a869028d933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

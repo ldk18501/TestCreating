@@ -32,6 +32,7 @@ MonoBehaviour:
   - elementName: UIGameHUD
   - elementName: UIInsufficientCoins
   - elementName: UILoading
+  - elementName: UIPanelConstruction
   - elementName: UIPanelDishJudgement
   - elementName: UIPanelDishLevel
   - elementName: UIPanelEquipment

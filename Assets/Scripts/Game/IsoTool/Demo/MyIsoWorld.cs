@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using ISO;
+using Lean.Touch;
 
 public class MyIsoWorld :IsoWorld {
 	[Header("Scenes")]
@@ -21,8 +22,43 @@ public class MyIsoWorld :IsoWorld {
 	[Header("UI")]
 	public Toggle toggle;
 
-	// Use this for initialization
-	protected override void Start () {
+    public LayerMask LayerMask = Physics.DefaultRaycastLayers;
+
+    private void OnEnable()
+    {
+        LeanTouch.OnFingerTap += OnTestFingerTap;
+    }
+
+    private void OnDisable()
+    {
+        LeanTouch.OnFingerTap -= OnTestFingerTap;
+    }
+
+    void OnTestFingerTap(LeanFinger finger)
+    {
+        if (finger.StartedOverGui) return;
+        var component = FindComponentUnder(finger);
+        // Find the selectable associated with this component
+        if (component)
+        {
+            Debug.Log(component.transform.name);
+            UIPanelManager.Instance.ShowPanel("UIPanelConstruction");
+        }
+    }
+
+
+    private Component FindComponentUnder(LeanFinger finger)
+    {
+        var component = default(Component);
+        // Find the position under the current finger
+        var point = finger.GetWorldPosition(1.0f);
+        // Find the collider at this position
+        component = Physics2D.OverlapPoint(point, LayerMask);
+        return component;
+    }
+
+    // Use this for initialization
+    protected override void Start () {
 		base.Start();
 
 		Application.targetFrameRate = 60;

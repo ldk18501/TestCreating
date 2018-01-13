@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 471436}
   - component: {fileID: 11430170}
   - component: {fileID: 114942465955563330}
+  - component: {fileID: 114057009321492666}
   m_Layer: 0
   m_Name: ForestObject
   m_TagString: Untagged
@@ -136,6 +137,17 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 147004}
   m_IsPrefabParent: 1
+--- !u!114 &114057009321492666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092c8b64be3b518448205a869028d933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114942465955563330
 MonoBehaviour:
   m_ObjectHideFlags: 1

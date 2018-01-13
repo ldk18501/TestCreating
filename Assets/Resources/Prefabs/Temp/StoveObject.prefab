@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 445654}
   - component: {fileID: 11443540}
   - component: {fileID: 114894270230013084}
+  - component: {fileID: 114805598560261640}
   m_Layer: 0
   m_Name: StoveObject
   m_TagString: Untagged
@@ -136,6 +137,17 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 173228}
   m_IsPrefabParent: 1
+--- !u!114 &114805598560261640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092c8b64be3b518448205a869028d933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114894270230013084
 MonoBehaviour:
   m_ObjectHideFlags: 1
