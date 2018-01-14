@@ -7,6 +7,8 @@ using Lean.Touch;
 // 前言：切忌使用Input.mouse相关方法来处理点击逻辑，应该全部替换成LeanTouch
 public class MyIsoWorld : IsoWorld
 {
+    public MapLayer mapLayer;
+
     [Header("Scenes")]
     public IsoScene buildingScene;
     public IsoScene groundScene;

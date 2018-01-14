@@ -4,7 +4,6 @@ using System.Collections;
 /// <summary>
 /// untiy3d Native2d 屏幕坐标工具类.
 /// 这里面的Camer.main是Native2d中的相机.
-/// author:zhouzhanglin 
 /// </summary>
 public class Native2dScreenUtil
 {

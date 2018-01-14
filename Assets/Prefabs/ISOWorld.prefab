@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 224422434719379200}
   - component: {fileID: 222638580703479090}
   - component: {fileID: 114623221572491640}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BarTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 222747038220217020}
   - component: {fileID: 114387408038167144}
   - component: {fileID: 114300147512402046}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TxtTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 224571383205112162}
   - component: {fileID: 222094573796703474}
   - component: {fileID: 114778003934115996}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +654,7 @@ GameObject:
   - component: {fileID: 223979265136731964}
   - component: {fileID: 114755933451448632}
   - component: {fileID: 114057372292523094}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ConstructionTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
