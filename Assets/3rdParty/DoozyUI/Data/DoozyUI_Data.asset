@@ -36,8 +36,11 @@ MonoBehaviour:
   - elementName: UIPanelDishJudgement
   - elementName: UIPanelDishLevel
   - elementName: UIPanelEquipment
+  - elementName: UIPanelExpedition
   - elementName: UIPanelGuide
   - elementName: UIPanelInventory
+  - elementName: UIPanelMission
+  - elementName: UIPanelTrade
   - elementName: UIParentNote
   - elementName: UIParentVerification
   - elementName: UIPlayerLvlInfo

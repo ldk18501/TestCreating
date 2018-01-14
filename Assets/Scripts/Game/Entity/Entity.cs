@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace smallone
 {
-    public class EntityBuilding : Entity
+    public class Entity : MonoBehaviour
     {
 
         // Use this for initialization
@@ -20,5 +19,5 @@ namespace smallone
 
         }
     }
-}
 
+}
