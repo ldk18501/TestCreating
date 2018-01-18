@@ -35,14 +35,14 @@ namespace smallone
             var objs = SerializationManager.LoadFromCSV<LevelObjectsData>(path);
             if (objs != null)
             {
-                objs.ForEach(p =>
-                {
-                    var inited = GameObject.Instantiate(BuildingManager.Instance.GetItem(p.ObjId).Prefab, Vector3.one * 500, Quaternion.identity);
-                    inited.name = p.ObjName;
-                    if (inited.GetComponent<ParticleSystem>() != null)
-                        inited.SetActive(false);
-                    _dictLevelObjs.Add(p.ObjId, inited);
-                });
+                //objs.ForEach(p =>
+                //{
+                //    var inited = GameObject.Instantiate(BuildingManager.Instance.GetItem(p.ObjId).Prefab, Vector3.one * 500, Quaternion.identity);
+                //    inited.name = p.ObjName;
+                //    if (inited.GetComponent<ParticleSystem>() != null)
+                //        inited.SetActive(false);
+                //    _dictLevelObjs.Add(p.ObjId, inited);
+                //});
 
                 UIPanelManager.Instance.HidePanel("UILoading");
             }
