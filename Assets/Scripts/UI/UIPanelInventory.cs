@@ -24,6 +24,12 @@ public class UIPanelInventory : UIPanel
         }
     }
 
+    protected override void OnPanelShowBegin()
+    {
+        base.OnPanelShowBegin();
+        Debug.Log(GameData.BagList.Count);
+    }
+
     void OnCloseBag()
     {
         UIPanelManager.Instance.HidePanel("UIPanelInventory").DoOnHideCompleted((panel) =>

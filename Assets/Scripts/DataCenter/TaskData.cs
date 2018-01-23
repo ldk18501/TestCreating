@@ -92,7 +92,7 @@ namespace smallone
 
             //需求列表：类型、数量、id
             _lstItemReq = new List<ItemPair>();
-            string[] multi = productions.Split('+');
+            string[] multi = itemReqs.Split('+');
             for (int i = 0; i < multi.Length; i++)
             {
                 string[] vals = multi[i].Split('|');

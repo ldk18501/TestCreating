@@ -54,6 +54,7 @@ namespace smallone
 
             #region init EventCenter
             EventCenter.GetOrCreateInstance();
+            DataCenter.GetOrCreateInstance();
             #endregion
 
             InitGame();
@@ -63,8 +64,6 @@ namespace smallone
         void Start()
         {
             LevelManager.Instance.ChangeLevel(LevelEnum.Main);
-            List<Item> items = SerializationManager.LoadFromCSV<Item>("Data/Items");
-            Debug.Log(items.Count);
         }
 
         void InitGame()

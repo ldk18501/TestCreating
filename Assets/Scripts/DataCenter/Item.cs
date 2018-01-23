@@ -142,11 +142,14 @@ namespace smallone
 
             _lstPrice = new List<ItemPair>();
             string price = data["Price"][index];
-            string[] multi = price.Split('+');
-            for (int i = 0; i < multi.Length; i++)
+            if (!string.IsNullOrEmpty(price) && price != "NULL")
             {
-                string[] prices = multi[i].Split('|');
-                _lstPrice.Add(new ItemPair(prices[0], int.Parse(prices[1])));
+                string[] multi = price.Split('+');
+                for (int i = 0; i < multi.Length; i++)
+                {
+                    string[] prices = multi[i].Split('|');
+                    _lstPrice.Add(new ItemPair(prices[0], int.Parse(prices[1])));
+                }
             }
 
             _nStoreCount = int.Parse(data["Store"][index]);

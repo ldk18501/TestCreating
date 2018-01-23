@@ -12,7 +12,7 @@ namespace smallone
         void Awake()
         {
             LoadItem("Data/Items");
-            LoadItem("Data/Tasks");
+            LoadTask("Data/Tasks");
         }
 
         void LoadItem(string path)
