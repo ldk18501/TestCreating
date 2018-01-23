@@ -147,9 +147,9 @@ MonoBehaviour:
   autoRegister: 1
   isVisible: 1
   containsChildUIElements: 0
-  useInAnimations: 1
+  useInAnimations: 0
   useLoopAnimations: 0
-  useOutAnimations: 1
+  useOutAnimations: 0
   useInAnimationsStartEvents: 0
   useInAnimationsFinishEvents: 0
   useOutAnimationsStartEvents: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   - WiggleRotateScaleIn
   inAnimationsPresetName: DefaultPreset
   moveIn:
-    enabled: 1
+    enabled: 0
     moveFrom: 2
     positionAdjustment: {x: 0, y: 0, z: 0}
     positionFrom: {x: 0, y: 0, z: 0}
@@ -323,7 +323,7 @@ MonoBehaviour:
   - WiggleRotateScaleOut
   outAnimationsPresetName: DefaultPreset
   moveOut:
-    enabled: 1
+    enabled: 0
     moveTo: 13
     positionAdjustment: {x: 0, y: 0, z: 0}
     positionTo: {x: 0, y: 0, z: 0}
@@ -898,7 +898,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1556887977758198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -98.45, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224430070161012056}
@@ -936,7 +936,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057750124157110}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 105.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224430070161012056}
