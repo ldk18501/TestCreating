@@ -45,7 +45,10 @@ public class UIPanelTrade : UIPanel
 
     void OnSlotSelect(bool isSelect,GameObject obj) {
         if (objBubble)
+        {
+            Debug.Log(obj.transform.position + " " + obj.transform.localPosition);
             objBubble.transform.localPosition = obj.transform.localPosition + new Vector3(30, 50);
+        }
         objBubble.SetActive(isSelect);
     }
 }

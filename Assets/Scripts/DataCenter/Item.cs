@@ -11,15 +11,14 @@ namespace smallone
         Paper
     }
 
-    // TODO::临时放这里
-    public class ItemCost
-    {
-        Dictionary<string, int> _costMap = new Dictionary<string, int>();
-        public void AddCost(string type, int cost)
-        {
-            if (_costMap.ContainsKey(type))
-                _costMap[type] += cost;
-            else _costMap.Add(type, cost);
+    public class ItemPair {
+        public string strType;
+        public int nId;
+        public int nCount;
+        public ItemPair(string type, int count = 0, int id = -1) {
+            strType = type;
+            nId = id;
+            nCount = count;
         }
     }
 
@@ -38,7 +37,7 @@ namespace smallone
         protected string _strColor;
         protected string _strSkill;
         protected int _nPreTask;
-        protected string _strPrice;
+        protected List<ItemPair> _lstPrice;
         protected int _nStoreCount;
 
         public string ID
@@ -113,18 +112,11 @@ namespace smallone
             }
         }
 
-        public ItemCost Price
+        public List<ItemPair> Price
         {
             get
             {
-                string[] multi = _strPrice.Split('+');
-                ItemCost cost = new ItemCost();
-                for (int i = 0; i < multi.Length; i++)
-                {
-                    string[] price = multi[i].Split('|');
-                    cost.AddCost(price[0], int.Parse(price[1]));
-                }
-                return cost;
+                return _lstPrice;
             }
         }
 
@@ -147,7 +139,16 @@ namespace smallone
             _strColor = data["Color"][index];
             _strSkill = data["Skill"][index];
             _nPreTask= int.Parse(data["Task"][index]);
-            _strPrice = data["Price"][index];
+
+            _lstPrice = new List<ItemPair>();
+            string price = data["Price"][index];
+            string[] multi = price.Split('+');
+            for (int i = 0; i < multi.Length; i++)
+            {
+                string[] prices = multi[i].Split('|');
+                _lstPrice.Add(new ItemPair(prices[0], int.Parse(prices[1])));
+            }
+
             _nStoreCount = int.Parse(data["Store"][index]);
 
             //string prefabPath = data["Prefab"][index];
