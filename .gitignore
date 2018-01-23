@@ -43,3 +43,4 @@ build/xcode
 
 .vs/
 UnityPackageManager/
+ProjectSettings/ProjectVersion.txt
