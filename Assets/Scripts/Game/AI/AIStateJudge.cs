@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace smallone
 {
-    public class AIStateJudge : State<MyIsoObject>
+    public class AIStateJudge : State<AINpc>
     {
         public AIStateJudge(int stateEnum) : base(stateEnum)
         {

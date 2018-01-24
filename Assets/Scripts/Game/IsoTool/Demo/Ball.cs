@@ -11,7 +11,15 @@ public class Ball : MyIsoObject {
 	private int roadIndex;
 	private PathNode nextPoint;
 
-	public void SearchRoadAndMove(){
+    public System.Action cbArrived;
+
+    protected override void Start()
+    {
+        base.Start();
+        gameObject.AddMissingComponent<smallone.AINpc>().RegisterMaster(this);
+    }
+
+    public void SearchRoadAndMove(){
 
 	}
 
@@ -25,6 +33,7 @@ public class Ball : MyIsoObject {
 
 	protected bool MoveToPoint( PathNode point) 
 	{
+        // Debug.Log(point);
 		float distance = Vector2.Distance(new Vector2(x,z),new Vector2(point.x,point.z) );
 		if(distance < speed){
 			m_nodeX = Mathf.FloorToInt(point.x/world.cellSize);
@@ -87,7 +96,11 @@ public class Ball : MyIsoObject {
 	}
 
 	protected void Arrived(){
-		
+        if (cbArrived != null)
+        {
+            cbArrived.Invoke();
+            cbArrived = null;
+        }
 	}
 
 

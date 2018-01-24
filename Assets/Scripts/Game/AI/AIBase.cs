@@ -7,16 +7,20 @@ namespace smallone
     public class AIBase : MonoBehaviour
     {
         protected bool _bAIPausing;
-        protected MyIsoObject _owner;
-        protected StateMachine<MyIsoObject> _fsmIsoObject;
-
-        public void RegisterOwner(MyIsoObject obj)
+        protected MyIsoObject _aiMaster;
+        public MyIsoObject AIMaster
         {
-            _owner = obj;
+            get { return _aiMaster; }
+        }
+
+        public void RegisterMaster(MyIsoObject obj)
+        {
+            _aiMaster = obj;
             _bAIPausing = true;
         }
 
-        public bool isAIOff {
+        public bool isAIOff
+        {
             set { _bAIPausing = value; }
             get { return _bAIPausing; }
         }
@@ -24,12 +28,12 @@ namespace smallone
         // Use this for initialization
         void Awake()
         {
-            _fsmIsoObject = new StateMachine<MyIsoObject>(_owner);
+
         }
 
         void Update()
         {
-        
+            TickStateExecuting(Time.deltaTime);
         }
 
         protected virtual void TickStateExecuting(float deltaTime) { }

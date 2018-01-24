@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using System.Collections;
 using ISO;
 using Lean.Touch;
@@ -97,6 +98,8 @@ public class MyIsoWorld : IsoWorld
         {
             InitBuildings();
         }
+
+        ball.GetComponent<smallone.AINpc>().isAIOff = false;
     }
 
     void InitBuildings()
@@ -161,6 +164,7 @@ public class MyIsoWorld : IsoWorld
             {
                 // Search Path and move
                 gridData.CalculateLinks();//when map is changed
+                Debug.Log(nodeX + "," + nodeZ);
                 if (astar.FindPath(ball.nodeX, ball.nodeZ, nodeX, nodeZ))
                 {
                     ball.MoveByRoads(astar.path);
@@ -195,4 +199,15 @@ public class MyIsoWorld : IsoWorld
         }
     }
 
+    //! 太暴力了
+    public List<MyIsoObject> GetBuildings()
+    {
+        List<MyIsoObject> buildings = new List<MyIsoObject>();
+        for (int i = 0; i < buildingScene.transform.childCount; i++)
+        {
+            if (buildingScene.transform.GetChild(i).name != "Ball")
+                buildings.Add(buildingScene.transform.GetChild(i).GetComponent<MyIsoObject>());
+        }
+        return buildings;
+    }
 }
