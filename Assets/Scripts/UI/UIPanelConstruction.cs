@@ -55,11 +55,12 @@ public class UIPanelConstruction : UIPanel
 
     void OnSlotSelect(bool isSelect, GameObject obj)
     {
-        //if (objBubble)
-        //{
-        //    Debug.Log(obj.transform.position + " " + obj.transform.localPosition);
-        //    objBubble.transform.localPosition = obj.transform.localPosition + new Vector3(30, 50);
-        //}
+        if (objBubble)
+        {
+            _objBubble.GetComponent<RectTransform>().anchoredPosition = trsGroup.localPosition + obj.transform.localPosition + new Vector3(-316, 131);
+        }
+
+
         if (_objBubble)
         {
             _objBubble.SetActive(isSelect);
@@ -73,6 +74,6 @@ public class UIPanelConstruction : UIPanel
         _objBubble.transform.SetParent(transform);
         _objBubble.transform.SetAsLastSibling();
         _objBubble.transform.localScale = Vector3.one;
-        _objBubble.GetComponent<RectTransform>().anchoredPosition = new Vector3(-148, 88);
+
     }
 }

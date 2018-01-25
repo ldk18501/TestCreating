@@ -68,6 +68,7 @@ public class UIGameHUD : UIPanel
             item.transform.SetParent(trsHeroListRoot);
             item.transform.localScale = Vector3.one;
             item.GetComponent<UIRoleInfo>().btRole.onClick.AddListener(() => { OnHeroClicked(item); });
+            item.GetComponent<UIRoleInfo>().btMission.onClick.AddListener(() => { OnMissionClicked(item); });
         }
     }
 
@@ -90,6 +91,13 @@ public class UIGameHUD : UIPanel
         });
     }
 
+    void OnMissionClicked(GameObject obj)
+    {
+        UIPanelManager.Instance.ShowPanel("UIPanelMission").DoOnShowCompleted((panel) =>
+        {
+            Debug.Log(obj.name);
+        });
+    }
 
     void OnPlayerLvlInfoShow()
     {
