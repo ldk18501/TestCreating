@@ -26,11 +26,14 @@ namespace smallone
             else
             {
                 _isoWorld.gridData.CalculateLinks();
-                _isoWorld.astar.FindPath(_owner.AIMaster.nodeX, _owner.AIMaster.nodeZ, (int)_owner.DesirePoint.x, (int)_owner.DesirePoint.y);
-                //! 之后把Ball拆成Move组件
-                Ball ball = _owner.AIMaster.GetComponent<Ball>();
-                ball.MoveByRoads(_isoWorld.astar.path);
-                ball.cbArrived = OnArrive;
+                if (_isoWorld.astar.FindPath(_owner.AIMaster.nodeX, _owner.AIMaster.nodeZ, (int)_owner.DesirePoint.x, (int)_owner.DesirePoint.y))
+                {
+                    //! 之后把Ball拆成Move组件
+                    Ball ball = _owner.AIMaster.GetComponent<Ball>();
+                    ball.MoveByRoads(_isoWorld.astar.path);
+                    ball.cbArrived = OnArrive;
+                }
+                else StrStateStatus = "MoveOver";
             }
         }
 

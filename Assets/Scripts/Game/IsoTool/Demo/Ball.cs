@@ -96,6 +96,7 @@ public class Ball : MyIsoObject {
 	}
 
 	protected void Arrived(){
+        StopMove();
         if (cbArrived != null)
         {
             cbArrived.Invoke();
