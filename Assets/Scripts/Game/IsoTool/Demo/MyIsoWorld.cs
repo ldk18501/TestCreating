@@ -56,6 +56,9 @@ public class MyIsoWorld : IsoWorld
                 case "Store":
                     UIPanelManager.Instance.ShowPanel("UIPanelTrade");
                     break;
+                case "SysthesisFurnace":
+                    UIPanelManager.Instance.ShowPanel("UIPanelSyntheticFurnace");
+                    break;
                 default:
                     UIPanelManager.Instance.ShowPanel("UIPanelConstruction");
                     break;
