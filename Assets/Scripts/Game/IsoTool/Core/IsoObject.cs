@@ -194,6 +194,7 @@ namespace ISO
 
         public virtual void SetWalkable(bool value, PathGrid grid)
         {
+            //TODO::这里算坐标的方式设一个建筑根据nodexz和spanxz来设定建筑不可走区域，可以改的更灵活
             UpdateSpanPos();
             foreach (Vector3 v in m_spanPosArray)
             {

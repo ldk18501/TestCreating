@@ -91,6 +91,7 @@ public class MyIsoWorld : IsoWorld
 
         //init grid
         gridData = new PathGrid(buildingScene.spanX, buildingScene.spanZ);
+        //TODO::在这里可以处理哪些点是默认不可走的
         gridData.SetAllWalkable(true);
 
         //init astar
