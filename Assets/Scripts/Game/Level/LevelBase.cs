@@ -10,9 +10,9 @@ namespace smallone
     {
         protected bool _bPausedAtUI;
         protected bool _bLevelEnded;
-        protected Dictionary<string, GameObject> _dictLevelObjs = new Dictionary<string, GameObject>();
+        protected Dictionary<string, GameObject> _dictLevelEntities = new Dictionary<string, GameObject>();
         public Dictionary<string, GameObject> LevelObjs
-        { get { return _dictLevelObjs; } }
+        { get { return _dictLevelEntities; } }
 
         public LevelBase()
         {
@@ -30,29 +30,15 @@ namespace smallone
 
         }
 
-        protected void GenLevelObjects(string path)
+        protected virtual void GenLevelEntities(string path)
         {
-            var objs = SerializationManager.LoadFromCSV<LevelObjectsData>(path);
-            if (objs != null)
-            {
-                //objs.ForEach(p =>
-                //{
-                //    var inited = GameObject.Instantiate(BuildingManager.Instance.GetItem(p.ObjId).Prefab, Vector3.one * 500, Quaternion.identity);
-                //    inited.name = p.ObjName;
-                //    if (inited.GetComponent<ParticleSystem>() != null)
-                //        inited.SetActive(false);
-                //    _dictLevelObjs.Add(p.ObjId, inited);
-                //});
-
-                UIPanelManager.Instance.HidePanel("UILoading");
-            }
+            UIPanelManager.Instance.HidePanel("UILoading");
         }
-
 
         //关卡退出清理
         public virtual void CleanLevel()
         {
-            _dictLevelObjs.Clear();
+            _dictLevelEntities.Clear();
             _bLevelEnded = true;
         }
 
@@ -68,15 +54,33 @@ namespace smallone
         { }
     }
 
-    public class LevelObjectsData : ICSVDeserializable
+    public class LevelEntityData : ICSVDeserializable
     {
-        public string ObjName;
-        public string ObjId;
+        protected string _strId;
+        protected string _strName;
+        protected Vector2 _v2PointInit;
+
+        public string Name
+        {
+            get { return _strName; }
+        }
+        public string ID
+        {
+            get
+            {
+                return _strId;
+            }
+        }
+
+        public Vector2 InitPoint
+        {
+            get { return _v2PointInit; }
+        }
 
         public void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            ObjName = data["Name"][index];
-            ObjId = data["ID"][index];
+            _strName = data["Name"][index];
+            _strId = data["ID"][index];
         }
     }
 }

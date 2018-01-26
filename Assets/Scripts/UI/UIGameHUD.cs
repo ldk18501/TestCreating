@@ -1,7 +1,8 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using DoozyUI;
 using smallone;
-using UnityEngine;
+
 
 public class UIGameHUD : UIPanel
 {
@@ -11,13 +12,15 @@ public class UIGameHUD : UIPanel
     public UIElement elePlayerLvlInfo;
     public Text mCoinNum;
 
+    private LevelMain _mainLevel;
+
     void OnEnable()
-    {
+    { 
         EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
 
         EventCenter.Instance.RegisterGameEvent("OpenPlayerLvlInfo", OnPlayerLvlInfoShow);
         EventCenter.Instance.RegisterGameEvent("ClosePlayerLvlInfo", OnPlayerLvlInfoHide);
-        GenerateHeroList();
+        StartGame();
     }
 
     void OnDisable()
@@ -31,6 +34,14 @@ public class UIGameHUD : UIPanel
         }
     }
 
+    void StartGame()
+    {
+        _mainLevel = LevelManager.Instance.MainLevel as LevelMain;
+        _mainLevel.StartGameLogic();
+
+        GenerateHeroList();
+    }
+
     protected override void OnPanelRepaint()
     {
         base.OnPanelRepaint();
@@ -41,7 +52,7 @@ public class UIGameHUD : UIPanel
     {
         base.OnPanelShowBegin();
         mCoinNum.text = GameData.Coins.ToString();
-        UIManager.SoundCheck();
+        // UIManager.SoundCheck();
     }
 
     protected override void OnPanelHideBegin()

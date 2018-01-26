@@ -6,9 +6,6 @@ namespace smallone
 {
     public class AIStateThink : State<AINpc>
     {
-        //! Hack
-        MyIsoWorld _isoWorld;
-
         public AIStateThink(int stateEnum) : base(stateEnum)
         {
         }
@@ -16,16 +13,12 @@ namespace smallone
         public override void Enter(object param)
         {
             base.Enter(param);
-            //! 之后把ISOWorld编程全局生成
-            if (_isoWorld == null)
-                _isoWorld = GameObject.Find("ISOWorld").GetComponent<MyIsoWorld>();
-
             int ranNum = Random.Range(0, 5);
             if (ranNum == 0)
                 StrStateStatus = "Stay";
             else 
             {
-                List<MyIsoObject> buildings = _isoWorld.GetBuildings();
+                List<MyIsoObject> buildings = _owner.GameWorld.GetBuildings();
                 if (buildings.Count > 0)
                 {
                     int ranPick = Random.Range(0, buildings.Count);

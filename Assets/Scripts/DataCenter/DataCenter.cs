@@ -8,6 +8,7 @@ namespace smallone
     {
         public Dictionary<string, Item> dictItem = new Dictionary<string, Item>();
         public Dictionary<string, TaskData> dictTask = new Dictionary<string, TaskData>();
+        public Dictionary<string, BuildingData> dictBuilding = new Dictionary<string, BuildingData>();
 
         void Awake()
         {

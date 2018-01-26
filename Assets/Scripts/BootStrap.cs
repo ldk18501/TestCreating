@@ -52,7 +52,7 @@ namespace smallone
             leanTouchObj.AddComponent<DontDestroyOnLoad>();
             #endregion
 
-            #region init EventCenter
+            #region init Centers
             EventCenter.GetOrCreateInstance();
             DataCenter.GetOrCreateInstance();
             #endregion

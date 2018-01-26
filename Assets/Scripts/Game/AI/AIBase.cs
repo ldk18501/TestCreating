@@ -7,7 +7,13 @@ namespace smallone
     public class AIBase : MonoBehaviour
     {
         protected bool _bAIPausing;
+        protected MyIsoWorld _world;
         protected MyIsoObject _aiMaster;
+
+        public MyIsoWorld GameWorld
+        {
+            get { return _world; }
+        }
         public MyIsoObject AIMaster
         {
             get { return _aiMaster; }
@@ -15,6 +21,7 @@ namespace smallone
 
         public void RegisterMaster(MyIsoObject obj)
         {
+            _world = (LevelManager.Instance.MainLevel as LevelMain).MainWorld;
             _aiMaster = obj;
             _bAIPausing = true;
         }
@@ -23,12 +30,6 @@ namespace smallone
         {
             set { _bAIPausing = value; }
             get { return _bAIPausing; }
-        }
-
-        // Use this for initialization
-        void Awake()
-        {
-
         }
 
         void Update()

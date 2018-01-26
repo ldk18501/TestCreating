@@ -102,8 +102,6 @@ public class MyIsoWorld : IsoWorld
         {
             InitBuildings();
         }
-
-        ball.GetComponent<smallone.AINpc>().isAIOff = false;
     }
 
     void InitBuildings()
@@ -168,7 +166,7 @@ public class MyIsoWorld : IsoWorld
             {
                 // Search Path and move
                 gridData.CalculateLinks();//when map is changed
-                Debug.Log(nodeX + "," + nodeZ);
+                //Debug.Log(nodeX + "," + nodeZ);
                 if (astar.FindPath(ball.nodeX, ball.nodeZ, nodeX, nodeZ))
                 {
                     ball.MoveByRoads(astar.path);

@@ -16,7 +16,6 @@ public class Ball : MyIsoObject {
     protected override void Start()
     {
         base.Start();
-        gameObject.AddMissingComponent<smallone.AINpc>().RegisterMaster(this);
     }
 
     public void SearchRoadAndMove(){

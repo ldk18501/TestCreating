@@ -8,7 +8,7 @@ namespace smallone
     public enum LevelEnum
     {
         Main,
-        Game,
+        Event,
     }
 
     public class LevelManager : DoozyUI.Singleton<LevelManager>
@@ -25,8 +25,8 @@ namespace smallone
         }
 
 
-        private bool _bGameStarted;
-        public bool IsInGame { get { return _bGameStarted; } }
+        private bool _bEventStarted;
+        public bool IsInEvent { get { return _bEventStarted; } }
 
         private LevelBase _curLevel;
         public LevelBase CurLevel
@@ -34,11 +34,16 @@ namespace smallone
             get { return _curLevel; }
         }
 
+        public LevelBase MainLevel
+        {
+            get { return _dicLevels[(int)LevelEnum.Main]; }
+        }
+
         private Dictionary<int, LevelBase> _dicLevels = new Dictionary<int, LevelBase>();
 
         void Awake()
         {
-            _bGameStarted = false;
+            _bEventStarted = false;
         }
 
         void Update()
@@ -53,7 +58,7 @@ namespace smallone
             string sceneName = "";
             switch (levelType)
             {
-                case LevelEnum.Game:
+                case LevelEnum.Event:
                     {
                         sceneName = "Game";
                         StartCoroutine(LoadLevelScene(levelType, sceneName, true));
@@ -63,7 +68,7 @@ namespace smallone
                 case LevelEnum.Main:
                     {
                         sceneName = "Demo";
-                        if (_bGameStarted)
+                        if (_bEventStarted)
                         {
                             StartCoroutine(UnloadAdditiveLevelScene(levelType, "Game"));
                         }
@@ -120,7 +125,7 @@ namespace smallone
                 yield return new WaitForEndOfFrame();
             }
             LoadLevelLogic(newxtLevelType);
-            _bGameStarted = false;
+            _bEventStarted = false;
         }
 
         //加载关卡逻辑控制
@@ -129,7 +134,7 @@ namespace smallone
             _nLastLevelId = _nCurLevelId;
             _nCurLevelId = (int)levelType;
             if (levelType != LevelEnum.Main)
-                _bGameStarted = true;
+                _bEventStarted = true;
 
             if (_dicLevels.ContainsKey(_nCurLevelId))
             {
@@ -141,7 +146,7 @@ namespace smallone
                 bool haveLevelCtrl = true;
                 switch (levelType)
                 {
-                    case LevelEnum.Game:
+                    case LevelEnum.Event:
                         {
                             _dicLevels.Add(_nCurLevelId, new LevelBase());
                         }
