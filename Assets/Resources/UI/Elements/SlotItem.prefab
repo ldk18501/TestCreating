@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222655326814743568}
   - component: {fileID: 114447649157061256}
   - component: {fileID: 114064218489490090}
+  - component: {fileID: 114671306699689284}
   m_Layer: 5
   m_Name: SlotItem
   m_TagString: Untagged
@@ -223,6 +224,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 99999
+--- !u!114 &114671306699689284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338678800939042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b3139be09fec84684dbfefd133b556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imgIcon: {fileID: 114886214744588808}
+  txtScore: {fileID: 114608305467365268}
 --- !u!114 &114886214744588808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,7 +295,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338678800939042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50251.97, y: -50041.58, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224498314079936588}
@@ -301,7 +315,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1591523225342790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.973, y: -40.701, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224482205438127266}
@@ -320,7 +334,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1812815415116102}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.775097, y: 0.0019016266, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224480325265978890}
