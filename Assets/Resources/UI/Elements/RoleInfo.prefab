@@ -732,6 +732,8 @@ MonoBehaviour:
   hideElements: []
   gameEvents:
   - OpenEquipment
+  - 
+  - 
   animationManager: {fileID: 114686216962753260}
 --- !u!114 &114283640462292310
 MonoBehaviour:
