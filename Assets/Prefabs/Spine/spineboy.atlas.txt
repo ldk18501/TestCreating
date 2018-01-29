@@ -1,0 +1,138 @@
+
+spineboy.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+eyes
+  rotate: false
+  xy: 957, 44
+  size: 34, 27
+  orig: 34, 27
+  offset: 0, 0
+  index: -1
+eyes-closed
+  rotate: false
+  xy: 892, 11
+  size: 34, 27
+  orig: 34, 27
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 512, 5
+  size: 121, 132
+  orig: 121, 132
+  offset: 0, 0
+  index: -1
+left-arm
+  rotate: true
+  xy: 892, 40
+  size: 35, 29
+  orig: 35, 29
+  offset: 0, 0
+  index: -1
+left-foot
+  rotate: false
+  xy: 715, 2
+  size: 65, 30
+  orig: 65, 30
+  offset: 0, 0
+  index: -1
+left-hand
+  rotate: false
+  xy: 782, 7
+  size: 35, 38
+  orig: 35, 38
+  offset: 0, 0
+  index: -1
+left-lower-leg
+  rotate: true
+  xy: 841, 77
+  size: 49, 64
+  orig: 49, 64
+  offset: 0, 0
+  index: -1
+left-shoulder
+  rotate: false
+  xy: 972, 73
+  size: 34, 53
+  orig: 34, 53
+  offset: 0, 0
+  index: -1
+left-upper-leg
+  rotate: true
+  xy: 769, 47
+  size: 33, 67
+  orig: 33, 67
+  offset: 0, 0
+  index: -1
+neck
+  rotate: true
+  xy: 993, 37
+  size: 34, 28
+  orig: 34, 28
+  offset: 0, 0
+  index: -1
+pelvis
+  rotate: false
+  xy: 907, 79
+  size: 63, 47
+  orig: 63, 47
+  offset: 0, 0
+  index: -1
+right-arm
+  rotate: true
+  xy: 716, 39
+  size: 21, 45
+  orig: 21, 45
+  offset: 0, 0
+  index: -1
+right-foot
+  rotate: false
+  xy: 646, 2
+  size: 67, 30
+  orig: 67, 30
+  offset: 0, 0
+  index: -1
+right-hand
+  rotate: false
+  xy: 923, 45
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+right-lower-leg
+  rotate: false
+  xy: 716, 62
+  size: 51, 64
+  orig: 51, 64
+  offset: 0, 0
+  index: -1
+right-shoulder
+  rotate: false
+  xy: 838, 24
+  size: 52, 51
+  orig: 52, 51
+  offset: 0, 0
+  index: -1
+right-upper-leg
+  rotate: true
+  xy: 769, 82
+  size: 44, 70
+  orig: 44, 70
+  offset: 0, 0
+  index: -1
+spineboy
+  rotate: false
+  xy: 2, 2
+  size: 508, 124
+  orig: 512, 128
+  offset: 2, 2
+  index: -1
+torso
+  rotate: false
+  xy: 646, 34
+  size: 68, 92
+  orig: 68, 92
+  offset: 0, 0
+  index: -1
