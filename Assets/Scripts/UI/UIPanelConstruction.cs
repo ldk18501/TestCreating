@@ -9,8 +9,11 @@ public class UIPanelConstruction : UIPanel
 {
     public Transform trsGroup;
     public GameObject objBubble;
+    public GameObject objSlotItem;
 
     GameObject _objBubble;
+
+    public int nSlotListCount = 10;
 
 
     void OnEnable()
@@ -18,10 +21,9 @@ public class UIPanelConstruction : UIPanel
         EventCenter.Instance.RegisterGameEvent("ClosePanel", OnCloseSelf);
         // EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
 
-        for (int i = 0; i < trsGroup.childCount; i++)
-        {
-            trsGroup.GetChild(i).gameObject.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
-        }
+
+        SlotListInit();
+
 
         BubbleItemInfo();
 
@@ -58,13 +60,10 @@ public class UIPanelConstruction : UIPanel
         if (objBubble)
         {
             _objBubble.GetComponent<RectTransform>().anchoredPosition = trsGroup.localPosition + obj.transform.localPosition + new Vector3(-316, 131);
-        }
-
-
-        if (_objBubble)
-        {
             _objBubble.SetActive(isSelect);
         }
+
+        
     }
 
     void BubbleItemInfo()
@@ -74,6 +73,22 @@ public class UIPanelConstruction : UIPanel
         _objBubble.transform.SetParent(transform);
         _objBubble.transform.SetAsLastSibling();
         _objBubble.transform.localScale = Vector3.one;
+    }
 
+
+    void SlotListInit()
+    {
+        for (int i = 0; i < nSlotListCount; i++)
+        {
+            var obj = GameObject.Instantiate(objSlotItem) as GameObject;
+            obj.transform.SetParent(trsGroup);
+            obj.name = objSlotItem.name + "_" + i;
+            obj.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
+            obj.transform.localScale = Vector3.one;
+            obj.GetComponent<UISlotItem>().txtScore.gameObject.SetActive(false);
+            
+        }
+
+        
     }
 }

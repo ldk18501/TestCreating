@@ -7,6 +7,7 @@ public class UISlotItem : MonoBehaviour {
 
     public Image imgIcon;
     public Text txtScore;
+    public Image imgQuality;
 
 
 	// Use this for initialization
