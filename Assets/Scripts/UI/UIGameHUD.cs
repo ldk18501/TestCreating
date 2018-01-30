@@ -6,9 +6,15 @@ using smallone;
 
 public class UIGameHUD : UIPanel
 {
+
+    public int nPlayerLvlInfoCount = 3;
+    public Transform trsPlayerLvlInfoRoot;
+    public GameObject objSlotItem;
+
     public int nHeroCount = 6;
     public Transform trsHeroListRoot;
     public GameObject objRoleSlot; 
+
     public UIElement elePlayerLvlInfo;
     public Text mCoinNum;
 
@@ -40,6 +46,7 @@ public class UIGameHUD : UIPanel
         _mainLevel.StartGameLogic();
 
         GenerateHeroList();
+        GeneratePlayerLvlInfoList();
     }
 
     protected override void OnPanelRepaint()
@@ -80,6 +87,18 @@ public class UIGameHUD : UIPanel
             item.transform.localScale = Vector3.one;
             item.GetComponent<UIRoleInfo>().btRole.onClick.AddListener(() => { OnHeroClicked(item); });
             item.GetComponent<UIRoleInfo>().btMission.onClick.AddListener(() => { OnMissionClicked(item); });
+        }
+    }
+
+    void GeneratePlayerLvlInfoList()
+    {
+        for (int i = 0; i < nPlayerLvlInfoCount; i++)
+        {
+            var item = GameObject.Instantiate(objSlotItem) as GameObject;
+            item.name = objSlotItem.name + "_" + i;
+            item.transform.SetParent(trsPlayerLvlInfoRoot);
+            item.transform.localScale = Vector3.one;
+
         }
     }
 

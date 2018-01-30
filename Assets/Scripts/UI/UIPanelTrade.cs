@@ -7,8 +7,10 @@ using smallone;
 
 public class UIPanelTrade : UIPanel
 {
+    public int nGoodList = 5;
     public GameObject objBubble;
-    public GameObject[] objSlots;
+    public Transform trsGoodListRoot;
+    public GameObject objGoodSlot;
 
     GameObject _objBubble;
 
@@ -16,11 +18,9 @@ public class UIPanelTrade : UIPanel
     {
         EventCenter.Instance.RegisterGameEvent("ClosePanel", OnCloseSelf);
         // EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
-        for (int i = 0; i < 3; i++)
-        {
-            objSlots[i].AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
-        }
 
+
+        InitGoodList();
         BubbleGood();
     }
 
@@ -50,12 +50,6 @@ public class UIPanelTrade : UIPanel
 
     void OnSlotSelect(bool isSelect, GameObject obj)
     {
-        //if (objBubble)
-        //{
-        //    Debug.Log(obj.transform.position + " " + obj.transform.localPosition);
-        //    objBubble.transform.localPosition = obj.transform.localPosition + new Vector3(30, 50);
-        //}
-
         _objBubble.SetActive(isSelect);
     }
 
@@ -67,5 +61,17 @@ public class UIPanelTrade : UIPanel
         _objBubble.transform.SetAsLastSibling();
         _objBubble.transform.localScale = Vector3.one;
         _objBubble.GetComponent<RectTransform>().anchoredPosition = new Vector3(346, -250);
+    }
+
+    void InitGoodList()
+    {
+        for (int i = 0; i < nGoodList; i++)
+        {
+            var item = GameObject.Instantiate(objGoodSlot) as GameObject;
+            item.name = objGoodSlot.name + "_" + i;
+            item.transform.SetParent(trsGoodListRoot);
+            item.transform.localScale = Vector3.one;
+            item.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
+        }
     }
 }

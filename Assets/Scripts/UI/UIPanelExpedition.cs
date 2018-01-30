@@ -7,10 +7,17 @@ using smallone;
 
 public class UIPanelExpedition : UIPanel
 {
+
+    public int nLootList = 4;
+    public Transform trsLootListRoot;
+    public GameObject objLootSlot;
+
     void OnEnable()
     {
         EventCenter.Instance.RegisterGameEvent("ClosePanel", OnCloseSelf);
         // EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
+
+        InitLootList();
     }
 
     void OnDisable()
@@ -28,5 +35,16 @@ public class UIPanelExpedition : UIPanel
         {
             Debug.Log("closed!");
         });
+    }
+
+    void InitLootList()
+    {
+        for(int i = 0; i < nLootList ; i++)
+        {
+            var item = GameObject.Instantiate(objLootSlot) as GameObject;
+            item.name = objLootSlot.name + "_" + i;
+            item.transform.SetParent(trsLootListRoot);
+            item.transform.localScale = Vector3.one;
+        }
     }
 }
