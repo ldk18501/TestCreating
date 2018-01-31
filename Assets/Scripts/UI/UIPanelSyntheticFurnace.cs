@@ -28,10 +28,10 @@ public class UIPanelSyntheticFurnace : UIPanel
             trsGroup.GetChild(i).gameObject.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
         }
 
-        //BubbleItemInfo();
-
-        _bBagShow = false;
-        objEquipmentBag.SetActive(_bBagShow);
+//         BubbleItemInfo();
+// 
+//         _bBagShow = false;
+//         objEquipmentBag.SetActive(_bBagShow);
 
     }
 
@@ -47,23 +47,23 @@ public class UIPanelSyntheticFurnace : UIPanel
         GameObject.Destroy(_objBubble);
         
 
-        _bBagShow = false;
-        objEquipmentBag.SetActive(_bBagShow);
+//         _bBagShow = false;
+//         objEquipmentBag.SetActive(_bBagShow);
     }
 
 
     void OnOpenEquipmentBag()
     {
 
-        _bBagShow = true;
-        objEquipmentBag.SetActive(_bBagShow);
+//         _bBagShow = true;
+//         objEquipmentBag.SetActive(_bBagShow);
     }
 
     void OnCloseEquipmentBag()
     {
 
-        _bBagShow = false;
-        objEquipmentBag.SetActive(_bBagShow);
+//         _bBagShow = false;
+//         objEquipmentBag.SetActive(_bBagShow);
     }
 
 

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 13f36200aaa6d42b2aab7ae9145c6b05
-timeCreated: 1517325539
+timeCreated: 1517370110
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -49,7 +49,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0.82
   textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
@@ -99,7 +99,11 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
+    outline:
+    - - {x: -16, y: 16}
+      - {x: -16, y: -16}
+      - {x: 16, y: -16}
+      - {x: 16, y: 16}
     physicsShape: []
   spritePackingTag: 
   userData: 

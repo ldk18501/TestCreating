@@ -7,6 +7,11 @@ using smallone;
 
 public class UIPanelEquipment : UIPanel
 {
+    public int nSlotItemCount = 20;
+    public Transform trsSlotItemRoot;
+    public GameObject objSlotItem;
+
+
     public GameObject objEquipmentDesc;
     public GameObject objEquipmentBag;
 
@@ -19,6 +24,7 @@ public class UIPanelEquipment : UIPanel
         EventCenter.Instance.RegisterGameEvent("SwitchEquipment", OnSwitchEquipment);
         EventCenter.Instance.RegisterGameEvent("CloseEquipmentInfo", OnCloseEquipmentInfo);
         OnCloseEquipmentInfo();
+        GenerateSlotList();
     }
 
     void OnDisable()
@@ -77,11 +83,31 @@ public class UIPanelEquipment : UIPanel
     }
 
 
+    void OnSwitch()
+    {
+        _IsEquipmentInfoShow = false;
+        ShowInfo(_IsEquipmentInfoShow);
+    }
+
     void ShowInfo(bool IsShow)
     {
         objEquipmentBag.SetActive(IsShow);
         objEquipmentDesc.SetActive(IsShow);
     }
 
-  
+
+    void GenerateSlotList()
+    {
+        for (int i = 0; i < nSlotItemCount; i++)
+        {
+            var item = GameObject.Instantiate(objSlotItem) as GameObject;
+            item.name = objSlotItem.name + "_" + i;
+            item.transform.SetParent(trsSlotItemRoot);
+            item.transform.localScale = Vector3.one;
+            item.gameObject.AddMissingComponent<Button>().onClick.AddListener(() => { OnSwitch(); });
+
+        }
+    }
+
+
 }
