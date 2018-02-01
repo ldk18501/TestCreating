@@ -2,14 +2,14 @@
 
 public class GameConfigEntry : ICSVDeserializable
 {
-    private string _mKey;
-    private string _mValue;
+    private string _strKey;
+    private string _strValue;
 
     public string Key
     {
         get
         {
-            return _mKey;
+            return _strKey;
         }
     }
 
@@ -17,13 +17,13 @@ public class GameConfigEntry : ICSVDeserializable
     {
         get
         {
-            return _mValue;
+            return _strValue;
         }
     }
 
     public void CSVDeserialize(Dictionary<string, string[]> data, int index)
     {
-        _mKey = data["Key"][index];
-        _mValue = data["Value"][index];
+        _strKey = data["Key"][index];
+        _strValue = data["Value"][index];
     }
 }

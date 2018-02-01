@@ -40,7 +40,7 @@ public class UIPanelInventory : UIPanel
     protected override void OnPanelShowBegin()
     {
         base.OnPanelShowBegin();
-        Debug.Log(GameData.BagList.Count);
+        Debug.Log(GameData.lstBagItems.Count);
     }
 
     void OnCloseBag()

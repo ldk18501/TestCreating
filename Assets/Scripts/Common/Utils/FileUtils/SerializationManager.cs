@@ -4,6 +4,41 @@ using UnityEngine;
 
 public class SerializationManager
 {
+    static public Dictionary<string, T> LoadDictFromCSV<T>(string key, string filePath) where T : ICSVDeserializable, new()
+    {
+        TextAsset ta = Resources.Load<TextAsset>(filePath);
+        if (ta == null)
+        {
+            LogUtil.LogError("SerializationManager", "file: {0} not found", filePath);
+            return null;
+        }
+
+        Dictionary<string, string[]> csvData = ParseCSV(ta.text);
+
+        int count = 0;
+        foreach (string[] value in csvData.Values)
+        {
+            count = value.Length;
+            break;
+        }
+
+        if (count > 0)
+        {
+            Dictionary<string, T> retVal = new Dictionary<string, T>();
+
+            for (int i = 0; i < count; ++i)
+            {
+                T element = new T();
+                element.CSVDeserialize(csvData, i);
+                retVal.Add(csvData[key][i], element);
+            }
+
+            return retVal;
+        }
+
+        return null;
+    }
+
     static public List<T> LoadFromCSV<T>(string filePath) where T : ICSVDeserializable, new()
     {
         TextAsset ta = Resources.Load<TextAsset>(filePath);

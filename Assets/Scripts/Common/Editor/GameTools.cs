@@ -21,7 +21,7 @@ public class GameTools
         EditorWindow.GetWindow<RenameSpineAtlasByPath>(false, "Rename", true);
     }
 
-    [MenuItem("GameTools/Import Item Key to Consts")]
+    [MenuItem("GameTools/Import Global Key to Consts")]
     static void ImportItemKey2Consts()
     {
         string scriptPath = Path.Combine(Application.dataPath, "Scripts/Consts.cs");
@@ -39,7 +39,7 @@ public class GameTools
         int regionEnd = -1;
         for (int i = 0; i < allLines.Count; ++i)
         {
-            if (allLines[i].Trim().StartsWith("#region 物品ID"))
+            if (allLines[i].Trim().StartsWith("#region GLOBAL_ID"))
             {
                 regionStart = i;
             }
@@ -54,21 +54,21 @@ public class GameTools
         {
             allLines.RemoveRange(regionStart + 1, regionEnd - regionStart - 1);
 
-            List<ItemKey> keyList = SerializationManager.LoadFromCSV<ItemKey>("Data/Items");
+            List<GameConfigEntry> keyList = SerializationManager.LoadFromCSV<GameConfigEntry>("Configs/GameConfigs");
             if (keyList == null)
             {
-                LogUtil.LogErrorNoTag("Error with loading 'Data/Items.csv'");
+                LogUtil.LogErrorNoTag("Error with loading game configs");
                 return;
             }
 
             for (int i = 0; i < keyList.Count; ++i)
             {
-                allLines.Insert(regionStart + 1 + i, string.Format(@"    public const string {0} = ""{1}"";", keyList[i].mKey.ToUpper(), keyList[i].mKey));
+                allLines.Insert(regionStart + 1 + i, string.Format(@"    public const string {0} = ""{1}"";", keyList[i].Key.ToUpper(), keyList[i].Key));
             }
         }
         else
         {
-            LogUtil.LogErrorNoTag("make sure '#region 物品ID' and '#endregion' come in pair");
+            LogUtil.LogErrorNoTag("make sure '#region GLOBAL_ID' and '#endregion' come in pair");
         }
 
         StreamWriter fileWriter = new StreamWriter(scriptPath);
@@ -92,10 +92,11 @@ public class GameTools
             EditorGUIUtility.fieldWidth = 90f;
             folderName = EditorGUILayout.TextField("FolderName", folderName);
             
-            bool create = GUILayout.Button("Create", GUILayout.Width(150f));
+            bool create = GUILayout.Button("Rename", GUILayout.Width(150f));
 
             if (create)
             {
+                //! 根据需要可修改初始路径
                 string asset_path = "Assets/Prefabs/Spine/";
                 if (folderName != "")
                 {
