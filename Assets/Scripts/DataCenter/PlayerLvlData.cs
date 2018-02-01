@@ -8,27 +8,58 @@ namespace smallone
     public class PlayerLvlData: ICSVDeserializable
     {
         protected string _strID;
-        protected GameObject _objPrefab;
+        protected int _nRequireExp;
+        protected List<int> _lstTableUnlock;
+        protected List<int> _lstTaskUnlock;
 
-        public string ID
+
+        public string Lv
         {
             get { return _strID; }
         }
 
-        public GameObject Prefab
+        public int RequireExp
         {
-            get { return _objPrefab; }
+            get { return _nRequireExp; }
         }
+
+        public List<int> TableUnlock
+        {
+            get { return _lstTableUnlock; }
+        }
+
+        public List<int> TaskUnlock
+        {
+            get { return _lstTaskUnlock; }
+        }
+
 
 
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            _strID = data["ID"][index];
-            string prefabPath = data["Prefab"][index];
-            if (!string.IsNullOrEmpty(prefabPath))
+            _strID = data["PlayerLv"][index];
+            _nRequireExp = int.Parse(data["RequireExp"][index]);
+
+            string table = data["TableUnlock"][index];
+            if (!string.IsNullOrEmpty(table) && table != "-1")
             {
-                _objPrefab = Resources.Load<GameObject>(prefabPath);
+                string[] multi = table.Split('|');
+                for (int i = 0; i < multi.Length; i++)
+                {
+                    _lstTableUnlock.Add(int.Parse(multi[i]));
+                }
             }
+
+            string task = data["TaskUnlock"][index];
+            if (!string.IsNullOrEmpty(task) && task != "-1")
+            {
+                string[] multi = task.Split('|');
+                for (int i = 0; i < multi.Length; i++)
+                {
+                    _lstTaskUnlock.Add(int.Parse(multi[i]));
+                }
+            }
+
         }
 
     }

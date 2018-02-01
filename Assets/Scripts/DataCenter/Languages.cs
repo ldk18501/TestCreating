@@ -8,27 +8,32 @@ namespace smallone
     public class Languages : ICSVDeserializable
     {
         protected string _strID;
-        protected GameObject _objPrefab;
+        protected string _strCN;
+        protected string _strEN;
 
         public string ID
         {
             get { return _strID; }
         }
 
-        public GameObject Prefab
+        public string CN
         {
-            get { return _objPrefab; }
+            get { return _strCN; }
         }
+
+        public string EN
+        {
+            get { return _strEN; }
+        }
+
 
 
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
             _strID = data["ID"][index];
-            string prefabPath = data["Prefab"][index];
-            if (!string.IsNullOrEmpty(prefabPath))
-            {
-                _objPrefab = Resources.Load<GameObject>(prefabPath);
-            }
+            _strCN = data["Chinese"][index];
+            _strEN = data["English"][index];
+
         }
 
     }

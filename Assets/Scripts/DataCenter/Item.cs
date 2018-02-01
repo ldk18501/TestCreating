@@ -6,17 +6,19 @@ namespace smallone
 {
     public enum ItemType
     {
+        Token,
         Food,
         Equipment,
-        Paper
+        Material,
+        Card,
+        Special
     }
+    
 
     public class ItemPair {
-        public string strType;
         public int nId;
         public int nCount;
-        public ItemPair(string type, int count = 0, int id = -1) {
-            strType = type;
+        public ItemPair( int id = -1 , int count = 0) {
             nId = id;
             nCount = count;
         }
@@ -26,20 +28,19 @@ namespace smallone
     {
         protected string _strID;
         protected string _strName;
-        protected string _strDesc;
-        protected string _strIcon;
-        protected Sprite _spIcon;
-        protected int _nQuality;
         protected int _nLvl;
         protected int _nType;
-        protected int _nOrder;
-        protected int _nPower;
-        protected string _strEffect;
+        protected int _nQuality;
         protected string _strColor;
+        protected int _nPower;
         protected string _strSkill;
-        protected int _nPreTask;
-        protected List<ItemPair> _lstPrice;
         protected int _nStoreCount;
+        protected int _nOrder;
+        protected List<ItemPair> _lstPrice;
+        protected string _strIcon;
+        protected Sprite _spIcon;
+        protected string _strEffect;
+        protected string _strInfo;
 
         public string ID
         {
@@ -49,9 +50,9 @@ namespace smallone
         {
             get { return _strName; }
         }
-        public string Desc
+        public string Info
         {
-            get { return _strDesc; }
+            get { return _strInfo; }
         }
         public string IconPath
         {
@@ -82,11 +83,17 @@ namespace smallone
             get
             {
                 if (_nType < 100)
-                    return ItemType.Food;
-                else if (_nType > 100 && _nType < 1000)
+                    return ItemType.Token;
+                else if (_nType >= 100 && _nType < 200)
                     return ItemType.Equipment;
+                else if (_nType >= 200 && _nType < 300)
+                    return ItemType.Food;
+                else if (_nType >= 300 && _nType < 400)
+                    return ItemType.Material;
+                else if (_nType >= 400 && _nType < 500)
+                    return ItemType.Card;
                 else
-                    return ItemType.Paper;
+                    return ItemType.Special;
             }
         }
 
@@ -128,18 +135,18 @@ namespace smallone
 
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            _strID = data["ID"][index];
+            _strID = data["ItemId"][index];
             _strName = data["Name"][index];
-            _strDesc = data["Desc"][index];
+            _strInfo = data["Info"][index];
             _nQuality = int.Parse(data["Quality"][index]);
             _nLvl = int.Parse(data["Lvl"][index]);
             _nType = int.Parse(data["Type"][index]);
             _nOrder = int.Parse(data["Order"][index]);
-            _strIcon = data["Icon"][index];
+            _strIcon = data["Src"][index];
             _strEffect = data["Effect"][index];
             _strColor = data["Color"][index];
             _strSkill = data["Skill"][index];
-            _nPreTask= int.Parse(data["Task"][index]);
+
 
             _lstPrice = new List<ItemPair>();
             string price = data["Price"][index];
@@ -149,7 +156,7 @@ namespace smallone
                 for (int i = 0; i < multi.Length; i++)
                 {
                     string[] prices = multi[i].Split('|');
-                    _lstPrice.Add(new ItemPair(prices[0], int.Parse(prices[1])));
+                    _lstPrice.Add(new ItemPair(int.Parse(prices[1])));
                 }
             }
 
