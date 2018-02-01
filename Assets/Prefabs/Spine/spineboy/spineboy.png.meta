@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 87254b55207a26c4c9a51c2b24c2d913
-timeCreated: 1517297519
-licenseType: Free
+timeCreated: 1517448021
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
     21300000: eyes
@@ -84,7 +84,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    androidETC2FallbackOverride: 0
   - buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 1
@@ -94,7 +93,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    androidETC2FallbackOverride: 0
   - buildTarget: Android
     maxTextureSize: 4096
     resizeAlgorithm: 1
@@ -104,7 +102,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    androidETC2FallbackOverride: 0
   - buildTarget: WebGL
     maxTextureSize: 4096
     resizeAlgorithm: 1
@@ -114,7 +111,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    androidETC2FallbackOverride: 0
   - buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 1
@@ -124,7 +120,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:

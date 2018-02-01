@@ -15,6 +15,12 @@ public class ItemKey : ICSVDeserializable
 
 public class GameTools
 {
+    [MenuItem("GameTools/Rename Atlas")]
+    static void RenameSpineAtlas()
+    {
+        EditorWindow.GetWindow<RenameSpineAtlasByPath>(false, "Rename", true);
+    }
+
     [MenuItem("GameTools/Import Item Key to Consts")]
     static void ImportItemKey2Consts()
     {
@@ -66,7 +72,7 @@ public class GameTools
         }
 
         StreamWriter fileWriter = new StreamWriter(scriptPath);
-        for(int i = 0; i < allLines.Count; ++i)
+        for (int i = 0; i < allLines.Count; ++i)
         {
             fileWriter.WriteLine(allLines[i]);
         }
@@ -74,5 +80,70 @@ public class GameTools
         AssetDatabase.ImportAsset("Assets/Scripts/Consts.cs");
 
         Resources.UnloadUnusedAssets();
+    }
+
+    public class RenameSpineAtlasByPath : EditorWindow
+    {
+        private string folderName = "";
+
+        private void OnGUI()
+        {
+            EditorGUIUtility.labelWidth = 100f;
+            EditorGUIUtility.fieldWidth = 90f;
+            folderName = EditorGUILayout.TextField("FolderName", folderName);
+            
+            bool create = GUILayout.Button("Create", GUILayout.Width(150f));
+
+            if (create)
+            {
+                string asset_path = "Assets/Prefabs/Spine/";
+                if (folderName != "")
+                {
+                    asset_path += folderName + "/";
+                }
+
+                string[] paths = Directory.GetDirectories(asset_path);
+
+                foreach (string p in paths)
+                {
+                    ForeachPath(p);
+                }
+
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+
+                EditorUtility.DisplayDialog("RenameSpineAtlasSuffix", "Success", "Ok");
+            }
+        }
+
+
+        //! 遍历文件夹
+        private void ForeachPath(string path)
+        {
+            //! 处理当前文件夹内的
+            RenameSuffix(path);
+
+            //string prefab_path = model_path.Replace("Meshes/", "Resources/Prefabs/");
+            //! 遍历子文件夹
+            string[] subPaths = Directory.GetDirectories(path + "/");
+            foreach (string p in subPaths)
+            {
+                ForeachPath(p);
+            }
+        }
+
+        private void RenameSuffix(string path)
+        {
+            string[] files = Directory.GetFiles(path);
+            foreach (string file in files)
+            {
+            
+                if (Path.GetExtension(file) == ".atlas")
+                {
+                    FileInfo fi = new FileInfo(file);
+                    fi.MoveTo(Path.ChangeExtension(file, ".atlas.txt"));
+                }
+            }
+        }
     }
 }
