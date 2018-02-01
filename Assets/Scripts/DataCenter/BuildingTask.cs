@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace smallone
 {
-    public class PlayerLvlData: ICSVDeserializable
+    public class BuildingTask : ICSVDeserializable
     {
         protected string _strID;
         protected GameObject _objPrefab;
