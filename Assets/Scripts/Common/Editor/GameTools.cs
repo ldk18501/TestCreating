@@ -15,7 +15,7 @@ public class ItemKey : ICSVDeserializable
 
 public class GameTools
 {
-    [MenuItem("GameTools/Rename Atlas")]
+    [MenuItem("GameTools/Rename Spine Atlas")]
     static void RenameSpineAtlas()
     {
         EditorWindow.GetWindow<RenameSpineAtlasByPath>(false, "Rename", true);

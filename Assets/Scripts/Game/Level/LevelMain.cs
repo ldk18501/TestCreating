@@ -8,6 +8,11 @@ namespace smallone
 {
     public class LevelMain : LevelBase
     {
+        public enum PhaseEnum {
+            Load,
+            World,
+        }
+
         private StateMachine<LevelMain> _fsmLevel;
         private Vector3 _v3Fix = new Vector3(-500, 500, 0);
         private bool _bMainGameStarted;
@@ -38,6 +43,9 @@ namespace smallone
         protected override void CreateLevelFsm()
         {
             _fsmLevel = new StateMachine<LevelMain>(this);
+            _fsmLevel.AddState(new MainStateLoad((int)PhaseEnum.Load));
+
+            _fsmLevel.ChangeState((int)PhaseEnum.Load);
         }
 
         protected override void GenLevelEntities(string path)
