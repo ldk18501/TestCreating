@@ -28,6 +28,7 @@ namespace smallone
         protected string _strName;
         protected string _strDesc;
         protected string _strIcon;
+        protected Sprite _spIcon;
         protected int _nQuality;
         protected int _nLvl;
         protected int _nType;
@@ -59,7 +60,7 @@ namespace smallone
 
         public Sprite IconSprite
         {
-            get { return string.IsNullOrEmpty(_strIcon) ? null : AtlasManager.Instance.GetSprite(_strIcon); }
+            get { return _spIcon; }
         }
 
         public int Quality
@@ -153,6 +154,7 @@ namespace smallone
             }
 
             _nStoreCount = int.Parse(data["Store"][index]);
+            _spIcon = string.IsNullOrEmpty(_strIcon) ? null : AtlasManager.Instance.GetSprite(_strIcon);
 
             //string prefabPath = data["Prefab"][index];
             //if (!string.IsNullOrEmpty(prefabPath))

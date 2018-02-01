@@ -9,6 +9,11 @@ public class UISlotItem : MonoBehaviour {
     public Text txtScore;
     public Image imgQuality;
 
+    public bool ShowIcon {
+        set {
+            imgIcon.gameObject.SetActive(value);
+        }
+    }
 
 	// Use this for initialization
 	void Start () {

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1800408126709800}
+  m_IsPrefabParent: 1
+--- !u!1 &1800408126709800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4931048075363130}
+  - component: {fileID: 114033744983655892}
+  m_Layer: 0
+  m_Name: UIItemIconAtlas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4931048075363130
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800408126709800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114033744983655892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800408126709800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f86dc94876ff5340a975850d9001ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mSprites:
+  - {fileID: 21300000, guid: c1584524a87144798a241fa64a84c1d6, type: 3}
+  - {fileID: 21300000, guid: 2ccce532153534a6e98397dfdbfe2e95, type: 3}
+  - {fileID: 21300000, guid: 71222add0c97b4d23b04d170a5085e2b, type: 3}
+  - {fileID: 21300000, guid: 701f92f82e5c64b3db86a9132bbe7d3a, type: 3}
+  mSpriteNames:
+  - icon_12
+  - icon_6
+  - token_1
+  - token_2
+  mAndroidOverride: 1
+  miOSOverride: 1
+  mAndroidTextureFormat: 7
+  miOSTextureFormat: 7

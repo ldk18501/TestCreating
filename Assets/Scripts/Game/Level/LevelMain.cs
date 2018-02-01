@@ -61,7 +61,10 @@ namespace smallone
         public override void LoadLevel()
         {
             base.LoadLevel();
+            //! 现在建筑都是静态的情况下就不调用了
             // GenLevelEntities();
+
+            //! 如果以后有事件需要切换场景
             if (!LevelManager.Instance.IsInEvent)
                 LevelManager.Instance.StartCoroutine(EnterGame());
             else

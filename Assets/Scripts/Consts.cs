@@ -24,6 +24,7 @@ public class Consts
     #region save data keys
     public const string SAVEKEY_COINS = "savekey_coins";
     public const string SAVEKEY_GEMS = "savekey_gems";
+    public const string SAVEKEY_BAGCAPACITY = "savekey_bagCapacity";
     #endregion
 
 }

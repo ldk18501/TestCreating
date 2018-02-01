@@ -7,23 +7,16 @@ using smallone;
 
 public class UIPanelInventory : UIPanel
 {
-    public int nBagListCount = 15;
-    public int nBagSlotMin = 6;
-    public int nBagSlotMax = 60;
-    public int nBagSlotAdd = 6;
-
     public GameObject objSlotItem;
     public Transform trsSlotItemRoot;
     public GameObject objSlotBubble;
 
     void OnEnable()
     {
-        
+
         EventCenter.Instance.RegisterGameEvent("CloseInventory", OnCloseBag);
         // EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
 
-        //在这里初始化背包
-        GenerateBagList();
         objSlotBubble.SetActive(false);
     }
 
@@ -40,7 +33,10 @@ public class UIPanelInventory : UIPanel
     protected override void OnPanelShowBegin()
     {
         base.OnPanelShowBegin();
-        Debug.Log(GameData.lstBagItems.Count);
+
+        //! 因为背包是动态的,每次打开界面都需要检查格子数目
+        GenerateBagList();
+        GenerateItemsInBag();
     }
 
     void OnCloseBag()
@@ -52,57 +48,43 @@ public class UIPanelInventory : UIPanel
         objSlotBubble.SetActive(false);
     }
 
-
+    //! 生成空格子
     void GenerateBagList()
     {
-        int BagSlotCount = 0; ;
-
-        // 背包格子数量
-        if(nBagListCount < nBagSlotMin)
-        {
-            BagSlotCount = nBagSlotMin;
-        }
-        else
-        {
-            BagSlotCount = Mathf.CeilToInt( Mathf.Min(nBagListCount,nBagSlotMax)/(float)nBagSlotAdd) * nBagSlotAdd;
-
-        }
-
-        Debug.Log(BagSlotCount);
-
-
-
-        for (int i = 0; i < BagSlotCount; i++)
+        for (int i = trsSlotItemRoot.childCount; i < GameData.BagCapacity; i++)
         {
             var item = GameObject.Instantiate(objSlotItem) as GameObject;
             item.name = objSlotItem.name + "_" + i;
             item.transform.SetParent(trsSlotItemRoot);
             item.transform.localScale = Vector3.one;
-            //             item.GetComponent<UIRoleInfo>().btRole.onClick.AddListener(() => { OnHeroClicked(item); });
-            //             item.GetComponent<UIRoleInfo>().btMission.onClick.AddListener(() => { OnMissionClicked(item); });
-                
-            if (i < nBagListCount)
+        }
+    }
+    //! 生成内部道具
+    void GenerateItemsInBag()
+    {
+        for (int i = 0; i < GameData.BagCapacity; i++)
+        {
+            UISlotItem item = trsSlotItemRoot.GetChild(i).GetComponent<UISlotItem>();
+            UISelectableItem sItem = item.gameObject.AddMissingComponent<UISelectableItem>();
+            if (i < GameData.lstBagItems.Count)
             {
-                item.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelected;
+                item.imgIcon.sprite = GameData.lstBagItems[i].IconSprite;
+                item.ShowIcon = sItem.bSelectable = true;
+                sItem.cbSelect = OnSlotSelected;
             }
             else
             {
-                item.GetComponent<UISlotItem>().imgIcon.gameObject.SetActive(false);
-                item.GetComponent<UISlotItem>().txtScore.gameObject.SetActive(false);
+                item.imgIcon.sprite = null;
+                item.ShowIcon = sItem.bSelectable = false;
+                sItem.cbSelect = null;
             }
-
-
-            Debug.Log(item.name);
-
         }
-
     }
 
-    void OnSlotSelected(bool isSelect,GameObject obj)
+    void OnSlotSelected(bool isSelect, GameObject obj)
     {
         objSlotBubble.SetActive(isSelect);
-        objSlotBubble.GetComponent<UIBubbleSlotItemInfo>().txtItemName.text = obj.name ;
-
+        objSlotBubble.GetComponent<UIBubbleSlotItemInfo>().txtItemName.text = obj.name;
     }
 
 }
