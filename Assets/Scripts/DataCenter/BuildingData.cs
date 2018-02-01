@@ -80,17 +80,17 @@ namespace smallone
         {
             get
             {
-                string prefabPath = "";
+                string prefabPath = "Prefabs/Temp/";
                 switch (_nType)
                 {
                     case 1:
                         {
-                            prefabPath = "ForestObject";
+                            prefabPath += "ForestObject";
                             break;
                         }
                     default:
                         {
-                            prefabPath = "HostObject";
+                            prefabPath += "HostObject";
                             break;
                         }
                 }

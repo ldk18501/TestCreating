@@ -18,7 +18,7 @@ namespace smallone
     public class ItemPair {
         public int nId;
         public int nCount;
-        public ItemPair( int id = -1 , int count = 0) {
+        public ItemPair( int id = -1, int count = 0) {
             nId = id;
             nCount = count;
         }
@@ -146,17 +146,16 @@ namespace smallone
             _strEffect = data["Effect"][index];
             _strColor = data["Color"][index];
             _strSkill = data["Skill"][index];
+            
 
-
-            _lstPrice = new List<ItemPair>();
             string price = data["Price"][index];
-            if (!string.IsNullOrEmpty(price) && price != "NULL")
+            if (!string.IsNullOrEmpty(price) && price != "-1")
             {
-                string[] multi = price.Split('+');
+                string[] multi = price.Split('|');
                 for (int i = 0; i < multi.Length; i++)
                 {
-                    string[] prices = multi[i].Split('|');
-                    _lstPrice.Add(new ItemPair(int.Parse(prices[1])));
+                    string[] prices = multi[i].Split('=');
+                    _lstPrice.Add(new ItemPair( int.Parse(prices[0]), int.Parse(prices[1])));
                 }
             }
 

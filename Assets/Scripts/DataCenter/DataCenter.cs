@@ -25,7 +25,7 @@ namespace smallone
             dictNPCFavor = SerializationManager.LoadDictFromCSV<NPCFavor>("ID", "Data/NPCFavor");
             dictNPCTask = SerializationManager.LoadDictFromCSV<NPCTask>("ID", "Data/NPCTask");
             dictPaperShop = SerializationManager.LoadDictFromCSV<PaperShop>("ID", "Data/PaperShop");
-            dictPlyerLvlData = SerializationManager.LoadDictFromCSV<PlayerLvlData>("ID", "Data/PlayerLvl");
+            dictPlyerLvlData = SerializationManager.LoadDictFromCSV<PlayerLvlData>("Lv", "Data/PlayerLvl");
             dictLanguages = SerializationManager.LoadDictFromCSV<Languages>("ID", "Data/Language");
 
 
