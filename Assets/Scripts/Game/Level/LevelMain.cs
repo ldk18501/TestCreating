@@ -119,8 +119,8 @@ namespace smallone
         public void StartGameLogic()
         {
             _bMainGameStarted = true;
-            _isoWorld.ball.gameObject.AddMissingComponent<smallone.AINpc>().RegisterMaster(_isoWorld.ball);
-            _isoWorld.ball.GetComponent<smallone.AINpc>().isAIOff = false;
+            //_isoWorld.ball.gameObject.AddMissingComponent<smallone.AINpc>().RegisterMaster(_isoWorld.ball);
+            //_isoWorld.ball.GetComponent<smallone.AINpc>().isAIOff = false;
         }
 
     }

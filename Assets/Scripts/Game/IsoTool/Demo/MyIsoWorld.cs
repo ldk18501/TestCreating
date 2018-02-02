@@ -109,7 +109,7 @@ namespace smallone
 
         void InitBuildings()
         {
-
+            base.Update();
             //! 肖：配置表添加建筑
             Dictionary<string, BuildingData> buildingdata = DataCenter.Instance.dictBuilding;
             foreach (string id in buildingdata.Keys)
@@ -118,18 +118,15 @@ namespace smallone
                 IsoObject isoobj = obj.GetComponent<MyIsoObject>();
                 isoobj.world = this;
 
-                obj.transform.SetParent(buildingScene.transform);
-                obj.transform.localScale = Vector3.one;
                 
 
                 buildingScene.AddIsoObject(isoobj);
+                isoobj.SetNodePosition(buildingdata[id].NodeX, buildingdata[id].NodeZ);
+                obj.transform.localScale = Vector3.one;
                 isoobj.SetWalkable(false,gridData);
 
-
-                isoobj.SetNodePosition(buildingdata[id].NodeX, buildingdata[id].NodeZ);
                 isoobj.spanX = buildingdata[id].SpanX;
                 isoobj.spanZ = buildingdata[id].SpanZ;
-
             }
 
             foreach (IsoObject obj in buildingScene.GetComponentsInChildren<IsoObject>(true))
