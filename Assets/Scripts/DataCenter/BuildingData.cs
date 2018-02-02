@@ -108,7 +108,7 @@ namespace smallone
 
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            _strID = data["TableId"][index];
+            _strID = data["Id"][index];
             _nType = int.Parse(data["Type"][index]);
             _nLvl = int.Parse(data["Lv"][index]);
             _strName = data["Name"][index];
@@ -120,7 +120,7 @@ namespace smallone
             _fSortX = float.Parse(data["SortX"][index]);
             _fSortZ = float.Parse(data["SortZ"][index]);
 
-            _spIcon = string.IsNullOrEmpty(_strIcon) ? null : AtlasManager.Instance.GetSprite(_strIcon);
+            //_spIcon = string.IsNullOrEmpty(_strIcon) ? null : AtlasManager.Instance.GetSprite(_strIcon);
             
         }
 

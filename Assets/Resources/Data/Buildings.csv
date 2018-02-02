@@ -1,4 +1,4 @@
-TableId,Type,Lv,Name,Src,spanX,spanZ,nodeX,nodeZ,SortX,SortZ
+Id,Type,Lv,Name,Src,spanX,spanZ,nodeX,nodeZ,SortX,SortZ
 1,1,1,Con_Name_1,Con_5,5,5,65,100,0,-0.7
 2,1,1,Con_Name_2,Con_5,5,5,65,110,0,-0.7
 3,1,1,Con_Name_3,Con_5,5,5,55,100,0,-0.7

@@ -59,9 +59,11 @@ namespace smallone
         
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            _strID = data["ID"][index];
+            _strID = data["Id"][index];
             _strName = data["Name"][index];
             _nPlayerLv = int.Parse(data["PlayerLv"][index]);
+
+            _lstPrice = new List<ItemPair>();
             string price = data["Price"][index];
             if (!string.IsNullOrEmpty(price) && price != "-1")
             {

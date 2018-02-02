@@ -40,6 +40,7 @@ namespace smallone
             _strID = data["PlayerLv"][index];
             _nRequireExp = int.Parse(data["RequireExp"][index]);
 
+            _lstTableUnlock = new List<int>();
             string table = data["TableUnlock"][index];
             if (!string.IsNullOrEmpty(table) && table != "-1")
             {
@@ -50,6 +51,7 @@ namespace smallone
                 }
             }
 
+            _lstTaskUnlock = new List<int>();
             string task = data["TaskUnlock"][index];
             if (!string.IsNullOrEmpty(task) && task != "-1")
             {

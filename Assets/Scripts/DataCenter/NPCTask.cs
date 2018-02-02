@@ -12,8 +12,8 @@ namespace smallone
         protected List<int> _lstLv;
         protected string _strName;
         protected string _strInfo;
-        protected List<int> _lstEmtionMin;
-        protected List<int> _lstEmtionMax;
+        protected List<int> _lstFavor;
+        protected List<int> _lstEmtion;
         protected List<ItemPair> _lstRequire;
         protected List<ItemPair> _lstReward;
         
@@ -42,14 +42,14 @@ namespace smallone
             get { return _strInfo; }
         }
 
-        protected List<int> EmtionMin
-        {
-            get { return _lstEmtionMin; }
+        protected List<int> Favor
+        { 
+            get { return _lstFavor; }
         }
 
-        protected List<int> EmtionMax
+        protected List<int> Emtion
         {
-            get { return _lstEmtionMax; }
+            get { return _lstEmtion; }
         }
 
         protected List<ItemPair> Require
@@ -64,8 +64,10 @@ namespace smallone
 
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            _strID = data["NpcId"][index];
+            _strID = data["Id"][index];
             _nTaskId = int.Parse(data["TaskId"][index]);
+
+            _lstLv = new List<int>();
             string lv = data["Lv"][index];
             if (!string.IsNullOrEmpty(lv) && lv != "-1")
             {
@@ -78,26 +80,30 @@ namespace smallone
 
             _strName = data["Name"][index];
             _strInfo = data["Info"][index];
-            string emtionmin = data["EmtionMin"][index];
+
+            _lstFavor = new List<int>();
+            string emtionmin = data["Favor"][index];
             if (!string.IsNullOrEmpty(emtionmin) && emtionmin != "-1")
             {
                 string[] multi = emtionmin.Split('|');
                 for (int i = 0; i < multi.Length; i++)
                 {
-                    _lstEmtionMin.Add(int.Parse(multi[i]));
+                    _lstFavor.Add(int.Parse(multi[i]));
                 }
             }
 
-            string emtionmax = data["EmtionMax"][index];
+            _lstEmtion = new List<int>();
+            string emtionmax = data["Emtion"][index];
             if (!string.IsNullOrEmpty(emtionmax) && emtionmax != "-1")
             {
                 string[] multi = emtionmax.Split('|');
                 for (int i = 0; i < multi.Length; i++)
                 {
-                    _lstEmtionMax.Add(int.Parse(multi[i]));
+                    _lstEmtion.Add(int.Parse(multi[i]));
                 }
             }
 
+            _lstRequire = new List<ItemPair>();
             string require = data["Require"][index];
             if (!string.IsNullOrEmpty(require) && require != "-1")
             {
@@ -109,6 +115,7 @@ namespace smallone
                 }
             }
 
+            _lstReward = new List<ItemPair>();
             string reward = data["Reward"][index];
             if (!string.IsNullOrEmpty(reward) && reward != "-1")
             {

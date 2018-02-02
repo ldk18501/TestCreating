@@ -135,7 +135,7 @@ namespace smallone
 
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            _strID = data["ItemId"][index];
+            _strID = data["Id"][index];
             _strName = data["Name"][index];
             _strInfo = data["Info"][index];
             _nQuality = int.Parse(data["Quality"][index]);
@@ -146,8 +146,8 @@ namespace smallone
             _strEffect = data["Effect"][index];
             _strColor = data["Color"][index];
             _strSkill = data["Skill"][index];
-            
 
+            _lstPrice = new List<ItemPair>();
             string price = data["Price"][index];
             if (!string.IsNullOrEmpty(price) && price != "-1")
             {

@@ -17,7 +17,7 @@ namespace smallone
         protected List<int> _lstQualityCritWeight;
         protected int _nTime;
         protected List<ItemPair> _lstItemRequire;
-        protected ItemPair _lstProduct;
+        protected ItemPair _itempairProduct;
         protected int _nExp;
         protected string _strInfo;
 
@@ -68,7 +68,7 @@ namespace smallone
 
         public ItemPair Product
         {
-            get { return _lstProduct; }
+            get { return _itempairProduct; }
         }
 
         public int Exp
@@ -83,12 +83,13 @@ namespace smallone
 
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            _strID = data["TaskId"][index];
+            _strID = data["Id"][index];
             _nTableId = int.Parse(data["TableId"][index]);
             _strName = data["Name"][index];
             _nType = int.Parse(data["Type"][index]);
             _nLv = int.Parse(data["Lv"][index]);
 
+            _lstCountCritWeight = new List<int>();
             string countcrit = data["CountCrit"][index];
             if(!string.IsNullOrEmpty(countcrit) && countcrit != "-1" )
             {
@@ -98,7 +99,8 @@ namespace smallone
                     _lstCountCritWeight.Add(int.Parse(multi[i]));
                 }
             }
-            
+
+            _lstQualityCritWeight = new List<int>();
             string qualitycrit = data["QualityCrit"][index];
             if (!string.IsNullOrEmpty(qualitycrit) && qualitycrit != "-1")
             {
@@ -111,6 +113,8 @@ namespace smallone
 
             _nTime = int.Parse(data["Time"][index]);
 
+
+            _lstItemRequire = new List<ItemPair>();
             string itemrequire = data["ItemRequire"][index];
             if (!string.IsNullOrEmpty(itemrequire) && itemrequire != "-1")
             {
@@ -121,12 +125,12 @@ namespace smallone
                     _lstItemRequire.Add(new ItemPair(int.Parse(item[0]), int.Parse(item[1])));
                 }
             }
-
+            
             string product = data["product"][index];
             if (!string.IsNullOrEmpty(product) && product != "-1")
             {
                 string[] multi = product.Split('=');
-                _lstProduct = new ItemPair(int.Parse(multi[0]), int.Parse(multi[1]));               
+                _itempairProduct = new ItemPair(int.Parse(multi[0]), int.Parse(multi[1]));               
             }
 
             _nExp = int.Parse(data["Exp"][index]);

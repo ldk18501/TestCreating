@@ -52,11 +52,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mSprites:
+  - {fileID: 21300000, guid: b70fdfcd78fe14c4e8b2475146fb99c4, type: 3}
+  - {fileID: 21300000, guid: ab8a593efa69f4fb4b720ac8703e978f, type: 3}
+  - {fileID: 21300000, guid: afa5a9ead629b4276adf430cd7295ca6, type: 3}
+  - {fileID: 21300000, guid: 5e62b8d82ccb24b14ba8ab6785b88f61, type: 3}
+  - {fileID: 21300000, guid: 212f922fcc90047689696cc448a251cd, type: 3}
+  - {fileID: 21300000, guid: aafbf03c111de4a46a426ac95bf55022, type: 3}
+  - {fileID: 21300000, guid: 547ec6a9435cb49f08170a28848ead65, type: 3}
+  - {fileID: 21300000, guid: f177ba888bf35495795ac7326632d715, type: 3}
+  - {fileID: 21300000, guid: fddec42d92b19429892164f2bbef85f4, type: 3}
+  - {fileID: 21300000, guid: a761547143a474934b488bd65f4f8391, type: 3}
+  - {fileID: 21300000, guid: 37186413288e24f9ba43b18ba7adf5e2, type: 3}
   - {fileID: 21300000, guid: c1584524a87144798a241fa64a84c1d6, type: 3}
   - {fileID: 21300000, guid: 2ccce532153534a6e98397dfdbfe2e95, type: 3}
   - {fileID: 21300000, guid: 71222add0c97b4d23b04d170a5085e2b, type: 3}
   - {fileID: 21300000, guid: 701f92f82e5c64b3db86a9132bbe7d3a, type: 3}
   mSpriteNames:
+  - bubble_4
+  - button_1
+  - button_10
+  - button_2
+  - button_3
+  - button_4
+  - button_5
+  - button_6
+  - button_7
+  - button_8
+  - button_9
   - icon_12
   - icon_6
   - token_1

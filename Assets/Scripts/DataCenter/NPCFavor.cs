@@ -54,10 +54,11 @@ namespace smallone
 
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            _strID = data["NpcId"][index];
+            _strID = data["Id"][index];
             _nLv = int.Parse(data["Lv"][index]);
             _nExpNeed = int.Parse(data["Exp"][index]);
 
+            _lstReward = new List<ItemPair>();
             string reward = data["Reward"][index];
             if (!string.IsNullOrEmpty(reward) && reward != "-1")
             {
@@ -69,6 +70,7 @@ namespace smallone
                 }
             }
 
+            _lstTableUnlock = new List<int>();
             string tableunlock = data["TableUnlock"][index];
             if (!string.IsNullOrEmpty(tableunlock) && tableunlock != "-1")
             {
@@ -79,6 +81,7 @@ namespace smallone
                 }
             }
 
+            _lstEquipUnlock = new List<int>();
             string equipunlock = data["EquipUnlock"][index];
             if (!string.IsNullOrEmpty(equipunlock) && equipunlock != "-1")
             {
@@ -89,6 +92,7 @@ namespace smallone
                 }
             }
 
+            _lstCardUnlock = new List<int>();
             string cardunlock = data["CardUnlock"][index];
             if (!string.IsNullOrEmpty(cardunlock) && cardunlock != "-1")
             {

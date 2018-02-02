@@ -88,10 +88,11 @@ namespace smallone
 
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            _strID = data["NpcId"][index];
+            _strID = data["Id"][index];
             _strName = data["Name"][index];
-            _nUnlockLv = int.Parse(data["Unlocklv"][index]);
-
+            _nUnlockLv = int.Parse(data["UnlockLv"][index]);
+            
+            _lstSkillUnlocklv = new List<int>();
             string skillunlocklv = data["SkillUnlock"][index];
             if (!string.IsNullOrEmpty(skillunlocklv) && skillunlocklv != "-1")
             {
@@ -104,6 +105,7 @@ namespace smallone
 
             _nPower = int.Parse(data["Power"][index]);
 
+            _lstSkillId = new List<int>();
             string skillid = data["Skill"][index];
             if (!string.IsNullOrEmpty(skillid) && skillid != "-1")
             {
@@ -114,6 +116,7 @@ namespace smallone
                 }
             }
 
+            _lstFavor = new List<int>();
             string favor = data["Favor"][index];
             if (!string.IsNullOrEmpty(favor) && favor != "-1")
             {
@@ -124,6 +127,7 @@ namespace smallone
                 }
             }
 
+            _lstCharacter = new List<int>();
             string character = data["Character"][index];
             if (!string.IsNullOrEmpty(character) && character != "-1")
             {
@@ -134,6 +138,7 @@ namespace smallone
                 }
             }
 
+            _lstEquipType = new List<int>();
             string equiptype = data["Equip"][index];
             if (!string.IsNullOrEmpty(equiptype) && equiptype != "-1")
             {
@@ -144,6 +149,7 @@ namespace smallone
                 }
             }
 
+            _lstCardUnlockLv = new List<int>();
             string cardunlocklv = data["Card"][index];
             if (!string.IsNullOrEmpty(cardunlocklv) && cardunlocklv != "-1")
             {
@@ -156,6 +162,7 @@ namespace smallone
 
             _nEmotionLimit = int.Parse(data["Emotion"][index]);
 
+            _lstTalkInterval = new List<int>();
             string talk = data["TalkInterval"][index];
             if (!string.IsNullOrEmpty(talk) && talk != "-1")
             {
@@ -166,6 +173,7 @@ namespace smallone
                 }
             }
 
+            _lstGiftInterval = new List<int>();
             string gift = data["GiftInterval"][index];
             if (!string.IsNullOrEmpty(gift) && gift != "-1")
             {

@@ -18,15 +18,15 @@ namespace smallone
 
         void Awake()
         {
-            dictItem = SerializationManager.LoadDictFromCSV<Item>("ID", "Data/Items");
-            dictBuilding = SerializationManager.LoadDictFromCSV<BuildingData>("ID", "Data/Buildings");
-            dictBuildingTask = SerializationManager.LoadDictFromCSV<BuildingTask>("ID", "Data/BuildingTasks");
-            dictNPCData = SerializationManager.LoadDictFromCSV<NPCData>("ID", "Data/NPCs");
-            dictNPCFavor = SerializationManager.LoadDictFromCSV<NPCFavor>("ID", "Data/NPCFavor");
-            dictNPCTask = SerializationManager.LoadDictFromCSV<NPCTask>("ID", "Data/NPCTask");
-            dictPaperShop = SerializationManager.LoadDictFromCSV<PaperShop>("ID", "Data/PaperShop");
-            dictPlyerLvlData = SerializationManager.LoadDictFromCSV<PlayerLvlData>("Lv", "Data/PlayerLvl");
-            dictLanguages = SerializationManager.LoadDictFromCSV<Languages>("ID", "Data/Language");
+            dictItem = SerializationManager.LoadDictFromCSV<Item>("Id", "Data/Items");
+            dictBuilding = SerializationManager.LoadDictFromCSV<BuildingData>("Id", "Data/Buildings");
+            dictBuildingTask = SerializationManager.LoadDictFromCSV<BuildingTask>("Id", "Data/BuildingTasks");
+            dictNPCData = SerializationManager.LoadDictFromCSV<NPCData>("Id", "Data/NPCs");
+            dictNPCFavor = SerializationManager.LoadDictFromCSV<NPCFavor>("Id", "Data/NPCFavor");
+            dictNPCTask = SerializationManager.LoadDictFromCSV<NPCTask>("Id", "Data/NPCTask");
+            dictPaperShop = SerializationManager.LoadDictFromCSV<PaperShop>("Id", "Data/PaperShop");
+            dictPlyerLvlData = SerializationManager.LoadDictFromCSV<PlayerLvlData>("PlayerLv", "Data/PlayerLvl");
+            dictLanguages = SerializationManager.LoadDictFromCSV<Languages>("Id", "Data/Language");
 
 
         }

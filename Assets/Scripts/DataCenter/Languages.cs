@@ -30,7 +30,7 @@ namespace smallone
 
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
-            _strID = data["ID"][index];
+            _strID = data["Id"][index];
             _strCN = data["Chinese"][index];
             _strEN = data["English"][index];
 
