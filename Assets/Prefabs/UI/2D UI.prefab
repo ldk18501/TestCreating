@@ -228,6 +228,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -635,7 +636,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e3b7640a91fe9a14398ccfe28917c131, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b0a20aeefa2d2034d8c3ac3166b25097, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -921,22 +922,22 @@ MonoBehaviour:
   onInAnimationsStart:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: DoozyUI.UIElement+TriggerEvent, Assembly-CSharp, Version=0.0.0.0,
+    m_TypeName: DoozyUI.UIElement+TriggerEvent, Assembly-CSharp, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onInAnimationsFinish:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: DoozyUI.UIElement+TriggerEvent, Assembly-CSharp, Version=0.0.0.0,
+    m_TypeName: DoozyUI.UIElement+TriggerEvent, Assembly-CSharp, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onOutAnimationsStart:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: DoozyUI.UIElement+TriggerEvent, Assembly-CSharp, Version=0.0.0.0,
+    m_TypeName: DoozyUI.UIElement+TriggerEvent, Assembly-CSharp, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onOutAnimationsFinish:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: DoozyUI.UIElement+TriggerEvent, Assembly-CSharp, Version=0.0.0.0,
+    m_TypeName: DoozyUI.UIElement+TriggerEvent, Assembly-CSharp, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   animationManager: {fileID: 114179101880607602}
 --- !u!114 &114912875214942520
@@ -1044,7 +1045,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201290013354990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 408, y: 248, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.9999999}
   m_Children: []
   m_Father: {fileID: 224655493453161016}
@@ -1082,7 +1083,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1761168120346294}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -368, y: 55, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 224655493453161016}

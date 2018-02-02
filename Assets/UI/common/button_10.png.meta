@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: afa5a9ead629b4276adf430cd7295ca6
-timeCreated: 1517535867
+timeCreated: 1517540499
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -101,7 +101,7 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape: []
-  spritePackingTag: UIItemIconAtlas
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 

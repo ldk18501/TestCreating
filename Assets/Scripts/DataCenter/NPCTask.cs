@@ -8,7 +8,7 @@ namespace smallone
     public class NPCTask : ICSVDeserializable
     {
         protected string _strID;
-        protected int _nTaskId;
+        protected int _nNpcId;
         protected List<int> _lstLv;
         protected string _strName;
         protected string _strInfo;
@@ -22,9 +22,9 @@ namespace smallone
             get { return _strID; }
         }
 
-        protected int TaskId
+        protected int NpcId
         {
-            get { return _nTaskId; }
+            get { return _nNpcId; }
         }
 
         protected List<int> Lv
@@ -65,7 +65,7 @@ namespace smallone
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
             _strID = data["Id"][index];
-            _nTaskId = int.Parse(data["TaskId"][index]);
+            _nNpcId = int.Parse(data["NpcId"][index]);
 
             _lstLv = new List<int>();
             string lv = data["Lv"][index];

@@ -80,29 +80,7 @@ namespace smallone
         {
             get
             {
-                string prefabPath = "Prefabs/Temp/";
-                switch (_nType)
-                {
-                    case 1:
-                        {
-                            prefabPath += "ForestObject";
-                            break;
-                        }
-                    default:
-                        {
-                            prefabPath += "HostObject";
-                            break;
-                        }
-                }
-
-                if (!string.IsNullOrEmpty(prefabPath))
-                {
-                    return Resources.Load<GameObject>(prefabPath);
-                }
-                else
-                {
-                    return null;
-                }
+                return _objPrefab;
             }
         }
 
@@ -122,6 +100,12 @@ namespace smallone
 
             //_spIcon = string.IsNullOrEmpty(_strIcon) ? null : AtlasManager.Instance.GetSprite(_strIcon);
             
+
+            if (!string.IsNullOrEmpty(_strIcon))
+            {
+                _objPrefab = Resources.Load<GameObject>(_strIcon);
+            }
+
         }
 
     }

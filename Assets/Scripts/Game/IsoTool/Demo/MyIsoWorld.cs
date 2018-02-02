@@ -5,6 +5,7 @@ using System.Collections;
 using ISO;
 using Lean.Touch;
 
+
 // 前言：切忌使用Input.mouse相关方法来处理点击逻辑，应该全部替换成LeanTouch
 namespace smallone
 {
@@ -66,7 +67,6 @@ namespace smallone
                         UIPanelManager.Instance.ShowPanel("UIPanelConstruction");
                         break;
                 }
-
             }
             else
             {
@@ -109,6 +109,29 @@ namespace smallone
 
         void InitBuildings()
         {
+
+            //! 肖：配置表添加建筑
+            Dictionary<string, BuildingData> buildingdata = DataCenter.Instance.dictBuilding;
+            foreach (string id in buildingdata.Keys)
+            {
+                var obj = GameObject.Instantiate(buildingdata[id].Prefab) as GameObject;
+                IsoObject isoobj = obj.GetComponent<MyIsoObject>();
+                isoobj.world = this;
+
+                obj.transform.SetParent(buildingScene.transform);
+                obj.transform.localScale = Vector3.one;
+                
+
+                buildingScene.AddIsoObject(isoobj);
+                isoobj.SetWalkable(false,gridData);
+
+
+                isoobj.SetNodePosition(buildingdata[id].NodeX, buildingdata[id].NodeZ);
+                isoobj.spanX = buildingdata[id].SpanX;
+                isoobj.spanZ = buildingdata[id].SpanZ;
+
+            }
+
             foreach (IsoObject obj in buildingScene.GetComponentsInChildren<IsoObject>(true))
             {
                 if (obj != buildingScene && obj != ball) //exclude ball
@@ -176,8 +199,6 @@ namespace smallone
                     }
                 }
             }
-
-
         }
 
 
