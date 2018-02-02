@@ -71,7 +71,7 @@ namespace smallone
                 for (int i = 0; i < multi.Length; i++)
                 {
                     string[] item = multi[i].Split('=');
-                    _lstPrice.Add(new ItemPair(int.Parse(item[0]), int.Parse(item[1])));
+                    _lstPrice.Add(new ItemPair( item[0].ToString() , int.Parse(item[1])));
                 }
             }
 

@@ -16,9 +16,9 @@ namespace smallone
     
 
     public class ItemPair {
-        public int nId;
+        public string nId;
         public int nCount;
-        public ItemPair( int id = -1, int count = 0) {
+        public ItemPair(string id , int count = 0) {
             nId = id;
             nCount = count;
         }
@@ -155,7 +155,7 @@ namespace smallone
                 for (int i = 0; i < multi.Length; i++)
                 {
                     string[] prices = multi[i].Split('=');
-                    _lstPrice.Add(new ItemPair( int.Parse(prices[0]), int.Parse(prices[1])));
+                    _lstPrice.Add(new ItemPair( prices[0] , int.Parse(prices[1])));
                 }
             }
 

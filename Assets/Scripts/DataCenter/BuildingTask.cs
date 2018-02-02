@@ -9,7 +9,7 @@ namespace smallone
     public class BuildingTask : ICSVDeserializable
     {
         protected string _strID;
-        protected int _nTableId;
+        protected string _nTableId;
         protected string _strName;
         protected int _nType;
         protected int _nLv;
@@ -26,7 +26,7 @@ namespace smallone
             get { return _strID; }
         }
 
-        public int TableId
+        public string TableId
         {
             get { return _nTableId; }
         }
@@ -84,7 +84,7 @@ namespace smallone
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
             _strID = data["Id"][index];
-            _nTableId = int.Parse(data["TableId"][index]);
+            _nTableId = data["TableId"][index];
             _strName = data["Name"][index];
             _nType = int.Parse(data["Type"][index]);
             _nLv = int.Parse(data["Lv"][index]);
@@ -122,7 +122,7 @@ namespace smallone
                 for (int i = 0; i < multi.Length; i++)
                 {
                     string[] item = multi[i].Split('=');
-                    _lstItemRequire.Add(new ItemPair(int.Parse(item[0]), int.Parse(item[1])));
+                    _lstItemRequire.Add(new ItemPair( item[0], int.Parse(item[1])));
                 }
             }
             
@@ -130,7 +130,7 @@ namespace smallone
             if (!string.IsNullOrEmpty(product) && product != "-1")
             {
                 string[] multi = product.Split('=');
-                _itempairProduct = new ItemPair(int.Parse(multi[0]), int.Parse(multi[1]));               
+                _itempairProduct = new ItemPair( multi[0] , int.Parse(multi[1]));               
             }
 
             _nExp = int.Parse(data["Exp"][index]);

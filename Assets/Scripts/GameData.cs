@@ -10,6 +10,8 @@ namespace smallone
 
         static public List<Item> lstBagItems;
 
+        static public string strCurBuildingId;
+
         static public int BagCapacity
         {
             get

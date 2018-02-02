@@ -15,18 +15,14 @@ public class UIPanelConstruction : UIPanel
 
     public int nSlotListCount = 10;
 
-
+    private BuildingTask _dataTask;
+    
     void OnEnable()
     {
         EventCenter.Instance.RegisterGameEvent("ClosePanel", OnCloseSelf);
         // EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
 
-
-        SlotListInit();
-
-
         BubbleItemInfo();
-
     }
 
     void OnDisable()
@@ -37,6 +33,7 @@ public class UIPanelConstruction : UIPanel
             // EventCenter.Instance.UnregisterButtonEvent("OpenInventory", OnBagClicked);
         }
         GameObject.Destroy(_objBubble);
+        
     }
 
     void OnCloseSelf()
@@ -51,7 +48,22 @@ public class UIPanelConstruction : UIPanel
     protected override void OnPanelShowBegin()
     {
         base.OnPanelShowBegin();
-        _objBubble.SetActive(false);
+
+        GenerateSlotList();
+    }
+
+    protected override void OnPanelHideCompleted()
+    {
+        base.OnPanelHideCompleted();
+
+        
+        for(int i = 0; i < trsGroup.childCount ; i++)
+        {
+            GameObject.Destroy( trsGroup.GetChild(i).gameObject );
+        }
+
+
+
     }
 
 
@@ -61,34 +73,104 @@ public class UIPanelConstruction : UIPanel
         {
             _objBubble.GetComponent<RectTransform>().anchoredPosition = trsGroup.localPosition + obj.transform.localPosition + new Vector3(-316, 131);
             _objBubble.SetActive(isSelect);
+
+//             Debug.Log(obj.name + " == " );
+
+            _dataTask = DataCenter.Instance.dictBuildingTask[obj.name];
+            GenerateContructNeed();
         }
 
-        
+
     }
 
     void BubbleItemInfo()
     {
         _objBubble = GameObject.Instantiate(objBubble) as GameObject;
-        _objBubble.SetActive(false);
         _objBubble.transform.SetParent(transform);
         _objBubble.transform.SetAsLastSibling();
         _objBubble.transform.localScale = Vector3.one;
+        _objBubble.SetActive(false);
+        
     }
 
 
-    void SlotListInit()
+    void GenerateSlotList()
     {
-        for (int i = 0; i < nSlotListCount; i++)
+        Dictionary<string, BuildingTask> task = DataCenter.Instance.dictBuildingTask;
+
+        foreach (string id in task.Keys)
         {
-            var obj = GameObject.Instantiate(objSlotItem) as GameObject;
-            obj.transform.SetParent(trsGroup);
-            obj.name = objSlotItem.name + "_" + i;
-            obj.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
-            obj.transform.localScale = Vector3.one;
-            obj.GetComponent<UISlotItem>().txtScore.gameObject.SetActive(false);
-            
+            if( task[id].TableId == GameData.strCurBuildingId )
+            {
+                var obj = GameObject.Instantiate(objSlotItem) as GameObject;
+                obj.transform.SetParent(trsGroup);
+                obj.name = task[id].ID;
+                obj.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
+                obj.transform.localScale = Vector3.one;
+
+
+                // 问题：同一个道具不同品质，怎么写比较好(或者怎么配置)
+
+                string itemID = task[id].Product.nId.ToString();
+
+//                 Debug.Log(itemID);
+                
+                obj.GetComponent<UISlotItem>().imgIcon.sprite = DataCenter.Instance.dictItem[itemID].IconSprite;
+                obj.GetComponent<UISlotItem>().imgQuality.gameObject.SetActive(false);
+                obj.GetComponent<UISlotItem>().txtScore.gameObject.SetActive(false);
+            }
+        }        
+    }
+
+
+    void GenerateContructNeed()
+    {
+        // 先清空列表
+        for (int i = 0; i < _objBubble.GetComponent<BubbleConstructNeed>().trsNeedRoot.childCount; i++)
+        {
+            GameObject.Destroy(_objBubble.GetComponent<BubbleConstructNeed>().trsNeedRoot.GetChild(i).gameObject);
         }
 
+
+        int store = 0;
+        // TODO 背包存量查找
+        for(int i = 0; i< GameData.lstBagItems.Count; i++)
+        {
+            if( _dataTask.Product.nId == GameData.lstBagItems[i].ID )
+            {
+                store++;
+            }
+        }
+
+        Debug.Log(store);
+
+        BubbleConstructNeed bubble = _objBubble.GetComponent<BubbleConstructNeed>();
         
+
+        bubble.txtHave.text = store.ToString();
+
+        // 道具名字
+        bubble.txtName.text = _dataTask.Name;
+
+        // 道具属性查找
+        bubble.txtScore.text = DataCenter.Instance.dictItem[_dataTask.Product.nId].Power.ToString();
+        
+        // 生产所需时间
+        bubble.txtTime.text = _dataTask.Time.ToString();
+
+        // 生成所需道具列表
+        for (int i = 0 ; i < _dataTask.ItemRequire.Count ;i++ )
+        {
+            var obj = GameObject.Instantiate( _objBubble.GetComponent<BubbleConstructNeed>().objSlotNeed ) as GameObject;
+            obj.transform.SetParent(_objBubble.GetComponent<BubbleConstructNeed>().trsNeedRoot);
+            obj.name = _dataTask.Name;
+            obj.transform.localScale = Vector3.one;
+            obj.GetComponent<SlotConstructNeed>().imgIcon.sprite = DataCenter.Instance.dictItem[_dataTask.ItemRequire[i].nId].IconSprite;
+
+            string needcount = store + " / " +_dataTask.ItemRequire[i].nCount.ToString();
+            obj.GetComponent<SlotConstructNeed>().txtNeed.text = needcount;
+        }
+
+
     }
 }

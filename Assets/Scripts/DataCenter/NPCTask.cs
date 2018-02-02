@@ -111,7 +111,7 @@ namespace smallone
                 for (int i = 0; i < multi.Length; i++)
                 {
                     string[] item = multi[i].Split('=');
-                    _lstRequire.Add(new ItemPair(int.Parse(item[0]), int.Parse(item[1])));
+                    _lstRequire.Add(new ItemPair( item[0].ToString() , int.Parse(item[1])));
                 }
             }
 
@@ -123,7 +123,7 @@ namespace smallone
                 for (int i = 0; i < multi.Length; i++)
                 {
                     string[] item = multi[i].Split('=');
-                    _lstReward.Add(new ItemPair(int.Parse(item[0]), int.Parse(item[1])));
+                    _lstReward.Add(new ItemPair( item[0].ToString(), int.Parse(item[1])));
                 }
             }
         }

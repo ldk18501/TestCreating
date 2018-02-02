@@ -28,7 +28,7 @@ namespace smallone
         public Toggle toggle;
 
         public LayerMask LayerMask = Physics.DefaultRaycastLayers;
-
+        
         private void OnEnable()
         {
             LeanTouch.OnFingerTap += OnTestFingerTap;
@@ -49,6 +49,12 @@ namespace smallone
             if (component)
             {
                 Debug.Log(component.transform.name);
+
+                //! 获得当前点击建筑的ID
+                GameData.strCurBuildingId = component.GetComponent<EntityBuilding>()._dataBuilding.ID;
+
+                Debug.Log(GameData.strCurBuildingId);
+
                 switch (component.transform.name)
                 {
                     case "MonsterPoint":
@@ -110,16 +116,15 @@ namespace smallone
         void InitBuildings()
         {
             base.Update();
-            //! 肖：配置表添加建筑
+
+            //! 配置表添加建筑
             Dictionary<string, BuildingData> buildingdata = DataCenter.Instance.dictBuilding;
             foreach (string id in buildingdata.Keys)
             {
                 var obj = GameObject.Instantiate(buildingdata[id].Prefab) as GameObject;
                 IsoObject isoobj = obj.GetComponent<MyIsoObject>();
                 isoobj.world = this;
-
                 
-
                 buildingScene.AddIsoObject(isoobj);
                 isoobj.SetNodePosition(buildingdata[id].NodeX, buildingdata[id].NodeZ);
                 obj.transform.localScale = Vector3.one;
@@ -127,6 +132,9 @@ namespace smallone
 
                 isoobj.spanX = buildingdata[id].SpanX;
                 isoobj.spanZ = buildingdata[id].SpanZ;
+
+                //! 肖：用来记录建筑ID，为了点击建筑可以知道点了啥。。
+                obj.AddMissingComponent<EntityBuilding>()._dataBuilding = buildingdata[id];
             }
 
             foreach (IsoObject obj in buildingScene.GetComponentsInChildren<IsoObject>(true))
