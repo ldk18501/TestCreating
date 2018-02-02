@@ -1047,10 +1047,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mLayer: 2
   _mTestSortingOrder: 0
-  nBagListCount: 32
-  nBagSlotMin: 0
-  nBagSlotMax: 60
-  nBagSlotAdd: 5
   objSlotItem: {fileID: 1338678800939042, guid: 0f94a32c62a52584da94c8a6ff74832a,
     type: 2}
   trsSlotItemRoot: {fileID: 224312277123129642}
