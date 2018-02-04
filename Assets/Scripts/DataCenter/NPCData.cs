@@ -23,6 +23,13 @@ namespace smallone
         protected List<int> _lstTalkInterval;
         protected List<int> _lstGiftInterval;
 
+        //! 疑问：非配置表数据，可以写这里吗？
+        public List<Item> lstEquipments;
+        public List<Item> lstCards;
+        public int CurfavorabilityLv;
+        public int CurfavorabilityExp;
+        public int CurPower;
+
         public string ID
         {
             get { return _strID; }
@@ -199,6 +206,10 @@ namespace smallone
                     _lstGiftInterval.Add(int.Parse(multi[i]));
                 }
             }
+
+            // 
+            lstEquipments = new List<Item>();
+            lstCards = new List<Item>();
         }
 
     }

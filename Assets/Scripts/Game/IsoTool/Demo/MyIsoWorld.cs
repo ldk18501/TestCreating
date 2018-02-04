@@ -129,8 +129,7 @@ namespace smallone
                 var obj = GameObject.Instantiate(buildingdata[id].Prefab) as GameObject;
                 IsoObject isoobj = obj.GetComponent<MyIsoObject>();
                 isoobj.world = this;
-
-
+                
                 buildingScene.AddIsoObject(isoobj);
                 isoobj.SetNodePosition(buildingdata[id].NodeX, buildingdata[id].NodeZ);
                 obj.transform.localScale = Vector3.one;

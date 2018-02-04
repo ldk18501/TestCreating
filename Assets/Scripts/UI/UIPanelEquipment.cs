@@ -17,6 +17,13 @@ public class UIPanelEquipment : UIPanel
 
     private bool _IsEquipmentInfoShow;
 
+    [Header("PlayerInfo")]
+    public Text txtNpcName;
+    public Text txtScore;
+    
+
+
+
     void OnEnable()
     {
         EventCenter.Instance.RegisterGameEvent("ClosePanel", OnCloseSelf);
@@ -48,6 +55,22 @@ public class UIPanelEquipment : UIPanel
         });
 
         OnCloseEquipmentInfo();
+    }
+
+    protected override void OnPanelShowBegin()
+    {
+        base.OnPanelShowBegin();
+
+
+
+    }
+
+    protected override void OnPanelHideCompleted()
+    {
+        base.OnPanelHideCompleted();
+
+        GameData.strCurNpcId = null;
+
     }
 
 
@@ -100,11 +123,26 @@ public class UIPanelEquipment : UIPanel
     {
         for (int i = 0; i < nSlotItemCount; i++)
         {
-            var item = GameObject.Instantiate(objSlotItem) as GameObject;
-            item.name = objSlotItem.name + "_" + i;
-            item.transform.SetParent(trsSlotItemRoot);
-            item.transform.localScale = Vector3.one;
-            item.gameObject.AddMissingComponent<Button>().onClick.AddListener(() => { OnSwitch(); });
+            // 装备信息
+            for (int j = 0; j < GameData.lstUnlockNpcs[i].lstEquipments.Count; j++)
+            {
+                var item = GameObject.Instantiate(objSlotItem) as GameObject;
+                item.name = objSlotItem.name + "_" + i;
+                item.transform.SetParent(trsSlotItemRoot);
+                item.transform.localScale = Vector3.one;
+                item.gameObject.AddMissingComponent<Button>().onClick.AddListener(() => { OnSwitch(); });
+            }
+
+            // 卡片信息
+            for (int j = 0; j < GameData.lstUnlockNpcs[i].lstEquipments.Count; j++)
+            {
+                var item = GameObject.Instantiate(objSlotItem) as GameObject;
+                item.name = objSlotItem.name + "_" + i;
+                item.transform.SetParent(trsSlotItemRoot);
+                item.transform.localScale = Vector3.one;
+                item.gameObject.AddMissingComponent<Button>().onClick.AddListener(() => { OnSwitch(); });
+            }
+
 
         }
     }

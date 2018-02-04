@@ -62,8 +62,8 @@ public class UIPanelInventory : UIPanel
     //! 生成内部道具
     void GenerateItemsInBag()
     {
-		// 疑问：排序？
-		GameData.lstBagItems.Reverse ((Item x, Item y) => x.Order.CompareTo(y.Order) );
+		// 疑问：这个是排序吗？
+		GameData.lstBagItems.Sort((Item x, Item y) => x.Order.CompareTo(y.Order) );
 		
         for (int i = 0; i < GameData.BagCapacity; i++)
         {

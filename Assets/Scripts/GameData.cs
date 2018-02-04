@@ -9,10 +9,28 @@ namespace smallone
         static public Dictionary<string, GameConfigEntry> dictGameConfs;
 
         static public List<NPCData> lstUnlockNpcs;
-
+        
         static public List<Item> lstBagItems;
+        
+		// 所有建筑的obj列表
+		static public List<GameObject> lstConstructionObj;
 
-        static public string strCurBuildingId;
+		// 当前选中的建筑id
+		static public string strCurConstructionId;
+
+        // 玩家当前选中的NpcId
+        static public string strCurNpcId;
+
+		// 玩家当前等级
+		static public int nPlayerLv;
+
+		// 玩家当前经验值
+		static public int nPlayerLvExp;
+
+		// 玩家名字
+		static public string strPlayerName;
+
+
 
         static public int BagCapacity
         {
@@ -64,6 +82,52 @@ namespace smallone
             //临时解锁一位NPC
             lstUnlockNpcs = new List<NPCData>();
             lstUnlockNpcs.Add(DataCenter.Instance.dictNPCData["1"]);
+
+
+            // 疑问：成员的信息，之后绑定存档
+            for(int i = 0 ; i < DataCenter.Instance.dictNPCData.Count; i++ )
+            {
+                lstUnlockNpcs[i].CurfavorabilityLv = 1;
+                lstUnlockNpcs[i].CurfavorabilityExp = 0;
+                lstUnlockNpcs[i].CurPower = lstUnlockNpcs[i].Power;
+
+                // 装备信息
+                for (int j = 0; j < lstUnlockNpcs[i].lstEquipments.Count; j++)
+                {
+                    lstUnlockNpcs[i].lstEquipments[j] = null;
+
+                    // 战力
+                    if(lstUnlockNpcs[i].lstEquipments[i] != null)
+                    {
+                        lstUnlockNpcs[i].CurPower += lstUnlockNpcs[i].lstEquipments[i].Power;
+                    }
+                }
+
+                // 卡片信息
+                for (int j = 0; j < lstUnlockNpcs[i].lstEquipments.Count; j++)
+                {
+                    lstUnlockNpcs[i].lstCards[j] = null;
+                }
+            }
+
+
+            // 场景中建筑的obj列表
+            lstConstructionObj = new List<GameObject>();
+            
+            // 当前玩家选择的建筑ID
+            strCurConstructionId = null;
+
+            // 当前选中的NPCid
+            strCurNpcId = null;
+
+
+            // TODO:: 临时
+            nPlayerLv = 10;
+            
+            nPlayerLvExp = 0;
+            
+            strPlayerName = "SmallOne";
+            
         }
     }
 }

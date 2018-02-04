@@ -98,12 +98,17 @@ public class UIGameHUD : UIPanel
     {
         for (int i = 0; i < nHeroCount; i++)
         {
-            var item = GameObject.Instantiate(objRoleSlot) as GameObject;
-            item.name = objRoleSlot.name + "_" + i;
-            item.transform.SetParent(trsHeroListRoot);
-            item.transform.localScale = Vector3.one;
-            item.GetComponent<UIRoleInfo>().btRole.onClick.AddListener(() => { OnHeroClicked(item); });
-            item.GetComponent<UIRoleInfo>().btMission.onClick.AddListener(() => { OnMissionClicked(item); });
+            if(GameData.lstUnlockNpcs[i].UnlockLv >= GameData.nPlayerLv)
+            {
+                var item = GameObject.Instantiate(objRoleSlot) as GameObject;
+                item.name = GameData.lstUnlockNpcs[i].Name;
+                item.gameObject.tag = GameData.lstUnlockNpcs[i].ID;
+                item.transform.SetParent(trsHeroListRoot);
+                item.transform.localScale = Vector3.one;
+                item.GetComponent<UIRoleInfo>().btRole.onClick.AddListener(() => { OnHeroClicked(item); });
+                item.GetComponent<UIRoleInfo>().btMission.onClick.AddListener(() => { OnMissionClicked(item); });
+
+            }
         }
     }
 
@@ -136,7 +141,7 @@ public class UIGameHUD : UIPanel
 			item.transform.SetParent(trsPlayerLvlInfoRoot);
 			item.transform.localScale = Vector3.one;
 
-			string productid = DataCenter.Instance.dictBuildingTask [playerlvldata.TaskUnlock [i]].Product.nId;
+			string productid = DataCenter.Instance.dictBuildingTask [playerlvldata.TaskUnlock [i]].Product.strId;
 			item.GetComponent<UISlotItem> ().imgIcon.sprite = DataCenter.Instance.dictItem [productid].IconSprite;
 
 			// TODO::品质
@@ -180,7 +185,8 @@ public class UIGameHUD : UIPanel
     {
         UIPanelManager.Instance.ShowPanel("UIPanelEquipment").DoOnShowCompleted((panel) =>
         {
-            Debug.Log(obj.name);
+            GameData.strCurNpcId = obj.gameObject.tag;
+            Debug.Log("Npc : " + GameData.strCurNpcId + " , " + obj.gameObject.name);
         });
     }
 
