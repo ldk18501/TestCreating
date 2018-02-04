@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 222089314897227038}
   - component: {fileID: 114348841225764476}
   m_Layer: 5
-  m_Name: Front
+  m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -473,6 +473,7 @@ GameObject:
   - component: {fileID: 223047200104462938}
   - component: {fileID: 114445776448382844}
   - component: {fileID: 114840575294132178}
+  - component: {fileID: 114623279153533386}
   m_Layer: 5
   m_Name: PlayerLevelInfo
   m_TagString: Untagged
@@ -893,7 +894,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1128400382282456}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1598,12 +1599,17 @@ MonoBehaviour:
   trsPlayerLvlInfoRoot: {fileID: 224725617027620786}
   objSlotItem: {fileID: 1338678800939042, guid: 0f94a32c62a52584da94c8a6ff74832a,
     type: 2}
+  tmPlayerLvInfoText: {fileID: 114641667681875750}
   nHeroCount: 6
   trsHeroListRoot: {fileID: 224128966748246960}
   objRoleSlot: {fileID: 1226564288578266, guid: e57356e35b418eb43af8392d5305e978,
     type: 2}
   elePlayerLvlInfo: {fileID: 114840575294132178}
   mCoinNum: {fileID: 114304428660058568}
+  mDiamondNum: {fileID: 114125756927529648}
+  imgExpFill: {fileID: 114348841225764476}
+  tmPlayerLv: {fileID: 114199151986977172}
+  tmPlayerName: {fileID: 114709189644767828}
 --- !u!114 &114106339865416128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4294,6 +4300,21 @@ MonoBehaviour:
     m_TypeName: DoozyUI.UIElement+TriggerEvent, Assembly-CSharp, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   animationManager: {fileID: 114067663120228124}
+--- !u!114 &114623279153533386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1545090701006780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9adb1afd94544af3addefeb1b06d711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trsPlayerLvlInfoRoot: {fileID: 224725617027620786}
+  objSlotItem: {fileID: 1338678800939042, guid: 0f94a32c62a52584da94c8a6ff74832a,
+    type: 2}
+  objTxtTitle: {fileID: 1195904308185248}
 --- !u!114 &114641667681875750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6014,8 +6035,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224893810508376126}
   - {fileID: 224671157884794622}
+  - {fileID: 224893810508376126}
   - {fileID: 224733827751666080}
   - {fileID: 224416538078916922}
   m_Father: {fileID: 224430070161012056}
@@ -6056,7 +6077,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224551948337603448}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6224,7 +6245,7 @@ RectTransform:
   - {fileID: 224168410945528932}
   - {fileID: 224373189945812256}
   m_Father: {fileID: 224551948337603448}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

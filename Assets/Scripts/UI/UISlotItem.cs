@@ -15,6 +15,21 @@ public class UISlotItem : MonoBehaviour {
         }
     }
 
+
+	public bool ShowQuality {
+		set {
+			imgQuality.gameObject.SetActive(value);
+		}
+	}
+
+
+	public bool ShowScore {
+		set {
+			txtScore.gameObject.SetActive(value);
+		}
+	}
+
+
 	// Use this for initialization
 	void Start () {
 		

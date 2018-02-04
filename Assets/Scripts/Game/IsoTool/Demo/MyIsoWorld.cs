@@ -49,10 +49,10 @@ namespace smallone
             {
                 Debug.Log(component.transform.name);
 
-                //! 获得当前点击建筑的ID
-                GameData.strCurBuildingId = component.GetComponent<EntityBuilding>()._dataBuilding.ID;
+                //! 获得当前点击建筑信息
+				GameData.strCurConstructionId = component.GetComponent<EntityBuilding>().dataBuilding.ID;
 
-                Debug.Log(GameData.strCurBuildingId);
+
 
                 switch (component.transform.name)
                 {
@@ -129,7 +129,8 @@ namespace smallone
                 var obj = GameObject.Instantiate(buildingdata[id].Prefab) as GameObject;
                 IsoObject isoobj = obj.GetComponent<MyIsoObject>();
                 isoobj.world = this;
-                
+
+
                 buildingScene.AddIsoObject(isoobj);
                 isoobj.SetNodePosition(buildingdata[id].NodeX, buildingdata[id].NodeZ);
                 obj.transform.localScale = Vector3.one;
@@ -139,7 +140,9 @@ namespace smallone
                 isoobj.spanZ = buildingdata[id].SpanZ;
 
                 //! 肖：用来记录建筑ID，为了点击建筑可以知道点了啥。。
-                obj.AddMissingComponent<EntityBuilding>()._dataBuilding = buildingdata[id];
+				GameData.lstConstructionObj.Add(obj);
+
+                obj.AddMissingComponent<EntityBuilding>().dataBuilding = buildingdata[id];
             }
 
             //! 静态存在的建筑

@@ -77,7 +77,7 @@ public class UIPanelConstruction : UIPanel
 //             Debug.Log(obj.name + " == " );
 
             _dataTask = DataCenter.Instance.dictBuildingTask[obj.name];
-            GenerateContructNeed();
+
         }
 
 
@@ -98,9 +98,11 @@ public class UIPanelConstruction : UIPanel
     {
         Dictionary<string, BuildingTask> task = DataCenter.Instance.dictBuildingTask;
 
+
+
         foreach (string id in task.Keys)
         {
-            if( task[id].TableId == GameData.strCurBuildingId )
+			if( task[id].TableId == GameData.strCurConstructionId )
             {
                 var obj = GameObject.Instantiate(objSlotItem) as GameObject;
                 obj.transform.SetParent(trsGroup);
@@ -147,10 +149,15 @@ public class UIPanelConstruction : UIPanel
         BubbleConstructNeed bubble = _objBubble.GetComponent<BubbleConstructNeed>();
         
 
-        bubble.txtHave.text = store.ToString();
+		bubble.name = store.ToString();
+
+
+		Debug.Log(bubble.name );
 
         // 道具名字
         bubble.txtName.text = _dataTask.Name;
+
+
 
         // 道具属性查找
         bubble.txtScore.text = DataCenter.Instance.dictItem[_dataTask.Product.strId].Power.ToString();
@@ -170,7 +177,26 @@ public class UIPanelConstruction : UIPanel
             string needcount = store + " / " +_dataTask.ItemRequire[i].nCount.ToString();
             obj.GetComponent<SlotConstructNeed>().txtNeed.text = needcount;
         }
-
-
     }
+
+
+	// 生成生产中商品
+	void GenerateProductItem()
+	{
+
+
+
+
+
+	}
+
+	// 新增生产商品
+	void AddNewProduct(BuildingTask taskId)
+	{
+
+
+
+	}
+
+
 }

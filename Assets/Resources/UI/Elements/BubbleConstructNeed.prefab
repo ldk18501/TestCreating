@@ -471,10 +471,10 @@ MonoBehaviour:
   trsNeedRoot: {fileID: 224517213617344686}
   objSlotNeed: {fileID: 1017112980441524, guid: 679f3e5629eb90b498ded5dbdccbba5c,
     type: 2}
-  objName: {fileID: 1645310369330820}
-  objScore: {fileID: 1450504478555280}
-  objTime: {fileID: 1166394213389360}
-  objHave: {fileID: 1975856179517614}
+  txtName: {fileID: 114023920024870318}
+  txtScore: {fileID: 114432206048401334}
+  txtTime: {fileID: 114274347688590088}
+  txtHave: {fileID: 114296529861412878}
 --- !u!114 &114221783413896784
 MonoBehaviour:
   m_ObjectHideFlags: 1

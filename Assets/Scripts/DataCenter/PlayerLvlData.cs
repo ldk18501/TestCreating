@@ -9,8 +9,8 @@ namespace smallone
     {
         protected string _strID;
         protected int _nRequireExp;
-        protected List<int> _lstTableUnlock;
-        protected List<int> _lstTaskUnlock;
+        protected List<string> _lstTableUnlock;
+        protected List<string> _lstTaskUnlock;
 
 
         public string Lv
@@ -23,12 +23,12 @@ namespace smallone
             get { return _nRequireExp; }
         }
 
-        public List<int> TableUnlock
+        public List<string> TableUnlock
         {
             get { return _lstTableUnlock; }
         }
 
-        public List<int> TaskUnlock
+        public List<string> TaskUnlock
         {
             get { return _lstTaskUnlock; }
         }
@@ -40,25 +40,25 @@ namespace smallone
             _strID = data["PlayerLv"][index];
             _nRequireExp = int.Parse(data["RequireExp"][index]);
 
-            _lstTableUnlock = new List<int>();
+            _lstTableUnlock = new List<string>();
             string table = data["TableUnlock"][index];
             if (!string.IsNullOrEmpty(table) && table != "-1")
             {
                 string[] multi = table.Split('|');
                 for (int i = 0; i < multi.Length; i++)
                 {
-                    _lstTableUnlock.Add(int.Parse(multi[i]));
+                    _lstTableUnlock.Add( multi[i] );
                 }
             }
 
-            _lstTaskUnlock = new List<int>();
+            _lstTaskUnlock = new List<string>();
             string task = data["TaskUnlock"][index];
             if (!string.IsNullOrEmpty(task) && task != "-1")
             {
                 string[] multi = task.Split('|');
                 for (int i = 0; i < multi.Length; i++)
                 {
-                    _lstTaskUnlock.Add(int.Parse(multi[i]));
+                    _lstTaskUnlock.Add( multi[i] );
                 }
             }
 
