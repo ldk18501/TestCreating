@@ -22,6 +22,7 @@ public class UIStartPanel : UIPanel
 
     void OnEnterGame()
     {
+        (LevelManager.Instance.MainLevel as LevelMain).StartGameLogic();
         UIPanelManager.Instance.HidePanel(this).DoOnHideCompleted((panel) =>
             {
                 UIPanelManager.Instance.ShowPanel("UIGameHUD");

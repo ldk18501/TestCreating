@@ -23,7 +23,7 @@ namespace smallone
                 if (_owner.GameWorld.astar.FindPath(_owner.AIMaster.nodeX, _owner.AIMaster.nodeZ, (int)_owner.DesirePoint.x, (int)_owner.DesirePoint.y))
                 {
                     //! 之后把Ball拆成Move组件
-                    Ball ball = _owner.AIMaster.GetComponent<Ball>();
+                    EntityRole ball = _owner.AIMaster.GetComponent<EntityRole>();
                     ball.MoveByRoads(_owner.GameWorld.astar.path);
                     ball.cbArrived = OnArrive;
                 }

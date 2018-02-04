@@ -36,6 +36,10 @@ namespace ISO
 
         protected virtual void Update()
         {
+            UpdateScneneFrame();
+        }
+
+        protected void UpdateScneneFrame() {
 #if UNITY_EDITOR
             IsoUtil.W_H_RATE = w_h_rate;
 #endif

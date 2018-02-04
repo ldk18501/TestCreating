@@ -16,10 +16,10 @@ namespace smallone
     
 
     public class ItemPair {
-        public string nId;
+        public string strId;
         public int nCount;
         public ItemPair(string id , int count = 0) {
-            nId = id;
+            strId = id;
             nCount = count;
         }
     }

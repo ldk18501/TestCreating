@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace smallone
 {
-    public class MainStateLoad : State<LevelMain>
+    public class MainStateRunning : State<LevelMain>
     {
-        public MainStateLoad(int stateEnum) : base(stateEnum)
+        public MainStateRunning(int stateEnum) : base(stateEnum)
         {
 
         }
@@ -15,8 +15,7 @@ namespace smallone
         public override void Enter(object param)
         {
             base.Enter(param);
-            //! 加载NPC
-            //! 关闭Loading，显示GameHUD
+
         }
 
         public override string Execute(float deltaTime)
@@ -28,6 +27,6 @@ namespace smallone
         {
             base.Exit();
         }
-    }
 
+    }
 }

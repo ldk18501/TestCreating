@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEditor;
 using ISO;
 
-[CustomEditor(typeof(Ball))]
+[CustomEditor(typeof(smallone.EntityRole))]
 class BallObjectEditor:IsoObjectEditor
 {
 	public override void OnInspectorGUI ()

@@ -19,7 +19,6 @@ namespace smallone
 
         [Header("Prefabs")]
         public IsoObject[] isoObjectPrefabs;
-        public Ball ball;
 
         public PathGrid gridData;
         public Astar astar;
@@ -74,10 +73,10 @@ namespace smallone
                         break;
                 }
             }
-            else
-            {
-                Click(finger.ScreenPosition);
-            }
+            //else
+            //{
+            //    Click(finger.ScreenPosition);
+            //}
         }
 
 
@@ -105,20 +104,26 @@ namespace smallone
 
             //init astar
             astar = new Astar(gridData);
-
-            //init buildings
-            if (Application.isPlaying)
-            {
-                InitBuildings();
-            }
         }
 
-        void InitBuildings()
-        {
-            base.Update();
+        public void InitNpc(List<NPCData> npcdata) {
+            UpdateScneneFrame();
+            npcdata.ForEach(p =>
+            {
+                GameObject npcObj = GameObject.Instantiate(p.Prefab) as GameObject;
+                EntityRole npcRole = npcObj.GetComponent<EntityRole>();
+                npcRole.world = this;
+                buildingScene.AddIsoObject(npcRole);
+                npcRole.transform.localScale = Vector3.one;
+                npcRole.SetNodePosition(76, 98);
 
+            });
+        }
+
+        public void InitBuildings(Dictionary<string, BuildingData> buildingdata)
+        {
+            UpdateScneneFrame();
             //! 配置表添加建筑
-            Dictionary<string, BuildingData> buildingdata = DataCenter.Instance.dictBuilding;
             foreach (string id in buildingdata.Keys)
             {
                 var obj = GameObject.Instantiate(buildingdata[id].Prefab) as GameObject;
@@ -137,9 +142,10 @@ namespace smallone
                 obj.AddMissingComponent<EntityBuilding>()._dataBuilding = buildingdata[id];
             }
 
+            //! 静态存在的建筑
             foreach (IsoObject obj in buildingScene.GetComponentsInChildren<IsoObject>(true))
             {
-                if (obj != buildingScene && obj != ball) //exclude ball
+                if (obj != buildingScene)
                 {
                     obj.world = this;
                     buildingScene.AddIsoObject(obj);
@@ -147,13 +153,14 @@ namespace smallone
                 }
             }
 
+            //! 地表上摆放的可走上去的物件
             foreach (IsoObject obj in groundScene.GetComponentsInChildren<IsoObject>(true))
             {
                 if (obj != groundScene)
                 {
                     obj.world = this;
                     groundScene.AddIsoObject(obj);
-                    obj.SetWalkable(false, gridData);
+                    obj.SetWalkable(true, gridData);
                 }
             }
         }
@@ -162,73 +169,67 @@ namespace smallone
         protected override void Update()
         {
             base.Update();
-            ball.UpdateFrame();
         }
 
-        void Click(Vector2 fingerPos)
-        {
-            Vector3 localPos = buildingScene.transform.InverseTransformPoint(Camera.main.ScreenToWorldPoint(fingerPos));
-            Vector2 nodePos = IsoUtil.LocalPosToIsoGrid(cellSize, localPos.x, localPos.y);
+        //! 保留参考
+        //void Click(Vector2 fingerPos)
+        //{
+        //    Vector3 localPos = buildingScene.transform.InverseTransformPoint(Camera.main.ScreenToWorldPoint(fingerPos));
+        //    Vector2 nodePos = IsoUtil.LocalPosToIsoGrid(cellSize, localPos.x, localPos.y);
 
-            int nodeX = (int)nodePos.x;
-            int nodeZ = (int)nodePos.y;
-            if (gridData.CheckInGrid(nodeX, nodeZ) && gridData.GetNode(nodeX, nodeZ).walkable)
-            {
+        //    int nodeX = (int)nodePos.x;
+        //    int nodeZ = (int)nodePos.y;
+        //    if (gridData.CheckInGrid(nodeX, nodeZ) && gridData.GetNode(nodeX, nodeZ).walkable)
+        //    {
 
-                if (toggle.isOn)
-                {
-                    // Add Build
-                    IsoObject obj = (IsoObject)Instantiate(isoObjectPrefabs[Random.Range(0, isoObjectPrefabs.Length)]);
-                    obj.world = this;
-                    obj.SetNodePosition(nodeX, nodeZ);
-                    if (obj.GetWalkable(gridData))
-                    {
-                        buildingScene.AddIsoObject(obj);
-                        obj.SetNodePosition(nodeX, nodeZ);
-                        obj.transform.localScale = Vector3.one;
-                        obj.SetWalkable(false, gridData);
-                    }
-                    else
-                    {
-                        DestroyImmediate(obj.gameObject);
-                    }
-                }
-                else
-                {
-                    // Search Path and move
-                    gridData.CalculateLinks();//when map is changed
-                                              //Debug.Log(nodeX + "," + nodeZ);
-                    if (astar.FindPath(ball.nodeX, ball.nodeZ, nodeX, nodeZ))
-                    {
-                        ball.MoveByRoads(astar.path);
-                    }
-                }
-            }
-        }
+        //        if (toggle.isOn)
+        //        {
+        //            // Add Build
+        //            IsoObject obj = (IsoObject)Instantiate(isoObjectPrefabs[Random.Range(0, isoObjectPrefabs.Length)]);
+        //            obj.world = this;
+        //            obj.SetNodePosition(nodeX, nodeZ);
+        //            if (obj.GetWalkable(gridData))
+        //            {
+        //                buildingScene.AddIsoObject(obj);
+        //                obj.SetNodePosition(nodeX, nodeZ);
+        //                obj.transform.localScale = Vector3.one;
+        //                obj.SetWalkable(false, gridData);
+        //            }
+        //            else
+        //            {
+        //                DestroyImmediate(obj.gameObject);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            // Search Path and move
+        //            gridData.CalculateLinks();//when map is changed
+        //                                      //Debug.Log(nodeX + "," + nodeZ);
+        //            if (astar.FindPath(ball.nodeX, ball.nodeZ, nodeX, nodeZ))
+        //            {
+        //                ball.MoveByRoads(astar.path);
+        //            }
+        //        }
+        //    }
+        //}
 
+        //public void OnToggleChange()
+        //{
+        //    if (!toggle.isOn)
+        //    {
+        //        ball.StopMove();
+        //        if (!ball.GetWalkable(gridData))
+        //        {
+        //            System.Collections.Generic.List<PathNode> nodes = gridData.GetNodesByWalkable(true);
+        //            if (nodes != null)
+        //            {
+        //                PathNode node = nodes[Random.Range(0, nodes.Count)];
+        //                ball.SetNodePosition(node.x, node.z);
+        //            }
+        //        }
 
-        public void OnRefreshMap()
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        }
-
-        public void OnToggleChange()
-        {
-            if (!toggle.isOn)
-            {
-                ball.StopMove();
-                if (!ball.GetWalkable(gridData))
-                {
-                    System.Collections.Generic.List<PathNode> nodes = gridData.GetNodesByWalkable(true);
-                    if (nodes != null)
-                    {
-                        PathNode node = nodes[Random.Range(0, nodes.Count)];
-                        ball.SetNodePosition(node.x, node.z);
-                    }
-                }
-
-            }
-        }
+        //    }
+        //}
 
         //! 太暴力了
         public List<MyIsoObject> GetBuildings()

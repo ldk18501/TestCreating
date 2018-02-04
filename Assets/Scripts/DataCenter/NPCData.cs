@@ -9,6 +9,8 @@ namespace smallone
     {
         protected string _strID;
         protected string _strName;
+        protected Sprite _spPortrait;
+        protected GameObject _objPrefab;
         protected int _nUnlockLv;
         protected List<int> _lstSkillUnlocklv;
         protected int _nPower;
@@ -86,12 +88,26 @@ namespace smallone
             get { return _lstGiftInterval; }
         }
 
+        public GameObject Prefab
+        {
+            get { return _objPrefab; }
+        }
+
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
             _strID = data["Id"][index];
             _strName = data["Name"][index];
+
+            _spPortrait = string.IsNullOrEmpty(data["Portrait"][index]) ? null : AtlasManager.Instance.GetSprite(data["Portrait"][index]);
+
+            string prefab = data["Prefab"][index];
+            if (!string.IsNullOrEmpty(prefab))
+            {
+                _objPrefab = Resources.Load<GameObject>(prefab);
+            }
+
             _nUnlockLv = int.Parse(data["UnlockLv"][index]);
-            
+
             _lstSkillUnlocklv = new List<int>();
             string skillunlocklv = data["SkillUnlock"][index];
             if (!string.IsNullOrEmpty(skillunlocklv) && skillunlocklv != "-1")
@@ -183,7 +199,7 @@ namespace smallone
                     _lstGiftInterval.Add(int.Parse(multi[i]));
                 }
             }
-    }
+        }
 
     }
 }

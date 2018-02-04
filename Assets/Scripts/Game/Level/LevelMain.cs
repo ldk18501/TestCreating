@@ -9,8 +9,8 @@ namespace smallone
     public class LevelMain : LevelBase
     {
         public enum PhaseEnum {
-            Load,
-            World,
+            Loading,
+            Running,
         }
 
         private StateMachine<LevelMain> _fsmLevel;
@@ -27,6 +27,9 @@ namespace smallone
 
         public bool MainGameStarted
         {
+            set {
+                _bMainGameStarted = value;
+            }
             get
             {
                 return _bMainGameStarted;
@@ -36,16 +39,14 @@ namespace smallone
         public LevelMain()
         {
             _bMainGameStarted = false;
-            if (_isoWorld == null)
-                _isoWorld = GameObject.Find("ISOWorld").GetComponent<MyIsoWorld>();
         }
 
         protected override void CreateLevelFsm()
         {
-            _fsmLevel = new StateMachine<LevelMain>(this);
-            _fsmLevel.AddState(new MainStateLoad((int)PhaseEnum.Load));
 
-            _fsmLevel.ChangeState((int)PhaseEnum.Load);
+            _fsmLevel = new StateMachine<LevelMain>(this);
+            _fsmLevel.AddState(new MainStateLoading((int)PhaseEnum.Loading));
+            _fsmLevel.AddState(new MainStateRunning((int)PhaseEnum.Running));
         }
 
         protected override void GenLevelEntities(string path)
@@ -69,6 +70,8 @@ namespace smallone
         public override void LoadLevel()
         {
             base.LoadLevel();
+            if (_isoWorld == null)
+                _isoWorld = GameObject.Find("ISOWorld").GetComponent<MyIsoWorld>();
             //! 现在建筑都是静态的情况下就不调用了
             // GenLevelEntities();
 
@@ -97,7 +100,7 @@ namespace smallone
             string status = _fsmLevel.TickState(deltaTime);
         }
 
-        #region MainUI
+        #region MainUI 
         //TODO::预留，可能没用，再议
         IEnumerator ReturnFromEvent()
         {
@@ -112,7 +115,8 @@ namespace smallone
         IEnumerator EnterGame()
         {
             yield return null;
-            UIPanelManager.Instance.ShowPanel("UIStartPanel");
+            UIPanelManager.Instance.ShowPanel("UILoading");
+            _fsmLevel.ChangeState((int)PhaseEnum.Loading);
         }
         #endregion
 
@@ -121,6 +125,7 @@ namespace smallone
             _bMainGameStarted = true;
             //_isoWorld.ball.gameObject.AddMissingComponent<smallone.AINpc>().RegisterMaster(_isoWorld.ball);
             //_isoWorld.ball.GetComponent<smallone.AINpc>().isAIOff = false;
+            _fsmLevel.ChangeState((int)PhaseEnum.Running);
         }
 
     }

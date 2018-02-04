@@ -8,6 +8,8 @@ namespace smallone
     {
         static public Dictionary<string, GameConfigEntry> dictGameConfs;
 
+        static public List<NPCData> lstUnlockNpcs;
+
         static public List<Item> lstBagItems;
 
         static public string strCurBuildingId;
@@ -58,6 +60,10 @@ namespace smallone
             {
                 lstBagItems.Add(DataCenter.Instance.dictItem[id]);
             }
+
+            //临时解锁一位NPC
+            lstUnlockNpcs = new List<NPCData>();
+            lstUnlockNpcs.Add(DataCenter.Instance.dictNPCData["1"]);
         }
     }
 }

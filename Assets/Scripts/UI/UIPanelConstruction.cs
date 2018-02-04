@@ -111,7 +111,7 @@ public class UIPanelConstruction : UIPanel
 
                 // 问题：同一个道具不同品质，怎么写比较好(或者怎么配置)
 
-                string itemID = task[id].Product.nId.ToString();
+                string itemID = task[id].Product.strId.ToString();
 
 //                 Debug.Log(itemID);
                 
@@ -136,7 +136,7 @@ public class UIPanelConstruction : UIPanel
         // TODO 背包存量查找
         for(int i = 0; i< GameData.lstBagItems.Count; i++)
         {
-            if( _dataTask.Product.nId == GameData.lstBagItems[i].ID )
+            if( _dataTask.Product.strId == GameData.lstBagItems[i].ID )
             {
                 store++;
             }
@@ -153,7 +153,7 @@ public class UIPanelConstruction : UIPanel
         bubble.txtName.text = _dataTask.Name;
 
         // 道具属性查找
-        bubble.txtScore.text = DataCenter.Instance.dictItem[_dataTask.Product.nId].Power.ToString();
+        bubble.txtScore.text = DataCenter.Instance.dictItem[_dataTask.Product.strId].Power.ToString();
         
         // 生产所需时间
         bubble.txtTime.text = _dataTask.Time.ToString();
@@ -165,7 +165,7 @@ public class UIPanelConstruction : UIPanel
             obj.transform.SetParent(_objBubble.GetComponent<BubbleConstructNeed>().trsNeedRoot);
             obj.name = _dataTask.Name;
             obj.transform.localScale = Vector3.one;
-            obj.GetComponent<SlotConstructNeed>().imgIcon.sprite = DataCenter.Instance.dictItem[_dataTask.ItemRequire[i].nId].IconSprite;
+            obj.GetComponent<SlotConstructNeed>().imgIcon.sprite = DataCenter.Instance.dictItem[_dataTask.ItemRequire[i].strId].IconSprite;
 
             string needcount = store + " / " +_dataTask.ItemRequire[i].nCount.ToString();
             obj.GetComponent<SlotConstructNeed>().txtNeed.text = needcount;

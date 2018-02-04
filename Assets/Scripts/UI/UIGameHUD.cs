@@ -18,8 +18,6 @@ public class UIGameHUD : UIPanel
     public UIElement elePlayerLvlInfo;
     public Text mCoinNum;
 
-    private LevelMain _mainLevel;
-
     void OnEnable()
     { 
         EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
@@ -42,9 +40,6 @@ public class UIGameHUD : UIPanel
 
     void StartGame()
     {
-        _mainLevel = LevelManager.Instance.MainLevel as LevelMain;
-        _mainLevel.StartGameLogic();
-
         GenerateHeroList();
         GeneratePlayerLvlInfoList();
     }

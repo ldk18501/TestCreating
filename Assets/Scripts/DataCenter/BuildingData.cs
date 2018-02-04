@@ -11,7 +11,6 @@ namespace smallone
         protected int _nType;
         protected int _nLvl;
         protected string _strName;
-        protected string _strIcon;
         protected Sprite _spIcon;
         protected int _nSpanX;
         protected int _nSpanZ;
@@ -22,28 +21,29 @@ namespace smallone
 
         protected GameObject _objPrefab;
 
-        public string ID {
+        public string ID
+        {
             get { return _strID; }
         }
 
-        public int Type {
+        public int Type
+        {
             get { return _nType; }
         }
 
-        public int Lv {
+        public int Lv
+        {
             get { return _nLvl; }
         }
 
-        public string Name {
+        public string Name
+        {
             get { return _strName; }
-        }
-        public string IconPath {
-            get { return _strIcon; }
         }
 
         public Sprite IconSprite
         {
-            get { return string.IsNullOrEmpty(_strIcon) ? null : AtlasManager.Instance.GetSprite(_strIcon); }
+            get { return _spIcon; }
         }
 
         public int SpanX
@@ -90,7 +90,6 @@ namespace smallone
             _nType = int.Parse(data["Type"][index]);
             _nLvl = int.Parse(data["Lv"][index]);
             _strName = data["Name"][index];
-            _strIcon = data["Src"][index];
             _nSpanX = int.Parse(data["spanX"][index]);
             _nSpanZ = int.Parse(data["spanZ"][index]);
             _nNodeX = int.Parse(data["nodeX"][index]);
@@ -99,11 +98,11 @@ namespace smallone
             _fSortZ = float.Parse(data["SortZ"][index]);
 
             //_spIcon = string.IsNullOrEmpty(_strIcon) ? null : AtlasManager.Instance.GetSprite(_strIcon);
-            
 
-            if (!string.IsNullOrEmpty(_strIcon))
+            string prefab = data["Src"][index];
+            if (!string.IsNullOrEmpty(prefab))
             {
-                _objPrefab = Resources.Load<GameObject>(_strIcon);
+                _objPrefab = Resources.Load<GameObject>(prefab);
             }
 
         }
