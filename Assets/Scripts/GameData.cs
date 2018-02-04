@@ -8,23 +8,11 @@ namespace smallone
     {
         static public Dictionary<string, GameConfigEntry> dictGameConfs;
 
+        static public List<NPCData> lstUnlockNpcs;
+
         static public List<Item> lstBagItems;
 
-		// 所有建筑的obj列表
-		static public List<GameObject> lstConstructionObj;
-
-		// 当前选中的建筑id
-		static public string strCurConstructionId;
-
-		// 玩家当前等级
-		static public int nPlayerLv;
-
-		// 玩家当前经验值
-		static public int nPlayerLvExp;
-
-		// 玩家名字
-		static public string strPlayerName;
-
+        static public string strCurBuildingId;
 
         static public int BagCapacity
         {
@@ -73,17 +61,9 @@ namespace smallone
                 lstBagItems.Add(DataCenter.Instance.dictItem[id]);
             }
 
-			lstConstructionObj = new List<GameObject> ();
-
-			strCurConstructionId = null;
-
-			// TODO:: 临时
-			nPlayerLv = 1;
-
-			nPlayerLvExp = 0;
-
-			strPlayerName = "SmallOne";
-
+            //临时解锁一位NPC
+            lstUnlockNpcs = new List<NPCData>();
+            lstUnlockNpcs.Add(DataCenter.Instance.dictNPCData["1"]);
         }
     }
 }
