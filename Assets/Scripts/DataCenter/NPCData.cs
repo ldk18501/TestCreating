@@ -14,9 +14,9 @@ namespace smallone
         protected int _nUnlockLv;
         protected List<int> _lstSkillUnlocklv;
         protected int _nPower;
-        protected List<int> _lstSkillId;
-        protected List<int> _lstFavor;
-        protected List<int> _lstCharacter;
+		protected List<string> _lstSkillId;
+		protected List<string> _lstFavor;
+		protected List<string> _lstCharacter;
         protected List<int> _lstEquipType;
         protected List<int> _lstCardUnlockLv;
         protected int _nEmotionLimit;
@@ -55,17 +55,17 @@ namespace smallone
             get { return _nPower; }
         }
 
-        public List<int> SkillId
+        public List<string> SkillId
         {
             get { return _lstSkillId; }
         }
 
-        public List<int> Favor
+		public List<string> Favor
         {
             get { return _lstFavor; }
         }
 
-        public List<int> Character
+		public List<string> Character
         {
             get { return _lstCharacter; }
         }
@@ -128,36 +128,36 @@ namespace smallone
 
             _nPower = int.Parse(data["Power"][index]);
 
-            _lstSkillId = new List<int>();
+			_lstSkillId = new List<string>();
             string skillid = data["Skill"][index];
             if (!string.IsNullOrEmpty(skillid) && skillid != "-1")
             {
                 string[] multi = skillid.Split('|');
                 for (int i = 0; i < multi.Length; i++)
                 {
-                    _lstSkillId.Add(int.Parse(multi[i]));
+                    _lstSkillId.Add( multi[i] );
                 }
             }
 
-            _lstFavor = new List<int>();
+			_lstFavor = new List<string>();
             string favor = data["Favor"][index];
             if (!string.IsNullOrEmpty(favor) && favor != "-1")
             {
                 string[] multi = favor.Split('|');
                 for (int i = 0; i < multi.Length; i++)
                 {
-                    _lstFavor.Add(int.Parse(multi[i]));
+                    _lstFavor.Add( multi[i] );
                 }
             }
 
-            _lstCharacter = new List<int>();
+			_lstCharacter = new List<string>();
             string character = data["Character"][index];
             if (!string.IsNullOrEmpty(character) && character != "-1")
             {
                 string[] multi = character.Split('|');
                 for (int i = 0; i < multi.Length; i++)
                 {
-                    _lstCharacter.Add(int.Parse(multi[i]));
+                    _lstCharacter.Add( multi[i] );
                 }
             }
 

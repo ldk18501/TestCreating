@@ -96,20 +96,20 @@ public class UIGameHUD : UIPanel
 
     void GenerateHeroList()
     {
-        for (int i = 0; i < nHeroCount; i++)
-        {
-            if(GameData.lstUnlockNpcs[i].UnlockLv >= GameData.nPlayerLv)
-            {
-                var item = GameObject.Instantiate(objRoleSlot) as GameObject;
-                item.name = GameData.lstUnlockNpcs[i].Name;
-                item.gameObject.tag = GameData.lstUnlockNpcs[i].ID;
+        for (int i = 0; i < GameData.lstNpcs.Count; i++)
+		{
+
+			if(GameData.lstNpcs[i].UnlockLv >= GameData.nPlayerLv)
+			{
+				var item = GameObject.Instantiate(objRoleSlot) as GameObject;
+				item.tag = GameData.lstNpcs[i].ID;
+				item.name = GameData.lstNpcs[i].Name;
                 item.transform.SetParent(trsHeroListRoot);
                 item.transform.localScale = Vector3.one;
                 item.GetComponent<UIRoleInfo>().btRole.onClick.AddListener(() => { OnHeroClicked(item); });
                 item.GetComponent<UIRoleInfo>().btMission.onClick.AddListener(() => { OnMissionClicked(item); });
-
             }
-        }
+      }
     }
 
     void GeneratePlayerLvlInfoList()
@@ -185,7 +185,7 @@ public class UIGameHUD : UIPanel
     {
         UIPanelManager.Instance.ShowPanel("UIPanelEquipment").DoOnShowCompleted((panel) =>
         {
-            GameData.strCurNpcId = obj.gameObject.tag;
+            GameData.strCurNpcId = obj.tag;
             Debug.Log("Npc : " + GameData.strCurNpcId + " , " + obj.gameObject.name);
         });
     }

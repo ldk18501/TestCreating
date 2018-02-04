@@ -9,6 +9,9 @@ namespace smallone
         static public Dictionary<string, GameConfigEntry> dictGameConfs;
 
         static public List<NPCData> lstUnlockNpcs;
+
+		// 记录所有npc信息
+		static public List<NPCData> lstNpcs;
         
         static public List<Item> lstBagItems;
         
@@ -84,29 +87,38 @@ namespace smallone
             lstUnlockNpcs.Add(DataCenter.Instance.dictNPCData["1"]);
 
 
+
+			lstNpcs = new List<NPCData>() ;
+
+			foreach(string id in DataCenter.Instance.dictNPCData.Keys)
+			{
+				lstNpcs.Add (DataCenter.Instance.dictNPCData[id]) ;
+			}
+
             // 疑问：成员的信息，之后绑定存档
             for(int i = 0 ; i < DataCenter.Instance.dictNPCData.Count; i++ )
-            {
-                lstUnlockNpcs[i].CurfavorabilityLv = 1;
-                lstUnlockNpcs[i].CurfavorabilityExp = 0;
-                lstUnlockNpcs[i].CurPower = lstUnlockNpcs[i].Power;
+			{
+				//lstNpcs.Add (DataCenter.Instance.dictNPCData[i.ToString()]) ;
+                lstNpcs[i].CurfavorabilityLv = 1;
+				lstNpcs[i].CurfavorabilityExp = 0;
+				lstNpcs[i].CurPower = lstNpcs[i].Power;
 
                 // 装备信息
-                for (int j = 0; j < lstUnlockNpcs[i].lstEquipments.Count; j++)
+				for (int j = 0; j < lstNpcs[i].lstEquipments.Count; j++)
                 {
-                    lstUnlockNpcs[i].lstEquipments[j] = null;
+					lstNpcs[i].lstEquipments[j] = null;
 
                     // 战力
-                    if(lstUnlockNpcs[i].lstEquipments[i] != null)
+					if(lstNpcs[i].lstEquipments[i] != null)
                     {
-                        lstUnlockNpcs[i].CurPower += lstUnlockNpcs[i].lstEquipments[i].Power;
+						lstNpcs[i].CurPower += lstNpcs[i].lstEquipments[i].Power;
                     }
                 }
 
                 // 卡片信息
-                for (int j = 0; j < lstUnlockNpcs[i].lstEquipments.Count; j++)
+				for (int j = 0; j < lstNpcs[i].lstEquipments.Count; j++)
                 {
-                    lstUnlockNpcs[i].lstCards[j] = null;
+					lstNpcs[i].lstCards[j] = null;
                 }
             }
 
