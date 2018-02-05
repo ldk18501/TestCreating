@@ -22,7 +22,7 @@ namespace smallone
 		static public string strCurConstructionId;
 
         // 玩家当前选中的NpcId
-        static public string strCurNpcId;
+        static public int strCurNpcTag;
 
 		// 玩家当前等级
 		static public int nPlayerLv;
@@ -96,7 +96,7 @@ namespace smallone
 			}
 
             // 疑问：成员的信息，之后绑定存档
-            for(int i = 0 ; i < DataCenter.Instance.dictNPCData.Count; i++ )
+            for(int i = 0 ; i < lstNpcs.Count ; i++ )
 			{
 				//lstNpcs.Add (DataCenter.Instance.dictNPCData[i.ToString()]) ;
                 lstNpcs[i].CurfavorabilityLv = 1;
@@ -130,7 +130,7 @@ namespace smallone
             strCurConstructionId = null;
 
             // 当前选中的NPCid
-            strCurNpcId = null;
+            strCurNpcTag = 0;
 
 
             // TODO:: 临时

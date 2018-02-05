@@ -10,14 +10,16 @@ public class BubbleBag : MonoBehaviour {
     public GameObject objSlotItem;
     
     //! 生成内部道具
-    public void GenerateItemsInBag(ItemType itemtype)
+    public void GenerateItemsInBag(int itemtype)
     {
+		ItemsClear ();
+
         for (int i = 0; i < GameData.lstBagItems.Count; i++)
         {
-            if( GameData.lstBagItems[i].Category == itemtype)
+            if( GameData.lstBagItems[i].Type == itemtype)
             {
                 var obj = GameObject.Instantiate(objSlotItem) as GameObject;
-                obj.name = objSlotItem.name + "_" + i;
+				obj.name = GameData.lstBagItems[i].ID;
                 obj.transform.SetParent(trsSlotItemRoot);
                 obj.transform.localScale = Vector3.one;
                 
@@ -29,7 +31,7 @@ public class BubbleBag : MonoBehaviour {
                 item.ShowQuality = false;
                 item.txtScore.text = GameData.lstBagItems[i].Power.ToString();
 
-                if ( itemtype == ItemType.Equipment)
+				if ( GameData.lstBagItems[i].Category== ItemType.Equipment)
                 {
                     item.ShowScore = true;
                 }

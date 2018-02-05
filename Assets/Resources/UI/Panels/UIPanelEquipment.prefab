@@ -859,26 +859,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1584479241503178
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 224970174671206586}
-  - component: {fileID: 222266200366728684}
-  - component: {fileID: 114428602045999508}
-  - component: {fileID: 114190825488498336}
-  - component: {fileID: 114306858463563012}
-  - component: {fileID: 114916917538084652}
-  m_Layer: 5
-  m_Name: BTClose
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1586775007477910
 GameObject:
   m_ObjectHideFlags: 1
@@ -1410,6 +1390,26 @@ GameObject:
   - component: {fileID: 114824780440392672}
   m_Layer: 5
   m_Name: Desc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1903350201313030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224786483688389080}
+  - component: {fileID: 222980894895904906}
+  - component: {fileID: 114485269039871796}
+  - component: {fileID: 114246032334473118}
+  - component: {fileID: 114123665945221512}
+  - component: {fileID: 114502362042365050}
+  m_Layer: 5
+  m_Name: BTClose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2512,6 +2512,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114123665945221512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1903350201313030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0882b3c7a8e2649b3368d1413e4eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114134138748229540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2525,6 +2536,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgIcon: {fileID: 114037464600298310}
   imgIconIfNull: {fileID: 114876817289926536}
+  nslottype: 0
+  nSlotTag: 0
 --- !u!114 &114139821863065440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2700,33 +2713,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Item1
---- !u!114 &114190825488498336
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1584479241503178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &114223039498294954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2789,6 +2775,33 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 87c8e458dfe804f29bd4c972ec6a4680, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &114246032334473118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1903350201313030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2919,6 +2932,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgIcon: {fileID: 114587262127762356}
   imgIconIfNull: {fileID: 114022111394563764}
+  nslottype: 0
+  nSlotTag: 0
 --- !u!114 &114304874010762434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2960,17 +2975,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114306858463563012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1584479241503178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff0882b3c7a8e2649b3368d1413e4eae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114307288387268724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3009,6 +3013,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgIcon: {fileID: 114470066763943292}
   imgIconIfNull: {fileID: 114223039498294954}
+  nslottype: 0
+  nSlotTag: 0
 --- !u!114 &114319040934166026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3099,6 +3105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgIcon: {fileID: 114400128283386870}
   imgIconIfNull: {fileID: 114992446443153326}
+  nslottype: 0
+  nSlotTag: 0
 --- !u!114 &114375960181293938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3446,47 +3454,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114428602045999508
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1584479241503178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 114190825488498336}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114429667540482462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4189,6 +4156,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgIcon: {fileID: 114023367393726950}
   imgIconIfNull: {fileID: 114049088246042544}
+  nslottype: 0
+  nSlotTag: 0
+--- !u!114 &114485269039871796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1903350201313030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 114246032334473118}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114489092164673192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4522,6 +4532,255 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Skills:'
+--- !u!114 &114502362042365050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1903350201313030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682849f091f20484485c3a8e6c1e0b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonName: ~Button Name~
+  onClickSound: ~No Sound~
+  showHelp: 0
+  allowMultipleClicks: 1
+  disableButtonInterval: 0.5
+  useOnClickAnimations: 0
+  useNormalStateAnimations: 0
+  useHighlightedStateAnimations: 0
+  buttonNameReference:
+    buttonName: 
+  addToNavigationHistory: 0
+  clearNavigationHistory: 0
+  backButton: 0
+  waitForOnClickAnimation: 1
+  onClickSoundReference:
+    onClickSound: 
+  onClickAnimationsPresetNames:
+  - ClickHorizontalScale
+  - ClickReturnIn
+  - ClickReturnOut
+  - ClickVerticalScale
+  - DefaultPreset
+  - ElasticRotateLeft
+  - ElasticRotateRight
+  - JumpRotateLeft
+  - JumpRotateRight
+  - MiniJump
+  - OrganicHorizontalStretch
+  - OrganicJump
+  - OrganicLongSlideLeft
+  - OrganicLongSlideRight
+  - OrganicMiniJump
+  - OrganicSlideLeft
+  - OrganicSlideRight
+  - OrganicVerticalStretch
+  - QuickScaleIn
+  - QuickScaleOut
+  - ScaleJumpDown
+  - ScaleJumpLeft
+  - ScaleJumpRight
+  - ScaleJumpUp
+  - ScaleOutRotateLeft
+  - ScaleOutRotateRight
+  - SlideRotateLeft
+  - SlideRotateRight
+  - TwitchToLeft
+  - TwitchToRight
+  activeOnclickAnimationsPresetIndex: 4
+  onClickAnimationsPresetName: DefaultPreset
+  onClickAnimationSettings:
+    onClickAnimationsPresetName: DefaultPreset
+    punchPositionEnabled: 0
+    punchPositionPunch: {x: 0, y: 20}
+    punchPositionSnapping: 0
+    punchPositionDuration: 0.2
+    punchPositionVibrato: 4
+    punchPositionElasticity: 0.5
+    punchPositionDelay: 0
+    punchRotationEnabled: 0
+    punchRotationPunch: {x: 0, y: 0, z: 30}
+    punchRotationDuration: 0.2
+    punchRotationVibrato: 4
+    punchRotationElasticity: 0.5
+    punchRotationDelay: 0
+    punchScaleEnabled: 0
+    punchScalePunch: {x: 0.2, y: 0.2, z: 0}
+    punchScaleDuration: 0.2
+    punchScaleVibrato: 4
+    punchScaleElasticity: 0.5
+    punchScaleDelay: 0
+  buttonLoopsAnimationsPresetNames:
+  - DefaultPreset
+  - FadeOutHard
+  - FadeOutSoft
+  - HorizontalMoveScaleIn
+  - HorizontalSlide
+  - Levitate
+  - OrganicHorizontalSlide
+  - OrganicRotateSlow10
+  - OrganicRotateSlow5
+  - OrganicScaleIn
+  - OrganicScaleOut
+  - OrganicVerticalSlide
+  - RotateFast10
+  - RotateFast5
+  - RotateLock5
+  - RotateQuick10
+  - RotateQuick5
+  - RotateScaleIn
+  - RotateScaleOut
+  - RotateSlow10
+  - RotateSlow5
+  - ScaleInHard
+  - ScaleInSoft
+  - ScaleOutHard
+  - ScaleOutPulseHard
+  - ScaleOutPulseSoft
+  - ScaleOutSoft
+  - VerticalMoveScaleIn
+  - WiggleHorizontal
+  - WiggleVertical
+  activeNormalAnimationsPresetIndex: 0
+  normalAnimationsPresetName: DefaultPreset
+  normalAnimationSettings:
+    animationsPresetName: DefaultPreset
+    moveLoop:
+      enabled: 0
+      autoStart: 0
+      movement: {x: 0, y: 0, z: 0}
+      easeType: 4
+      loops: -1
+      loopType: 1
+      time: 0.5
+      delay: 0
+      soundAtStartReference:
+        soundName: ~No Sound~
+      soundAtFinishReference:
+        soundName: ~No Sound~
+      soundAtStart: 
+      soundAtFinish: 
+    rotationLoop:
+      enabled: 0
+      autoStart: 0
+      rotation: {x: 0, y: 0, z: 0}
+      easeType: 4
+      loops: -1
+      loopType: 1
+      time: 0.5
+      delay: 0
+      soundAtStartReference:
+        soundName: ~No Sound~
+      soundAtFinishReference:
+        soundName: ~No Sound~
+      soundAtStart: 
+      soundAtFinish: 
+    scaleLoop:
+      enabled: 0
+      autoStart: 0
+      min: {x: 1, y: 1, z: 1}
+      max: {x: 1.05, y: 1.05, z: 1.05}
+      easeType: 1
+      loops: -1
+      loopType: 1
+      time: 0.5
+      delay: 0
+      soundAtStartReference:
+        soundName: ~No Sound~
+      soundAtFinishReference:
+        soundName: ~No Sound~
+      soundAtStart: 
+      soundAtFinish: 
+    fadeLoop:
+      enabled: 0
+      autoStart: 0
+      min: 0
+      max: 1
+      easeType: 1
+      loops: -1
+      loopType: 1
+      time: 0.5
+      delay: 0
+      soundAtStartReference:
+        soundName: ~No Sound~
+      soundAtFinishReference:
+        soundName: ~No Sound~
+      soundAtStart: 
+      soundAtFinish: 
+  activeHighlightedAnimationsPresetIndex: 0
+  highlightedAnimationsPresetName: DefaultPreset
+  highlightedAnimationSettings:
+    animationsPresetName: DefaultPreset
+    moveLoop:
+      enabled: 0
+      autoStart: 0
+      movement: {x: 0, y: 0, z: 0}
+      easeType: 4
+      loops: -1
+      loopType: 1
+      time: 0.5
+      delay: 0
+      soundAtStartReference:
+        soundName: ~No Sound~
+      soundAtFinishReference:
+        soundName: ~No Sound~
+      soundAtStart: 
+      soundAtFinish: 
+    rotationLoop:
+      enabled: 0
+      autoStart: 0
+      rotation: {x: 0, y: 0, z: 0}
+      easeType: 4
+      loops: -1
+      loopType: 1
+      time: 0.5
+      delay: 0
+      soundAtStartReference:
+        soundName: ~No Sound~
+      soundAtFinishReference:
+        soundName: ~No Sound~
+      soundAtStart: 
+      soundAtFinish: 
+    scaleLoop:
+      enabled: 0
+      autoStart: 0
+      min: {x: 1, y: 1, z: 1}
+      max: {x: 1.05, y: 1.05, z: 1.05}
+      easeType: 1
+      loops: -1
+      loopType: 1
+      time: 0.5
+      delay: 0
+      soundAtStartReference:
+        soundName: ~No Sound~
+      soundAtFinishReference:
+        soundName: ~No Sound~
+      soundAtStart: 
+      soundAtFinish: 
+    fadeLoop:
+      enabled: 0
+      autoStart: 0
+      min: 0
+      max: 1
+      easeType: 1
+      loops: -1
+      loopType: 1
+      time: 0.5
+      delay: 0
+      soundAtStartReference:
+        soundName: ~No Sound~
+      soundAtFinishReference:
+        soundName: ~No Sound~
+      soundAtStart: 
+      soundAtFinish: 
+  showElements: []
+  hideElements: []
+  gameEvents:
+  - ClosePanel
+  animationManager: {fileID: 114123665945221512}
 --- !u!114 &114502437078048768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5361,6 +5620,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgIcon: {fileID: 114549414412333194}
   imgIconIfNull: {fileID: 114018286851226242}
+  nslottype: 0
+  nSlotTag: 0
 --- !u!114 &114644347067287318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5917,7 +6178,7 @@ MonoBehaviour:
   showElements: []
   hideElements: []
   gameEvents:
-  - CloseEquipmentInfo
+  - CloseBag
   animationManager: {fileID: 114181131751894832}
 --- !u!114 &114664716683654050
 MonoBehaviour:
@@ -6744,6 +7005,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgIcon: {fileID: 114828488524128492}
   imgIconIfNull: {fileID: 114943401235386348}
+  nslottype: 0
+  nSlotTag: 0
 --- !u!114 &114757031963198124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6757,6 +7020,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgIcon: {fileID: 114672779248968568}
   imgIconIfNull: {fileID: 114608159939575484}
+  nslottype: 0
+  nSlotTag: 0
 --- !u!114 &114775825578918802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7525,255 +7790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0882b3c7a8e2649b3368d1413e4eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114916917538084652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1584479241503178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 682849f091f20484485c3a8e6c1e0b1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonName: ~Button Name~
-  onClickSound: ~No Sound~
-  showHelp: 0
-  allowMultipleClicks: 1
-  disableButtonInterval: 0.5
-  useOnClickAnimations: 0
-  useNormalStateAnimations: 0
-  useHighlightedStateAnimations: 0
-  buttonNameReference:
-    buttonName: 
-  addToNavigationHistory: 0
-  clearNavigationHistory: 0
-  backButton: 0
-  waitForOnClickAnimation: 1
-  onClickSoundReference:
-    onClickSound: 
-  onClickAnimationsPresetNames:
-  - ClickHorizontalScale
-  - ClickReturnIn
-  - ClickReturnOut
-  - ClickVerticalScale
-  - DefaultPreset
-  - ElasticRotateLeft
-  - ElasticRotateRight
-  - JumpRotateLeft
-  - JumpRotateRight
-  - MiniJump
-  - OrganicHorizontalStretch
-  - OrganicJump
-  - OrganicLongSlideLeft
-  - OrganicLongSlideRight
-  - OrganicMiniJump
-  - OrganicSlideLeft
-  - OrganicSlideRight
-  - OrganicVerticalStretch
-  - QuickScaleIn
-  - QuickScaleOut
-  - ScaleJumpDown
-  - ScaleJumpLeft
-  - ScaleJumpRight
-  - ScaleJumpUp
-  - ScaleOutRotateLeft
-  - ScaleOutRotateRight
-  - SlideRotateLeft
-  - SlideRotateRight
-  - TwitchToLeft
-  - TwitchToRight
-  activeOnclickAnimationsPresetIndex: 4
-  onClickAnimationsPresetName: DefaultPreset
-  onClickAnimationSettings:
-    onClickAnimationsPresetName: DefaultPreset
-    punchPositionEnabled: 0
-    punchPositionPunch: {x: 0, y: 20}
-    punchPositionSnapping: 0
-    punchPositionDuration: 0.2
-    punchPositionVibrato: 4
-    punchPositionElasticity: 0.5
-    punchPositionDelay: 0
-    punchRotationEnabled: 0
-    punchRotationPunch: {x: 0, y: 0, z: 30}
-    punchRotationDuration: 0.2
-    punchRotationVibrato: 4
-    punchRotationElasticity: 0.5
-    punchRotationDelay: 0
-    punchScaleEnabled: 0
-    punchScalePunch: {x: 0.2, y: 0.2, z: 0}
-    punchScaleDuration: 0.2
-    punchScaleVibrato: 4
-    punchScaleElasticity: 0.5
-    punchScaleDelay: 0
-  buttonLoopsAnimationsPresetNames:
-  - DefaultPreset
-  - FadeOutHard
-  - FadeOutSoft
-  - HorizontalMoveScaleIn
-  - HorizontalSlide
-  - Levitate
-  - OrganicHorizontalSlide
-  - OrganicRotateSlow10
-  - OrganicRotateSlow5
-  - OrganicScaleIn
-  - OrganicScaleOut
-  - OrganicVerticalSlide
-  - RotateFast10
-  - RotateFast5
-  - RotateLock5
-  - RotateQuick10
-  - RotateQuick5
-  - RotateScaleIn
-  - RotateScaleOut
-  - RotateSlow10
-  - RotateSlow5
-  - ScaleInHard
-  - ScaleInSoft
-  - ScaleOutHard
-  - ScaleOutPulseHard
-  - ScaleOutPulseSoft
-  - ScaleOutSoft
-  - VerticalMoveScaleIn
-  - WiggleHorizontal
-  - WiggleVertical
-  activeNormalAnimationsPresetIndex: 0
-  normalAnimationsPresetName: DefaultPreset
-  normalAnimationSettings:
-    animationsPresetName: DefaultPreset
-    moveLoop:
-      enabled: 0
-      autoStart: 0
-      movement: {x: 0, y: 0, z: 0}
-      easeType: 4
-      loops: -1
-      loopType: 1
-      time: 0.5
-      delay: 0
-      soundAtStartReference:
-        soundName: ~No Sound~
-      soundAtFinishReference:
-        soundName: ~No Sound~
-      soundAtStart: 
-      soundAtFinish: 
-    rotationLoop:
-      enabled: 0
-      autoStart: 0
-      rotation: {x: 0, y: 0, z: 0}
-      easeType: 4
-      loops: -1
-      loopType: 1
-      time: 0.5
-      delay: 0
-      soundAtStartReference:
-        soundName: ~No Sound~
-      soundAtFinishReference:
-        soundName: ~No Sound~
-      soundAtStart: 
-      soundAtFinish: 
-    scaleLoop:
-      enabled: 0
-      autoStart: 0
-      min: {x: 1, y: 1, z: 1}
-      max: {x: 1.05, y: 1.05, z: 1.05}
-      easeType: 1
-      loops: -1
-      loopType: 1
-      time: 0.5
-      delay: 0
-      soundAtStartReference:
-        soundName: ~No Sound~
-      soundAtFinishReference:
-        soundName: ~No Sound~
-      soundAtStart: 
-      soundAtFinish: 
-    fadeLoop:
-      enabled: 0
-      autoStart: 0
-      min: 0
-      max: 1
-      easeType: 1
-      loops: -1
-      loopType: 1
-      time: 0.5
-      delay: 0
-      soundAtStartReference:
-        soundName: ~No Sound~
-      soundAtFinishReference:
-        soundName: ~No Sound~
-      soundAtStart: 
-      soundAtFinish: 
-  activeHighlightedAnimationsPresetIndex: 0
-  highlightedAnimationsPresetName: DefaultPreset
-  highlightedAnimationSettings:
-    animationsPresetName: DefaultPreset
-    moveLoop:
-      enabled: 0
-      autoStart: 0
-      movement: {x: 0, y: 0, z: 0}
-      easeType: 4
-      loops: -1
-      loopType: 1
-      time: 0.5
-      delay: 0
-      soundAtStartReference:
-        soundName: ~No Sound~
-      soundAtFinishReference:
-        soundName: ~No Sound~
-      soundAtStart: 
-      soundAtFinish: 
-    rotationLoop:
-      enabled: 0
-      autoStart: 0
-      rotation: {x: 0, y: 0, z: 0}
-      easeType: 4
-      loops: -1
-      loopType: 1
-      time: 0.5
-      delay: 0
-      soundAtStartReference:
-        soundName: ~No Sound~
-      soundAtFinishReference:
-        soundName: ~No Sound~
-      soundAtStart: 
-      soundAtFinish: 
-    scaleLoop:
-      enabled: 0
-      autoStart: 0
-      min: {x: 1, y: 1, z: 1}
-      max: {x: 1.05, y: 1.05, z: 1.05}
-      easeType: 1
-      loops: -1
-      loopType: 1
-      time: 0.5
-      delay: 0
-      soundAtStartReference:
-        soundName: ~No Sound~
-      soundAtFinishReference:
-        soundName: ~No Sound~
-      soundAtStart: 
-      soundAtFinish: 
-    fadeLoop:
-      enabled: 0
-      autoStart: 0
-      min: 0
-      max: 1
-      easeType: 1
-      loops: -1
-      loopType: 1
-      time: 0.5
-      delay: 0
-      soundAtStartReference:
-        soundName: ~No Sound~
-      soundAtFinishReference:
-        soundName: ~No Sound~
-      soundAtStart: 
-      soundAtFinish: 
-  showElements: []
-  hideElements: []
-  gameEvents:
-  - ClosePanel
-  animationManager: {fileID: 114306858463563012}
 --- !u!114 &114943401235386348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8089,12 +8105,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1344700632493436}
---- !u!222 &222266200366728684
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1584479241503178}
 --- !u!222 &222281452116424952
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -8359,6 +8369,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1277522366429606}
+--- !u!222 &222980894895904906
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1903350201313030}
 --- !u!222 &222981729402136466
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -8978,7 +8994,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224970174671206586}
+  - {fileID: 224786483688389080}
   - {fileID: 224979553805227560}
   - {fileID: 224026635701025572}
   - {fileID: 224334563881758094}
@@ -9680,9 +9696,9 @@ RectTransform:
   m_Father: {fileID: 224823043566995332}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 164.7, y: -50.95}
   m_SizeDelta: {x: 329.4, y: 101.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224733410271684762
@@ -9742,6 +9758,24 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.00079346, y: 61}
   m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224786483688389080
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1903350201313030}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224320351769158132}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000061035156, y: 27.500122}
+  m_SizeDelta: {x: 379.09985, y: 632.6001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224793548534651814
 RectTransform:
@@ -9877,9 +9911,9 @@ RectTransform:
   m_Father: {fileID: 224823043566995332}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 164.7, y: -162.85}
   m_SizeDelta: {x: 329.4, y: 101.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224841988160267054
@@ -10099,24 +10133,6 @@ RectTransform:
   m_AnchoredPosition: {x: 11.55, y: 0.000002115965}
   m_SizeDelta: {x: -11.550733, y: 0}
   m_Pivot: {x: 0, y: 1}
---- !u!224 &224970174671206586
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1584479241503178}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 224320351769158132}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 27.500122}
-  m_SizeDelta: {x: 379.09985, y: 632.6001}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224979553805227560
 RectTransform:
   m_ObjectHideFlags: 1

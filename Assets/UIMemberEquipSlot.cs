@@ -10,7 +10,8 @@ public class UIMemberEquipSlot : MonoBehaviour {
     public Image imgIconIfNull;
 
     public Item item;
-    public ItemType itemtype;
+    public int nslottype;
+	public int nSlotTag;
 
     // Use this for initialization
     void Start () {

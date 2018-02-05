@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using smallone;
 
 public class UISlotItem : MonoBehaviour {
 
     public Image imgIcon;
     public Text txtScore;
     public Image imgQuality;
+	public Item item;
 
     public bool ShowIcon {
         set {

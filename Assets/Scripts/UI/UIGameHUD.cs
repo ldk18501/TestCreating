@@ -101,10 +101,12 @@ public class UIGameHUD : UIPanel
             if (GameData.lstNpcs[i].UnlockLv >= GameData.nPlayerLv)
             {
                 var item = GameObject.Instantiate(objRoleSlot) as GameObject;
-                item.tag = GameData.lstNpcs[i].ID;
+
                 item.name = GameData.lstNpcs[i].Name;
                 item.transform.SetParent(trsHeroListRoot);
-                item.transform.localScale = Vector3.one;
+				item.transform.localScale = Vector3.one;
+				item.GetComponent<UIRoleInfo> ().nRoleTag = i;
+				Debug.Log ("NpcTag" + i);
                 item.GetComponent<UIRoleInfo>().btRole.onClick.AddListener(() => { OnHeroClicked(item); });
                 item.GetComponent<UIRoleInfo>().btMission.onClick.AddListener(() => { OnMissionClicked(item); });
             }
@@ -182,10 +184,15 @@ public class UIGameHUD : UIPanel
 
     void OnHeroClicked(GameObject obj)
     {
+
+		GameData.strCurNpcTag = obj.GetComponent<UIRoleInfo>().nRoleTag;
+
+		Debug.Log(GameData.strCurNpcTag);
+
         UIPanelManager.Instance.ShowPanel("UIPanelEquipment").DoOnShowCompleted((panel) =>
         {
-            GameData.strCurNpcId = obj.tag;
-            Debug.Log("Npc : " + GameData.strCurNpcId + " , " + obj.gameObject.name);
+
+
         });
     }
 
