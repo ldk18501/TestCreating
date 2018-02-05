@@ -31,7 +31,6 @@ namespace smallone
         protected int _nLvl;
         protected int _nType;
         protected int _nQuality;
-        protected string _strColor;
         protected int _nPower;
         protected string _strSkill;
         protected int _nStoreCount;
@@ -106,19 +105,20 @@ namespace smallone
             get { return _nPower; }
         }
 
-        public Vector3 ItemRGB
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_strColor))
-                    return Vector3.zero;
-                else
-                {
-                    var rgbArray = _strColor.Split('|');
-                    return new Vector3(float.Parse(rgbArray[0]), float.Parse(rgbArray[1]), float.Parse(rgbArray[2]));
-                }
-            }
-        }
+        // 装备品质为贴图，代码留下做参考
+//         public Vector3 ItemRGB
+//         {
+//             get
+//             {
+//                 if (string.IsNullOrEmpty(_strColor))
+//                     return Vector3.zero;
+//                 else
+//                 {
+//                     var rgbArray = _strColor.Split('|');
+//                     return new Vector3(float.Parse(rgbArray[0]), float.Parse(rgbArray[1]), float.Parse(rgbArray[2]));
+//                 }
+//             }
+//         }
 
         public List<ItemPair> Price
         {
@@ -144,7 +144,7 @@ namespace smallone
             _nOrder = int.Parse(data["Order"][index]);
             _strIcon = data["Src"][index];
             _strEffect = data["Effect"][index];
-            _strColor = data["Color"][index];
+
             _strSkill = data["Skill"][index];
 
             _lstPrice = new List<ItemPair>();

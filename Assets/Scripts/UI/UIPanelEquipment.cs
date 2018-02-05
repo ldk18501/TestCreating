@@ -7,16 +7,12 @@ using smallone;
 
 public class UIPanelEquipment : UIPanel
 {
-    public int nSlotItemCount = 20;
     public Transform trsSlotItemRoot;
-    public GameObject objSlotItem;
-
 
     public GameObject objEquipmentDesc;
     public GameObject objEquipmentBag;
-
-    private bool _IsEquipmentInfoShow;
-	private NPCData _npcdata;
+    public Button btClose; 
+    public Button btUnEquip;
 
     [Header("PlayerInfo")]
     public Text txtNpcName;
@@ -35,13 +31,16 @@ public class UIPanelEquipment : UIPanel
 	public GameObject objTraitSlot;
 
 
+    private bool _IsEquipmentInfoShow;
+    private NPCData _npcdata;
+
+
     void OnEnable()
     {
         EventCenter.Instance.RegisterGameEvent("ClosePanel", OnCloseSelf);
         // EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
-        EventCenter.Instance.RegisterGameEvent("SwitchEquipment", OnSwitchEquipment);
-        EventCenter.Instance.RegisterGameEvent("CloseEquipmentInfo", OnCloseEquipmentInfo);
-
+        //EventCenter.Instance.RegisterGameEvent("SwitchEquipment", OnSwitchEquipment);
+        EventCenter.Instance.RegisterGameEvent("CloseEquipmentInfo", OnCloseBag);
     }
 
     void OnDisable()
@@ -49,12 +48,12 @@ public class UIPanelEquipment : UIPanel
         if (EventCenter.Instance != null)
         {
             EventCenter.Instance.UnregisterGameEvent("ClosePanel", OnCloseSelf);
-            EventCenter.Instance.UnregisterGameEvent("SwitchEquipment", OnSwitchEquipment);
-            EventCenter.Instance.UnregisterGameEvent("CloseEquipmentInfo", OnCloseEquipmentInfo);
+            //EventCenter.Instance.UnregisterGameEvent("SwitchEquipment", OnSwitchEquipment);
+            EventCenter.Instance.UnregisterGameEvent("CloseEquipmentInfo", OnCloseBag);
             // EventCenter.Instance.UnregisterButtonEvent("OpenInventory", OnBagClicked);
         }
 
-        OnCloseEquipmentInfo();
+        OnCloseBag();
     }
 
     void OnCloseSelf()
@@ -64,7 +63,7 @@ public class UIPanelEquipment : UIPanel
             Debug.Log("closed!");
         });
 
-        OnCloseEquipmentInfo();
+        OnCloseBag();
     }
 
     protected override void OnPanelShowBegin()
@@ -82,14 +81,15 @@ public class UIPanelEquipment : UIPanel
 		// 临时方案，以防万一
 		if(_npcdata == null){
 			_npcdata = GameData.lstUnlockNpcs[0];
-		}
+        }
+        OnCloseBag();
 
-		GenerateSlotNature ( trsNpcSkillRoot , objSkillSlot , _npcdata.SkillId );
-		GenerateSlotNature ( trsNpcPreferRoot , objPreferSlot , _npcdata.Favor );
-		GenerateSlotNature ( trsNpcTraitRoot , objTraitSlot , _npcdata.Character );
 
-		OnCloseEquipmentInfo();
-		GenerateSlotList();
+
+        // 生成NPC信息
+		GenerateNpcInfo();
+
+
     }
 
     protected override void OnPanelHideCompleted()
@@ -100,75 +100,118 @@ public class UIPanelEquipment : UIPanel
     }
 
 
-    void OnSwitchEquipment()
+    void OnOpenBag(GameObject objSelectedSlot)
     {
-//         // 如果点击了同一个slot，则关闭
-//         if()
-//         {
-// 
-//         }
-//         // 打开换装信息
-//         else
-//         {
-//         }
+        //         // 如果点击了同一个slot，则关闭
+        //         if()
+        //         {
+        // 
+        //         }
+        //         // 如果点击了不同的slot，打开换装信息
+        //         else
+        //         {
+        //         }
 
-        if(_IsEquipmentInfoShow)
+
+        UIMemberEquipSlot slotinfo = objSelectedSlot.GetComponent<UIMemberEquipSlot>();
+
+        if (slotinfo.item == null)
         {
-            _IsEquipmentInfoShow = false;
-            ShowInfo(_IsEquipmentInfoShow);
+            objEquipmentDesc.SetActive(false);
+            btClose.gameObject.SetActive(false);
+            btUnEquip.gameObject.SetActive(false);
         }
         else
         {
-            _IsEquipmentInfoShow = true;
-            ShowInfo(_IsEquipmentInfoShow);
+            objEquipmentDesc.SetActive(true);
+            btClose.gameObject.SetActive(true);
+            btUnEquip.gameObject.SetActive(true);
+            objEquipmentDesc.GetComponent<UISlotItemInfo>().UpdateItemInfo(slotinfo.item);
         }
+
+        objEquipmentBag.GetComponent<BubbleBag>().GenerateItemsInBag(slotinfo.itemtype);
+
+
+        
     }
 
 
-    void OnCloseEquipmentInfo()
+    void OnCloseBag()
     {
-        _IsEquipmentInfoShow = false;
-        ShowInfo(_IsEquipmentInfoShow);
+        objEquipmentBag.SetActive(false);
+        objEquipmentDesc.SetActive(false);
+        btClose.gameObject.SetActive(false);
+        btUnEquip.gameObject.SetActive(false);
+
+        objEquipmentBag.GetComponent<BubbleBag>().ItemsClear();
     }
 
 
-    void OnSwitch()
+
+    void OnSwitchItem()
     {
-        _IsEquipmentInfoShow = false;
-        ShowInfo(_IsEquipmentInfoShow);
+        OnCloseBag();
     }
-
-    void ShowInfo(bool IsShow)
+    
+    void GenerateNpcInfo()
     {
-        objEquipmentBag.SetActive(IsShow);
-        objEquipmentDesc.SetActive(IsShow);
+        Debug.Log("GenerateSlotList");
+
+        // 装备
+        for (int i = 0; i < _npcdata.lstEquipments.Count; i++)
+        {
+            var obj = trsSlotItemRoot.GetChild(i).gameObject as GameObject;
+            UIMemberEquipSlot slot = obj.GetComponent<UIMemberEquipSlot>();
+
+            slot.item = _npcdata.lstEquipments[i];
+            slot.itemtype = _npcdata.lstEquipments[i].Category;
+
+            if (_npcdata.lstEquipments[i] == null)
+            {
+                slot.imgIconIfNull.gameObject.SetActive(true);
+                slot.imgIcon.gameObject.SetActive(false);
+            }
+            else
+            {
+                slot.imgIconIfNull.gameObject.SetActive(false);
+                slot.imgIcon.gameObject.SetActive(true);
+            }
+
+
+            obj.GetComponent<Button>().onClick.AddListener(() => { OnOpenBag(obj); });
+            
+        }
+
+        // 卡片
+        for (int i = _npcdata.lstEquipments.Count; i < _npcdata.lstEquipments.Count + _npcdata.lstCards.Count; i++)
+        {
+            var obj = trsSlotItemRoot.GetChild(i).gameObject as GameObject;
+            UIMemberEquipSlot slot = obj.GetComponent<UIMemberEquipSlot>();
+
+            slot.item = _npcdata.lstCards[i - _npcdata.lstEquipments.Count];
+            slot.itemtype = _npcdata.lstCards[i - _npcdata.lstEquipments.Count].Category;
+
+            if (_npcdata.lstCards[i - _npcdata.lstEquipments.Count] == null)
+            {
+                slot.imgIconIfNull.gameObject.SetActive(true);
+                slot.imgIcon.gameObject.SetActive(false);
+            }
+            else
+            {
+                slot.imgIconIfNull.gameObject.SetActive(false);
+                slot.imgIcon.gameObject.SetActive(true);
+            }
+
+
+            obj.GetComponent<Button>().onClick.AddListener(() => { OnOpenBag(obj); });
+        }
+
+
+        // 技能、喜好、性格
+        GenerateSlotNature(trsNpcSkillRoot, objSkillSlot, _npcdata.SkillId);
+        GenerateSlotNature(trsNpcPreferRoot, objPreferSlot, _npcdata.Favor);
+        GenerateSlotNature(trsNpcTraitRoot, objTraitSlot, _npcdata.Character);
     }
-
-
-    void GenerateSlotList()
-    {
-
-		// 装备信息
-		for (int i = 0; i < _npcdata.lstEquipments.Count; i++)
-		{
-			var item = GameObject.Instantiate(objSlotItem) as GameObject;
-			item.name = objSlotItem.name + "_" + i;
-			item.transform.SetParent(trsSlotItemRoot);
-			item.transform.localScale = Vector3.one;
-			item.gameObject.AddMissingComponent<Button>().onClick.AddListener(() => { OnSwitch(); });
-		}
-
-		// 卡片信息
-		for (int i = 0; i < _npcdata.lstEquipments.Count; i++)
-		{
-			var item = GameObject.Instantiate(objSlotItem) as GameObject;
-			item.name = objSlotItem.name + "_" + i;
-			item.transform.SetParent(trsSlotItemRoot);
-			item.transform.localScale = Vector3.one;
-			item.gameObject.AddMissingComponent<Button>().onClick.AddListener(() => { OnSwitch(); });
-		}
-    }
-
 
 	void GenerateSlotNature ( Transform trsroot , GameObject objslot , List<string> lstslotid)
 	{

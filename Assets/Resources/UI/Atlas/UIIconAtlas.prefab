@@ -51,8 +51,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f86dc94876ff5340a975850d9001ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mSprites: []
-  mSpriteNames: []
+  mSprites:
+  - {fileID: 21300000, guid: c44aff5149f564a65ba8af53603bb1b1, type: 3}
+  - {fileID: 21300000, guid: a3b344c37808c49c58bd925ad1c2ee97, type: 3}
+  - {fileID: 21300000, guid: 6088fb19a91ff40b78adf59645ec5661, type: 3}
+  - {fileID: 21300000, guid: 2fceeb0c1875349e5a1e50b28887dfc5, type: 3}
+  - {fileID: 21300000, guid: 2753ac30469ac4a9a89fee063f36274c, type: 3}
+  - {fileID: 21300000, guid: b11952d65958c4be5b3c57ccf2b80bfa, type: 3}
+  - {fileID: 21300000, guid: 06b90715d18f2410d9dac2f167b0cbf3, type: 3}
+  - {fileID: 21300000, guid: e221908e58e9548ee8337341432f1390, type: 3}
+  - {fileID: 21300000, guid: 4d4ce0268c78546ad97511bf28cc3f1f, type: 3}
+  - {fileID: 21300000, guid: 2286ed6b5fd994814ba7a047c013ac44, type: 3}
+  - {fileID: 21300000, guid: 79580bcd3115c473581f97c18256f079, type: 3}
+  mSpriteNames:
+  - 0202
+  - 0203
+  - 0204
+  - 0205
+  - 0206
+  - 0207
+  - 0208
+  - item_q1
+  - item_q2
+  - item_q3
+  - item_q4
   mAndroidOverride: 1
   miOSOverride: 1
   mAndroidTextureFormat: 0

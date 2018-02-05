@@ -13,7 +13,6 @@ public class UIPanelInventory : UIPanel
 
     void OnEnable()
     {
-
         EventCenter.Instance.RegisterGameEvent("CloseInventory", OnCloseBag);
         // EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
 

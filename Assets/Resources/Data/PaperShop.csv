@@ -1,4 +1,4 @@
-Id,Name,PlayerLv,Price,TaskId,Src,Info
+﻿Id,Name,PlayerLv,Price,TaskId,Src,Info
 11106,Paper_Name_11106,6,1=100,11106,UIItemIconAtlas/Item_11106,Paper_Info_11106
 11107,Paper_Name_11107,7,1=100,11107,UIItemIconAtlas/Item_11107,Paper_Info_11107
 11108,Paper_Name_11108,8,1=100,11108,UIItemIconAtlas/Item_11108,Paper_Info_11108

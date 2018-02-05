@@ -104,21 +104,21 @@ namespace smallone
 				lstNpcs[i].CurPower = lstNpcs[i].Power;
 
                 // 装备信息
-				for (int j = 0; j < lstNpcs[i].lstEquipments.Count; j++)
+				for (int j = 0; j < lstNpcs[i].EquipType.Count; j++)
                 {
-					lstNpcs[i].lstEquipments[j] = null;
+					lstNpcs[i].lstEquipments.Add(null);
 
                     // 战力
-					if(lstNpcs[i].lstEquipments[i] != null)
+					if(lstNpcs[i].lstEquipments[j] != null)
                     {
-						lstNpcs[i].CurPower += lstNpcs[i].lstEquipments[i].Power;
+						lstNpcs[i].CurPower += lstNpcs[i].lstEquipments[j].Power;
                     }
                 }
 
                 // 卡片信息
-				for (int j = 0; j < lstNpcs[i].lstEquipments.Count; j++)
+				for (int j = 0; j < lstNpcs[i].CardUnlockLv.Count; j++)
                 {
-					lstNpcs[i].lstCards[j] = null;
+                    lstNpcs[i].lstCards.Add(null);
                 }
             }
 

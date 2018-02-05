@@ -1,4 +1,4 @@
-Id,NpcId,Lv,Name,Info,Favor,Emtion,Require,Reward
+﻿Id,NpcId,Lv,Name,Info,Favor,Emtion,Require,Reward
 1001,1,1|10,NpcTask_Name_1001,NpcTask_Info_1001,0|3,20|100,11101=1,1=100|5=100|11=100
 1002,1,2|10,NpcTask_Name_1002,NpcTask_Info_1002,0|3,20|100,11102=1,1=100|5=100|11=100
 1003,1,3|10,NpcTask_Name_1003,NpcTask_Info_1003,0|3,20|100,11103=1,1=100|5=100|11=100

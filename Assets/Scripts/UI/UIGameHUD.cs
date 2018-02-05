@@ -98,12 +98,11 @@ public class UIGameHUD : UIPanel
     {
         for (int i = 0; i < GameData.lstNpcs.Count; i++)
 		{
-
-			if(GameData.lstNpcs[i].UnlockLv >= GameData.nPlayerLv)
-			{
-				var item = GameObject.Instantiate(objRoleSlot) as GameObject;
-				item.tag = GameData.lstNpcs[i].ID;
-				item.name = GameData.lstNpcs[i].Name;
+            if (GameData.lstNpcs[i].UnlockLv >= GameData.nPlayerLv)
+            {
+                var item = GameObject.Instantiate(objRoleSlot) as GameObject;
+                item.tag = GameData.lstNpcs[i].ID;
+                item.name = GameData.lstNpcs[i].Name;
                 item.transform.SetParent(trsHeroListRoot);
                 item.transform.localScale = Vector3.one;
                 item.GetComponent<UIRoleInfo>().btRole.onClick.AddListener(() => { OnHeroClicked(item); });
@@ -132,8 +131,8 @@ public class UIGameHUD : UIPanel
 			item.GetComponent<UISlotItem> ().ShowQuality = false;
 			item.GetComponent<UISlotItem> ().ShowScore = false;
         }
-		// 解锁建筑任务
 
+		// 解锁建筑任务
 		for (int i = 0; i < playerlvldata.TaskUnlock.Count; i++)
 		{
 			var item = GameObject.Instantiate(objSlotItem) as GameObject;
