@@ -82,10 +82,10 @@ namespace smallone
 
             //TODO::背包物品应该存档，现在只是道具列表每个来一样
             lstBagItems = new List<Item>();
-            foreach (string id in DataCenter.Instance.dictItem.Keys)
-            {
-                lstBagItems.Add(DataCenter.Instance.dictItem[id]);
-            }
+//            foreach (string id in DataCenter.Instance.dictItem.Keys)
+//            {
+//                lstBagItems.Add(DataCenter.Instance.dictItem[id]);
+//            }
 
             //临时解锁一位NPC
             lstUnlockNpcs = new List<NPCData>();
