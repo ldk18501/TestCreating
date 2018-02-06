@@ -66,8 +66,12 @@ public class UIPanelMission : UIPanel
                 {
                     for (int z = 0; z < GameData.lstBagItems.Count; z++)
                     {
-                        if( GameData.lstBagItems[z].ID == _npcData.CurNpcTask.Require[i].strId)
-                            GameData.lstBagItems.Remove( GameData.lstBagItems[z] );
+						if (GameData.lstBagItems [z].ID == _npcData.CurNpcTask.Require [i].strId) {
+
+							GameData.lstBagItems.Remove( GameData.lstBagItems[z] );
+							break;
+
+						}
                     }
                 }
             }
