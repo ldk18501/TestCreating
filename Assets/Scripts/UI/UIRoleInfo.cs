@@ -20,4 +20,5 @@ public class UIRoleInfo : MonoBehaviour {
 	void Update () {
 		
 	}
+        
 }

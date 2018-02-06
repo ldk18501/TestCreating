@@ -61,9 +61,7 @@ public class UIPanelConstruction : UIPanel
         {
             GameObject.Destroy( trsGroup.GetChild(i).gameObject );
         }
-
-
-
+                
     }
 
 
@@ -78,9 +76,9 @@ public class UIPanelConstruction : UIPanel
 
             _dataTask = DataCenter.Instance.dictBuildingTask[obj.name];
 
+            GenerateContructNeed();
+
         }
-
-
     }
 
     void BubbleItemInfo()
@@ -89,8 +87,7 @@ public class UIPanelConstruction : UIPanel
         _objBubble.transform.SetParent(transform);
         _objBubble.transform.SetAsLastSibling();
         _objBubble.transform.localScale = Vector3.one;
-        _objBubble.SetActive(false);
-        
+        _objBubble.SetActive(false);        
     }
 
 
@@ -99,24 +96,19 @@ public class UIPanelConstruction : UIPanel
         Dictionary<string, BuildingTask> task = DataCenter.Instance.dictBuildingTask;
 
 
-
+        // 创建可生产道具
         foreach (string id in task.Keys)
         {
-			if( task[id].TableId == GameData.strCurConstructionId )
+			if( task[id].TableId == GameData.strCurConstructionId && task[id].Lv <= GameData.nPlayerLv )
             {
                 var obj = GameObject.Instantiate(objSlotItem) as GameObject;
                 obj.transform.SetParent(trsGroup);
                 obj.name = task[id].ID;
                 obj.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
                 obj.transform.localScale = Vector3.one;
-
-
-                // 问题：同一个道具不同品质，怎么写比较好(或者怎么配置)
-
+                
                 string itemID = task[id].Product.strId.ToString();
 
-//                 Debug.Log(itemID);
-                
                 obj.GetComponent<UISlotItem>().imgIcon.sprite = DataCenter.Instance.dictItem[itemID].IconSprite;
                 obj.GetComponent<UISlotItem>().imgQuality.gameObject.SetActive(false);
                 obj.GetComponent<UISlotItem>().txtScore.gameObject.SetActive(false);
@@ -132,7 +124,6 @@ public class UIPanelConstruction : UIPanel
         {
             GameObject.Destroy(_objBubble.GetComponent<BubbleConstructNeed>().trsNeedRoot.GetChild(i).gameObject);
         }
-
 
         int store = 0;
         // TODO 背包存量查找
@@ -156,9 +147,7 @@ public class UIPanelConstruction : UIPanel
 
         // 道具名字
         bubble.txtName.text = _dataTask.Name;
-
-
-
+        
         // 道具属性查找
         bubble.txtScore.text = DataCenter.Instance.dictItem[_dataTask.Product.strId].Power.ToString();
         
@@ -168,11 +157,14 @@ public class UIPanelConstruction : UIPanel
         // 生成所需道具列表
         for (int i = 0 ; i < _dataTask.ItemRequire.Count ;i++ )
         {
+            Debug.Log("TableId = " + _dataTask.TableId + " , TaskId = " + _dataTask.ID + " , RequireItem.id = " + _dataTask.ItemRequire[i].strId);
+
             var obj = GameObject.Instantiate( _objBubble.GetComponent<BubbleConstructNeed>().objSlotNeed ) as GameObject;
             obj.transform.SetParent(_objBubble.GetComponent<BubbleConstructNeed>().trsNeedRoot);
             obj.name = _dataTask.Name;
             obj.transform.localScale = Vector3.one;
             obj.GetComponent<SlotConstructNeed>().imgIcon.sprite = DataCenter.Instance.dictItem[_dataTask.ItemRequire[i].strId].IconSprite;
+
 
             string needcount = store + " / " +_dataTask.ItemRequire[i].nCount.ToString();
             obj.GetComponent<SlotConstructNeed>().txtNeed.text = needcount;

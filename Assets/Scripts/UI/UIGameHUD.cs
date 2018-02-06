@@ -56,19 +56,24 @@ public class UIGameHUD : UIPanel
     {
         _mainLevel = LevelManager.Instance.MainLevel as LevelMain;
         _mainLevel.StartGameLogic();
-
-
-
+        
         GenerateHeroList();
         GeneratePlayerLvlInfoList();
 		UpdatePlayerLv ();
     }
+    
 
     protected override void OnPanelRepaint()
     {
         base.OnPanelRepaint();
         mCoinNum.text = GameData.Coins.ToString();
-		mDiamondNum.text = GameData.Gems.ToString ();
+		mDiamondNum.text = GameData.Gems.ToString();
+
+        // 玩家等级经验条
+        imgExpFill.fillAmount = (float)GameData.nPlayerLvExp / DataCenter.Instance.dictPlyerLvlData[GameData.nPlayerLv.ToString()].RequireExp;
+
+        // 玩家等级txt
+        tmPlayerLv.text = GameData.nPlayerLv.ToString();
     }
 
     protected override void OnPanelShowBegin()
@@ -98,7 +103,7 @@ public class UIGameHUD : UIPanel
     {
         for (int i = 0; i < GameData.lstNpcs.Count; i++)
 		{
-            if (GameData.lstNpcs[i].UnlockLv >= GameData.nPlayerLv)
+            if (GameData.lstNpcs[i].UnlockLv <= GameData.nPlayerLv)
             {
                 var item = GameObject.Instantiate(objRoleSlot) as GameObject;
 
@@ -109,6 +114,8 @@ public class UIGameHUD : UIPanel
 				Debug.Log ("NpcTag" + i);
                 item.GetComponent<UIRoleInfo>().btRole.onClick.AddListener(() => { OnHeroClicked(item); });
                 item.GetComponent<UIRoleInfo>().btMission.onClick.AddListener(() => { OnMissionClicked(item); });
+                
+                Debug.Log("GameData.lstNpcs.add = " + item.GetComponent<UIRoleInfo>().nRoleTag);
             }
       }
     }
@@ -120,7 +127,7 @@ public class UIGameHUD : UIPanel
 
 		PlayerLvlData playerlvldata = DataCenter.Instance.dictPlyerLvlData [playerlvl];
 
-		// 解锁建筑
+		// 玩家升级信息：解锁建筑
 		for (int i = 0; i < playerlvldata.TableUnlock.Count; i++)
         {
             var item = GameObject.Instantiate(objSlotItem) as GameObject;
@@ -134,11 +141,11 @@ public class UIGameHUD : UIPanel
 			item.GetComponent<UISlotItem> ().ShowScore = false;
         }
 
-		// 解锁建筑任务
-		for (int i = 0; i < playerlvldata.TaskUnlock.Count; i++)
+        // 玩家升级信息：解锁任务
+        for (int i = 0; i < playerlvldata.TaskUnlock.Count; i++)
 		{
 			var item = GameObject.Instantiate(objSlotItem) as GameObject;
-			item.name = DataCenter.Instance.dictItem [playerlvldata.TableUnlock [i]].Name;
+			item.name = DataCenter.Instance.dictBuildingTask[ playerlvldata.TaskUnlock [i] ].Name;
 			item.transform.SetParent(trsPlayerLvlInfoRoot);
 			item.transform.localScale = Vector3.one;
 
@@ -151,9 +158,9 @@ public class UIGameHUD : UIPanel
 			item.GetComponent<UISlotItem> ().ShowScore = false;
 		}
 
+        // 标题信息
+		tmPlayerLvInfoText.text = playerlvldata.Lv.ToString() ; 
 
-		// TODO::TextMeshPro这个组件的文本怎么添加？
-		tmPlayerLvInfoText.text = playerlvldata.Lv ; 
     }
 
 
@@ -185,9 +192,9 @@ public class UIGameHUD : UIPanel
     void OnHeroClicked(GameObject obj)
     {
 
-		GameData.strCurNpcTag = obj.GetComponent<UIRoleInfo>().nRoleTag;
+		GameData.nCurNpcTag = obj.GetComponent<UIRoleInfo>().nRoleTag;
 
-		Debug.Log(GameData.strCurNpcTag);
+		Debug.Log("GameData.nCurNpcTag = " + GameData.nCurNpcTag);
 
         UIPanelManager.Instance.ShowPanel("UIPanelEquipment").DoOnShowCompleted((panel) =>
         {
@@ -198,6 +205,11 @@ public class UIGameHUD : UIPanel
 
     void OnMissionClicked(GameObject obj)
     {
+        
+        GameData.nCurNpcTag = obj.GetComponent<UIRoleInfo>().nRoleTag;
+
+        Debug.Log("GameData.nCurNpcTag = " + GameData.nCurNpcTag);
+
         UIPanelManager.Instance.ShowPanel("UIPanelMission").DoOnShowCompleted((panel) =>
         {
             Debug.Log(obj.name);

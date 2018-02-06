@@ -8,6 +8,7 @@ namespace smallone
     public class NPCFavor : ICSVDeserializable
     {
         protected string _strID;
+        protected string _NpcID;
         protected int _nLv;
         protected int _nExpNeed;
         protected List<ItemPair> _lstReward;
@@ -19,6 +20,11 @@ namespace smallone
         public string ID
         {
             get { return _strID; }
+        }
+
+        public string NpcID
+        {
+            get { return _NpcID; }
         }
 
         public int Lv
@@ -55,6 +61,7 @@ namespace smallone
         public virtual void CSVDeserialize(Dictionary<string, string[]> data, int index)
         {
             _strID = data["Id"][index];
+            _NpcID = data["NpcId"][index];
             _nLv = int.Parse(data["Lv"][index]);
             _nExpNeed = int.Parse(data["Exp"][index]);
 

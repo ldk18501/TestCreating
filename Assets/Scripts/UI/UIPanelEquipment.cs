@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using smallone;
+using TMPro;
 
 public class UIPanelEquipment : UIPanel
 {
@@ -30,6 +31,9 @@ public class UIPanelEquipment : UIPanel
 	public Transform trsNpcTraitRoot;
 	public GameObject objTraitSlot;
 
+    [Header("favorability")]
+    public TextMeshProUGUI txtFavorLv;
+    public Image imgFavorExp;
 
     private bool _IsEquipmentInfoShow;
     private NPCData _npcdata;
@@ -42,6 +46,7 @@ public class UIPanelEquipment : UIPanel
         // EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
         //EventCenter.Instance.RegisterGameEvent("SwitchEquipment", OnSwitchEquipment);
         EventCenter.Instance.RegisterGameEvent("CloseBag", OnCloseBag);
+
     }
 
     void OnDisable()
@@ -73,24 +78,32 @@ public class UIPanelEquipment : UIPanel
     protected override void OnPanelShowBegin()
     {
 
-		base.OnPanelShowBegin();
 
 		_nCurSlotSelTag = -1;
 
 		// 得到该界面的npc信息
-		_npcdata = GameData.lstNpcs [GameData.strCurNpcTag];
+		_npcdata = GameData.lstNpcs [GameData.nCurNpcTag];
 
 		// 临时方案，以防万一
 		if(_npcdata == null){
 			_npcdata = GameData.lstNpcs[0];
         }
         OnCloseBag();
-
-
-
+        
         // 生成NPC信息
 		GenerateNpcInfo();
+        
+        // 好感度
+        txtFavorLv.text = _npcdata.CurfavorabilityLv.ToString(); 
 
+        foreach( string id in DataCenter.Instance.dictNPCFavor.Keys)
+        {
+            if (DataCenter.Instance.dictNPCFavor[id].ID == _npcdata.ID)
+                if (DataCenter.Instance.dictNPCFavor[id].Lv == _npcdata.CurfavorabilityLv)
+                    imgFavorExp.fillAmount = (float)_npcdata.CurfavorabilityExp / DataCenter.Instance.dictNPCFavor[id].ExpNeed;
+        }
+
+        base.OnPanelShowBegin();
 
     }
 
@@ -102,7 +115,10 @@ public class UIPanelEquipment : UIPanel
 			trsSlotItemRoot.GetChild (i).GetComponent<Button> ().onClick.RemoveAllListeners ();
 		}
 
-        GameData.strCurNpcTag = 0;
+
+        btUnEquip.onClick.RemoveAllListeners();
+
+        GameData.nCurNpcTag = 0;
     }
 
 
@@ -149,18 +165,23 @@ public class UIPanelEquipment : UIPanel
 
 		Debug.Log ("itemtype = " + slotinfo.nslottype);
 
-		objEquipmentBag.SetActive (true);
 
+		objEquipmentBag.SetActive (true);
         objEquipmentBag.GetComponent<BubbleBag>().GenerateItemsInBag(slotinfo.nslottype);
 
+        // 可装备格子监听
 		Transform Itemroot = objEquipmentBag.GetComponent<BubbleBag> ().trsSlotItemRoot;
+        
 		for (int i = 0; i < Itemroot.childCount ; i++) {
 
 			var obj = Itemroot.GetChild (i).gameObject as GameObject;
 
 			obj.AddMissingComponent<Button> ().onClick.AddListener (()=> { OnSwitchItem( objSelectedSlot , obj.name ) ;} );
 		}
-        
+
+        // 卸装备监听
+        btUnEquip.onClick.AddListener(() => { OnUnEquip(objSelectedSlot); });
+
     }
 
 
@@ -177,8 +198,44 @@ public class UIPanelEquipment : UIPanel
     }
 
 
+    void OnUnEquip(GameObject Slot)
+    {
+        int powerchange = int.Parse(txtScore.text);
 
-	void OnSwitchItem(GameObject Slot , string ItemId)
+        // 装备放入背包
+        UIMemberEquipSlot slot = Slot.GetComponent<UIMemberEquipSlot>();
+        if (slot.item != null)
+        {
+            GameData.lstBagItems.Add(slot.item);
+            powerchange -= slot.item.Power;
+        }
+
+        if ( _nCurSlotSelTag < _npcdata.lstEquipments.Count )
+        {
+            GameData.lstNpcs[GameData.nCurNpcTag].lstEquipments[_nCurSlotSelTag] = null;
+        }
+        else
+        {
+            int j = _nCurSlotSelTag - GameData.lstNpcs[GameData.nCurNpcTag].lstEquipments.Count;
+            GameData.lstNpcs[GameData.nCurNpcTag].lstCards[j] = null;
+        }
+
+        // npc装备改为null
+        GameData.lstNpcs[GameData.nCurNpcTag].lstEquipments[_nCurSlotSelTag] = null;
+
+        txtScore.text = powerchange.ToString();
+
+        Slot.GetComponent<UIMemberEquipSlot>().imgIcon.sprite = null;
+        Slot.GetComponent<UIMemberEquipSlot>().imgIcon.gameObject.SetActive(false);
+        Slot.GetComponent<UIMemberEquipSlot>().imgIconIfNull.gameObject.SetActive(true);
+
+        OnCloseBag();
+
+
+
+    }
+
+    void OnSwitchItem(GameObject Slot , string ItemId)
     {
 		int powerchange = int.Parse(txtScore.text) ;
 
@@ -201,12 +258,12 @@ public class UIPanelEquipment : UIPanel
 
 				if (GameData.lstBagItems [i].Category == ItemType.Equipment) 
 				{
-					GameData.lstNpcs [GameData.strCurNpcTag].lstEquipments[_nCurSlotSelTag] = GameData.lstBagItems [i];
+					GameData.lstNpcs [GameData.nCurNpcTag].lstEquipments[_nCurSlotSelTag] = GameData.lstBagItems [i];
 				} 
 				else
 				{
-					int j = _nCurSlotSelTag - GameData.lstNpcs [GameData.strCurNpcTag].lstEquipments.Count;
-					GameData.lstNpcs [GameData.strCurNpcTag].lstCards [j]  = GameData.lstBagItems [i];
+					int j = _nCurSlotSelTag - GameData.lstNpcs [GameData.nCurNpcTag].lstEquipments.Count;
+					GameData.lstNpcs [GameData.nCurNpcTag].lstCards [j]  = GameData.lstBagItems [i];
 				}
 
 
@@ -224,7 +281,7 @@ public class UIPanelEquipment : UIPanel
 				txtScore.text = powerchange.ToString ();
 
 
-				Debug.Log ("Npc "+GameData.strCurNpcTag+" Slot = "+ _nCurSlotSelTag + " : " + GameData.lstNpcs [GameData.strCurNpcTag].lstEquipments [_nCurSlotSelTag].ID);
+				Debug.Log ("Npc "+GameData.nCurNpcTag+" Slot = "+ _nCurSlotSelTag + " : " + GameData.lstNpcs [GameData.nCurNpcTag].lstEquipments [_nCurSlotSelTag].ID);
 
 
 				OnCloseBag();
@@ -242,8 +299,8 @@ public class UIPanelEquipment : UIPanel
     {
         Debug.Log("GenerateSlotList");
 
-		txtNpcName.text = GameData.lstNpcs [GameData.strCurNpcTag].Name;
-		int power = DataCenter.Instance.dictNPCData[ GameData.lstNpcs [GameData.strCurNpcTag].ID ].Power;
+		txtNpcName.text = GameData.lstNpcs [GameData.nCurNpcTag].Name;
+		int power = DataCenter.Instance.dictNPCData[ GameData.lstNpcs [GameData.nCurNpcTag].ID ].Power;
 
 		Debug.Log ("NpcId : " + _npcdata.ID);
 

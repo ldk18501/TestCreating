@@ -11,8 +11,16 @@
 13,1,1,Con_Name_13,Prefabs/Temp/Con_13,6,6,80,128,0,-0.7
 14,1,1,Con_Name_14,Prefabs/Temp/Con_14,5,5,85,120,0,-0.7
 15,1,1,Con_Name_15,Prefabs/Temp/Con_15,6,6,94,120,0,-0.7
+20,1,1,Con_Name_20,Prefabs/Temp/Con_10,7,8,80,80,0,-0.7
+21,1,1,Con_Name_21,Prefabs/Temp/Con_10,7,8,80,95,0,-0.7
+25,1,1,Con_Name_25,Prefabs/Temp/Con_31,8,7,29,70,0,-0.7
 30,1,1,Con_Name_30,Prefabs/Temp/Con_31,8,7,19,60,0,-0.7
 31,1,1,Con_Name_31,Prefabs/Temp/Con_32,6,8,140,90,0,-0.7
+32,1,1,Con_Name_32,Prefabs/Temp/Con_32,6,8,130,80,0,-0.7
+35,1,1,Con_Name_35,Prefabs/Temp/Con_31,8,7,29,100,0,-0.7
+36,1,1,Con_Name_36,Prefabs/Temp/Con_31,8,7,49,140,0,-0.7
+40,1,1,Con_Name_40,Prefabs/Temp/Con_31,8,7,49,100,0,-0.7
+45,1,1,Con_Name_45,Prefabs/Temp/Con_31,8,7,49,120,0,-0.7
 101,5,1,,Prefabs/Temp/Build_1,21,13,38,108,3.4,-2.8
 102,5,1,,Prefabs/Temp/Build_2,23,17,65,138,4,-3.2
 114,5,1,,Prefabs/Temp/Collider,14,12,0,65,0,0

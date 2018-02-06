@@ -29,6 +29,8 @@ namespace smallone
         public int CurfavorabilityLv;
         public int CurfavorabilityExp;
         public int CurPower;
+        public int CurEmotion;
+        public NPCTask CurNpcTask;
 
         public string ID
         {

@@ -1161,6 +1161,7 @@ MonoBehaviour:
   imgHeroIcon: {fileID: 114447850241246956}
   imgAlert: {fileID: 114091944516648344}
   btMission: {fileID: 114530301196120230}
+  nRoleTag: 0
 --- !u!222 &222051151596883982
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -59,10 +59,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2753ac30469ac4a9a89fee063f36274c, type: 3}
   - {fileID: 21300000, guid: b11952d65958c4be5b3c57ccf2b80bfa, type: 3}
   - {fileID: 21300000, guid: 06b90715d18f2410d9dac2f167b0cbf3, type: 3}
+  - {fileID: 21300000, guid: 2ccce532153534a6e98397dfdbfe2e95, type: 3}
   - {fileID: 21300000, guid: e221908e58e9548ee8337341432f1390, type: 3}
   - {fileID: 21300000, guid: 4d4ce0268c78546ad97511bf28cc3f1f, type: 3}
   - {fileID: 21300000, guid: 2286ed6b5fd994814ba7a047c013ac44, type: 3}
   - {fileID: 21300000, guid: 79580bcd3115c473581f97c18256f079, type: 3}
+  - {fileID: 21300000, guid: 71222add0c97b4d23b04d170a5085e2b, type: 3}
+  - {fileID: 21300000, guid: 701f92f82e5c64b3db86a9132bbe7d3a, type: 3}
   mSpriteNames:
   - 0202
   - 0203
@@ -71,10 +74,13 @@ MonoBehaviour:
   - 0206
   - 0207
   - 0208
+  - icon_6
   - item_q1
   - item_q2
   - item_q3
   - item_q4
+  - token_1
+  - token_2
   mAndroidOverride: 1
   miOSOverride: 1
   mAndroidTextureFormat: 0

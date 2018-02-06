@@ -13,9 +13,9 @@ namespace smallone
         protected List<string> _lstTaskUnlock;
 
 
-        public string Lv
+        public int Lv
         {
-            get { return _strID; }
+            get { return int.Parse(_strID); }
         }
 
         public int RequireExp

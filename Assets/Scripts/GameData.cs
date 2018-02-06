@@ -21,11 +21,11 @@ namespace smallone
 		// 当前选中的建筑id
 		static public string strCurConstructionId;
 
-        // 玩家当前选中的NpcId
-        static public int strCurNpcTag;
+        // 玩家当前选中的Npc列表Tag
+        static public int nCurNpcTag;
 
-		// 玩家当前等级
-		static public int nPlayerLv;
+        // 玩家当前等级
+        static public int nPlayerLv;
 
 		// 玩家当前经验值
 		static public int nPlayerLvExp;
@@ -33,6 +33,11 @@ namespace smallone
 		// 玩家名字
 		static public string strPlayerName;
 
+        // 玩家当前金币
+        static public int nCoin;
+
+        // 玩家当前金水晶
+        static public int nGems;
 
 
         static public int BagCapacity
@@ -99,12 +104,14 @@ namespace smallone
             for(int i = 0 ; i < lstNpcs.Count ; i++ )
 			{
 				//lstNpcs.Add (DataCenter.Instance.dictNPCData[i.ToString()]) ;
-                lstNpcs[i].CurfavorabilityLv = 1;
+                lstNpcs[i].CurfavorabilityLv = 0;
 				lstNpcs[i].CurfavorabilityExp = 0;
 				lstNpcs[i].CurPower = lstNpcs[i].Power;
+                lstNpcs[i].CurEmotion = 50;
+                lstNpcs[i].CurNpcTask = null;
 
                 // 装备信息
-				for (int j = 0; j < lstNpcs[i].EquipType.Count; j++)
+                for (int j = 0; j < lstNpcs[i].EquipType.Count; j++)
                 {
 					lstNpcs[i].lstEquipments.Add(null);
 
@@ -130,7 +137,7 @@ namespace smallone
             strCurConstructionId = null;
 
             // 当前选中的NPCid
-            strCurNpcTag = 0;
+            nCurNpcTag = 0;
 
 
             // TODO:: 临时
@@ -139,6 +146,10 @@ namespace smallone
             nPlayerLvExp = 0;
             
             strPlayerName = "SmallOne";
+
+            nGems = 0;
+
+            nCoin = 1000;
             
         }
     }

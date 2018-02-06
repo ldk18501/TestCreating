@@ -149,7 +149,7 @@ namespace smallone
 
             _lstPrice = new List<ItemPair>();
             string price = data["Price"][index];
-            if (!string.IsNullOrEmpty(price) && price != "-1")
+            if (!string.IsNullOrEmpty(price) && price != "-1" && price != "0")
             {
                 string[] multi = price.Split('|');
                 for (int i = 0; i < multi.Length; i++)
