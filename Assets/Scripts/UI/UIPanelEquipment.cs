@@ -206,7 +206,7 @@ public class UIPanelEquipment : UIPanel
         UIMemberEquipSlot slot = Slot.GetComponent<UIMemberEquipSlot>();
         if (slot.item != null)
         {
-            GameData.lstBagItems.Add(slot.item);
+            GameData.AddItemToBag(slot.item , 1);
             powerchange -= slot.item.Power;
         }
 
@@ -243,7 +243,7 @@ public class UIPanelEquipment : UIPanel
 		UIMemberEquipSlot slot = Slot.GetComponent<UIMemberEquipSlot>();
 		if(slot.item != null)
 		{
-			GameData.lstBagItems.Add( slot.item );
+			GameData.AddItemToBag(slot.item , 1);
 			powerchange -= slot.item.Power;
 
 		}
@@ -273,10 +273,7 @@ public class UIPanelEquipment : UIPanel
 
 				powerchange += slot.item.Power; 
 
-
-				// 疑问：lstbag怎么做堆叠？？？？？？？？
-				GameData.lstBagItems.Remove( GameData.lstBagItems[i] );
-
+				GameData.DelItemFromBag( slot.item , 1 );
 
 				txtScore.text = powerchange.ToString ();
 

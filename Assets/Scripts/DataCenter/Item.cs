@@ -41,6 +41,9 @@ namespace smallone
         protected string _strEffect;
         protected string _strInfo;
 
+		// 道具堆叠数量
+		public int Have = 0;
+
         public string ID
         {
             get { return _strID; }

@@ -58,24 +58,13 @@ public class UIPanelMission : UIPanel
 
         if (_bIsTaskOk)
         {
-            // TODO::扣除道具，需要在统一地方合并方法，道具堆叠问题
-            for (int i = 0; i < _npcData.CurNpcTask.Require.Count; i++)
-            {
-                // TODO::太粗暴，要改，检查需求数量是否足够
-                for (int j = 0; j < _npcData.CurNpcTask.Require[i].nCount; j++)
-                {
-                    for (int z = 0; z < GameData.lstBagItems.Count; z++)
-                    {
-						if (GameData.lstBagItems [z].ID == _npcData.CurNpcTask.Require [i].strId) {
+			// 扣除道具
+			for (int i = 0; i < _npcData.CurNpcTask.Require.Count; i++)
+			{
+				Item it = DataCenter.Instance.dictItem[ _npcData.CurNpcTask.Require [i].strId ];
 
-							GameData.lstBagItems.Remove( GameData.lstBagItems[z] );
-							break;
-
-						}
-                    }
-                }
-            }
-
+				GameData.DelItemFromBag ( it , _npcData.CurNpcTask.Require[i].nCount  );
+			}
 
 
             // TODO::临时，任务奖励
@@ -97,7 +86,7 @@ public class UIPanelMission : UIPanel
                 if (DataCenter.Instance.dictItem[_npcData.CurNpcTask.Reward[i].strId].Type == 2 && DataCenter.Instance.dictItem[_npcData.CurNpcTask.Reward[i].strId].ID != "5")
                 {
                     // 检测是否最高级
-                    int expneed = 0;
+                    int expneed = 0;    
                     bool isLvMax = true;
 
                     int nextlv = _npcData.CurfavorabilityLv + 1;

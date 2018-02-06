@@ -75,25 +75,14 @@ public class UIPanelInventory : UIPanel
         {
             UISlotItem item = trsSlotItemRoot.GetChild(i).GetComponent<UISlotItem>();
             UISelectableItem sItem = item.gameObject.AddMissingComponent<UISelectableItem>();
+
             if (i < GameData.lstBagItems.Count)
             {
-                item.imgIcon.sprite = GameData.lstBagItems[i].IconSprite;
-				item.item = GameData.lstBagItems [i];
-                item.ShowIcon = sItem.bSelectable = true;
-				item.ShowQuality = false;
+				item.UpdateShowInfo (GameData.lstBagItems[i]);
 
+				sItem.bSelectable = true;
 
                 sItem.cbSelect = OnSlotSelected;
-
-				if (GameData.lstBagItems [i].Category == ItemType.Equipment) 
-				{
-					item.txtScore.text = GameData.lstBagItems [i].Power.ToString();
-					item.ShowScore = true;
-
-				} else {
-					item.ShowScore = false;
-				}
-
             }
             else
             {
@@ -101,6 +90,7 @@ public class UIPanelInventory : UIPanel
                 item.ShowIcon = sItem.bSelectable = false;
 				item.ShowQuality = false;
 				item.ShowScore = false;
+				item.ShowCount = false;
                 sItem.cbSelect = null;
             }
         }

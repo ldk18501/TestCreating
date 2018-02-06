@@ -80,40 +80,24 @@ public class UIPanelConstruction : UIPanel
 
 		if (isSelect) 
 		{
-			_dataTask = DataCenter.Instance.dictBuildingTask[obj.name];
+			
+			_dataTask = DataCenter.Instance.dictBuildingTask[ obj.name ];
 
 			GenerateContructNeed();
 		}
 		// TODO::临时::快速生产
 		else if(!isSelect && _bCanProduct)
 		{
-			// 材料从背包拿出
-
-			// TODO::扣除道具，需要在统一地方合并方法，道具堆叠问题
+			// 扣除道具
 			for (int i = 0; i < _dataTask.ItemRequire.Count ; i++)
 			{
-				// TODO::太粗暴，要改，检查需求数量是否足够
-				for (int j = 0; j < _dataTask.ItemRequire[i].nCount; j++)
-				{
-					for (int z = 0; z < GameData.lstBagItems.Count; z++)
-					{
-						if (GameData.lstBagItems [z].ID == _dataTask.ItemRequire [i].strId) { 
-							GameData.lstBagItems.Remove (GameData.lstBagItems [z]);
-							break;
-						}
-					}
-				}
+				GameData.DelItemFromBag (DataCenter.Instance.dictItem [_dataTask.ItemRequire [i].strId], _dataTask.ItemRequire [i].nCount);
 			}
 
 
 			// 生产物品放入背包
 
-
-			for (int i = 0; i < _dataTask.Product.nCount; i++) {
-
-				GameData.lstBagItems.Add ( DataCenter.Instance.dictItem[ _dataTask.Product.strId ] );
-			}
-
+			GameData.AddItemToBag (DataCenter.Instance.dictItem [_dataTask.Product.strId], _dataTask.Product.nCount);
 
 		}
     }
@@ -140,17 +124,24 @@ public class UIPanelConstruction : UIPanel
             {
                 var obj = GameObject.Instantiate(objSlotItem) as GameObject;
                 obj.transform.SetParent(trsGroup);
-                obj.name = task[id].ID;
 
                 obj.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
                 obj.transform.localScale = Vector3.one;
                 
-                string itemID = task[id].Product.strId.ToString();
+				string itemID = task[id].Product.strId;
+				obj.name = id ;
 
+				obj.GetComponent<UISlotItem> ().UpdateShowInfo (DataCenter.Instance.dictItem[itemID]);
 
-                obj.GetComponent<UISlotItem>().imgIcon.sprite = DataCenter.Instance.dictItem[itemID].IconSprite;
-                obj.GetComponent<UISlotItem>().imgQuality.gameObject.SetActive(false);
-                obj.GetComponent<UISlotItem>().txtScore.gameObject.SetActive(false);
+				Debug.Log ("itemID = " + obj.GetComponent<UISlotItem> ().item.ID );
+
+				if (task [id].Product.nCount <= 1) {
+					obj.GetComponent<UISlotItem> ().ShowCount = false;
+				} else {
+
+					obj.GetComponent<UISlotItem> ().txtCount.text = "x " + task [id].Product.nCount;
+					obj.GetComponent<UISlotItem> ().ShowCount = true;
+				}
             }
         }        
     }
@@ -166,28 +157,24 @@ public class UIPanelConstruction : UIPanel
             GameObject.Destroy(_objBubble.GetComponent<BubbleConstructNeed>().trsNeedRoot.GetChild(i).gameObject);
         }
 
-        int store = 0;
-        // TODO 目标生产道具背包存量查找
-        for(int i = 0; i< GameData.lstBagItems.Count; i++)
-        {
-            if( _dataTask.Product.strId == GameData.lstBagItems[i].ID )
-            {
-                store++;
-            }
-        }
 
-        Debug.Log(store);
+		// 目标生产物品
+		Item it = DataCenter.Instance.dictItem[_dataTask.Product.strId];
+
+		// 检查库存数量
+		int store = GameData.GetItemHave( it );
+
+        Debug.Log("store = " + store);
 
         BubbleConstructNeed bubble = _objBubble.GetComponent<BubbleConstructNeed>();
         
+		// 任务名字
+		bubble.name = _dataTask.Name;
 
-		bubble.name = store.ToString();
-
-
-		Debug.Log(bubble.name );
+		Debug.Log(bubble.name);
 
         // 道具名字
-        bubble.txtName.text = _dataTask.Name;
+        bubble.txtName.text = it.Name;
         
         // 道具属性查找
         bubble.txtScore.text = DataCenter.Instance.dictItem[_dataTask.Product.strId].Power.ToString();
@@ -202,19 +189,13 @@ public class UIPanelConstruction : UIPanel
 
             var obj = GameObject.Instantiate( _objBubble.GetComponent<BubbleConstructNeed>().objSlotNeed ) as GameObject;
             obj.transform.SetParent(_objBubble.GetComponent<BubbleConstructNeed>().trsNeedRoot);
-            obj.name = _dataTask.Name;
+			obj.name = _dataTask.ItemRequire[i].strId;
             obj.transform.localScale = Vector3.one;
             obj.GetComponent<SlotConstructNeed>().imgIcon.sprite = DataCenter.Instance.dictItem[_dataTask.ItemRequire[i].strId].IconSprite;
 
-			// TODO::找需求材料的存量
-			int count = 0;
-			for(int j = 0; j< GameData.lstBagItems.Count; j++)
-			{
-				if( _dataTask.ItemRequire[i].strId == GameData.lstBagItems[j].ID )
-				{
-					count++;
-				}
-			}
+			// 所需材料的库存量
+			int count = GameData.GetItemHave( DataCenter.Instance.dictItem[_dataTask.ItemRequire[i].strId] );
+
             string needcount = count + " / " +_dataTask.ItemRequire[i].nCount.ToString();
 
 			// 如果数量不满足，就不能造
@@ -222,7 +203,6 @@ public class UIPanelConstruction : UIPanel
 			{
 				_bCanProduct = false;
 			}
-
 
             obj.GetComponent<SlotConstructNeed>().txtNeed.text = needcount;
         }

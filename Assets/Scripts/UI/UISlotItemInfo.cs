@@ -21,11 +21,12 @@ public class UISlotItemInfo : MonoBehaviour {
             imgItemType.sprite = null;
             txtItemName.text = item.Name;
 
-            if (item.Type == (int)ItemType.Equipment)
+            if (item.Category == ItemType.Equipment)
             {
                 imgScore.gameObject.SetActive(true);
                 txtScore.gameObject.SetActive(true);
-                txtScore.text = item.Power.ToString();
+				txtScore.text = item.Power.ToString();
+
             }
             else
             {

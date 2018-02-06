@@ -76,6 +76,62 @@ namespace smallone
             }
         }
 
+		// 获取背包中道具数量
+		static public int GetItemHave(Item item)
+		{
+			int have = 0;
+
+			for (int i = 0; i < GameData.lstBagItems.Count; i++) 
+			{
+				if (GameData.lstBagItems [i] == item)
+				{
+					have += item.Have;
+				}
+			}
+
+			return have;
+		}
+
+		// 从背包中删除道具 + 数量
+		// TODO:: 单个道具格子堆叠数量上限
+		static public void DelItemFromBag(Item item , int count )
+		{
+			for (int i = 0; i < lstBagItems.Count; i++)
+			{
+				if ( lstBagItems[i] == item ) 
+				{
+					lstBagItems[i].Have -= count;
+					if(lstBagItems[i].Have == 0)
+					{
+						lstBagItems.Remove ( lstBagItems[i] );
+					}
+
+					return;
+				}
+			}
+		}
+
+		// 添加道具 + 数量
+		static public void AddItemToBag(Item item , int count )
+		{
+			if ( GetItemHave(item) == 0 ) 
+			{
+				lstBagItems.Add(item);
+			} 
+
+			for (int i = 0; i < lstBagItems.Count; i++)
+			{
+				if ( lstBagItems[i] == item ) 
+				{
+					lstBagItems[i].Have += count;
+					return;
+				}
+			}
+		}
+
+
+
+
         static public void Init()
         {
             dictGameConfs = SerializationManager.LoadDictFromCSV<GameConfigEntry>("Key", "Configs/GameConfigs");

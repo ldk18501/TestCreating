@@ -26,15 +26,8 @@ public class BubbleBag : MonoBehaviour {
                 UISlotItem item = obj.GetComponent<UISlotItem>();
                 //UISelectableItem sItem = item.gameObject.AddMissingComponent<UISelectableItem>();
 
-                item.imgIcon.sprite = GameData.lstBagItems[i].IconSprite;
-                item.ShowIcon = true;
-                item.ShowQuality = false;
-                item.txtScore.text = GameData.lstBagItems[i].Power.ToString();
+				item.UpdateShowInfo (GameData.lstBagItems[i]);
 
-				if ( GameData.lstBagItems[i].Category== ItemType.Equipment)
-                {
-                    item.ShowScore = true;
-                }
                 //sItem.bSelectable = true;
                 //sItem.cbSelect = OnSlotSelected;
             }
