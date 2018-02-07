@@ -51,9 +51,7 @@ namespace smallone
 
                 //! 获得当前点击建筑信息
 				GameData.strCurConstructionId = component.GetComponent<EntityBuilding>().dataBuilding.ID;
-
-
-
+                
                 switch (component.transform.name)
                 {
                     case "MonsterPoint":
@@ -141,7 +139,10 @@ namespace smallone
                 //! 肖：用来记录建筑ID，为了点击建筑可以知道点了啥。。
 				GameData.lstConstructionObj.Add(obj);
 
-                obj.AddMissingComponent<EntityBuilding>().dataBuilding = buildingdata[id];
+                EntityBuilding eb = obj.AddMissingComponent<EntityBuilding>();
+                eb.dataBuilding = buildingdata[id];
+                eb.timer = obj.AddMissingComponent<UITimerCtrl>();
+                //计时器
             }
 
             //! 静态存在的建筑

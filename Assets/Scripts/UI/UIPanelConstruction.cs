@@ -13,18 +13,26 @@ public class UIPanelConstruction : UIPanel
 
     GameObject _objBubble;
 
+    GameObject _objTimer;
+
     public int nSlotListCount = 10;
 
     private BuildingTask _dataTask;
 
 	private bool _bCanProduct;
+
+    UITimerCtrl timer;
     
     void OnEnable()
     {
         EventCenter.Instance.RegisterGameEvent("ClosePanel", OnCloseSelf);
         // EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
 
+
+        timer = new UITimerCtrl();
+
         BubbleItemInfo();
+
     }
 
     void OnDisable()
@@ -63,13 +71,13 @@ public class UIPanelConstruction : UIPanel
         {
             GameObject.Destroy( trsGroup.GetChild(i).gameObject );
         }
-                
     }
+
 
 
     void OnSlotSelect(bool isSelect, GameObject obj)
     {
-		if (_objBubble) {
+        if (_objBubble) {
 			_objBubble.GetComponent<RectTransform> ().anchoredPosition = trsGroup.localPosition + obj.transform.localPosition + new Vector3 (-316, 131);
 			_objBubble.SetActive (isSelect);
 
@@ -92,14 +100,32 @@ public class UIPanelConstruction : UIPanel
 			for (int i = 0; i < _dataTask.ItemRequire.Count ; i++)
 			{
 				GameData.DelItemFromBag (DataCenter.Instance.dictItem [_dataTask.ItemRequire [i].strId], _dataTask.ItemRequire [i].nCount);
-			}
+            }
 
 
-			// 生产物品放入背包
-			GameData.AddItemToBag (DataCenter.Instance.dictItem [_dataTask.Product.strId], _dataTask.Product.nCount);
+            // 生产物品放入背包
+            GameData.AddItemToBag (DataCenter.Instance.dictItem [_dataTask.Product.strId], _dataTask.Product.nCount);
 
-		}
+
+            
+            // 疑问：计时器怎么写？
+            for (int i = 0; i < GameData.lstConstructionObj.Count; i++)
+            {
+                if(GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().dataBuilding.ID == GameData.strCurConstructionId)
+                {
+                    Debug.Log(GameData.lstConstructionObj[i].name);
+                    GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().timer.SetTimer(1.0f);
+                    GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().timer.StartTimer();
+                    
+                    break;
+                }
+            }
+            
+        }
     }
+
+
+
 
     void BubbleItemInfo()
     {

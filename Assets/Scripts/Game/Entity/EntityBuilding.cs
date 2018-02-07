@@ -21,20 +21,35 @@ namespace smallone
 
 		public List<ProductItem> lstProductItem;
 
-
-
+        public UITimerCtrl timer;
 
         // Use this for initialization
         void Start()
         {
+           
         }
 
         // Update is called once per frame
         void Update()
         {
+        }
 
+        public void StartBuildingTimer(float time)
+        {
+            if (timer)
+            {
+                timer.SetTimer(time, OnTimerStop);
+                timer.StartTimer();
+            }
 
         }
+
+
+        protected virtual void OnTimerStop()
+        {
+            Debug.Log("hehe");
+        }
+        
     }
 }
 

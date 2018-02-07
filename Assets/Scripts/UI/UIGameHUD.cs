@@ -67,7 +67,12 @@ public class UIGameHUD : UIPanel
         GeneratePlayerLvlInfoList();
 		UpdatePlayerLv ();
     }
-    
+
+    protected override void LateUpdate()
+    {
+        base.LateUpdate();
+
+    }
 
     protected override void OnPanelRepaint()
     {

@@ -236,7 +236,7 @@ public class AtlasControlPanel : EditorWindow
 
                             bool highlight = prettyName == _mHighlight;
                             GUI.backgroundColor = highlight ? Color.white : new Color(0.8f, 0.8f, 0.8f);
-                            GUILayout.BeginHorizontal("AS TextArea", GUILayout.MinHeight(20f));
+                            GUILayout.BeginHorizontal(GUIStyle.none, GUILayout.MinHeight(20f));
                             GUI.backgroundColor = Color.white;
 
                             GUILayout.Label((index + 1).ToString(), GUILayout.Width(20));

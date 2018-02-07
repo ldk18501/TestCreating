@@ -19,8 +19,7 @@ public class UISlotItem : MonoBehaviour {
 		imgQuality.sprite = null;
 		txtScore.text = it.Power.ToString();
 		txtCount.text = "x " + GameData.GetItemHave (it).ToString();
-
-
+        
 		ShowIcon = true;
 
 		if (item.Category == ItemType.Equipment) {

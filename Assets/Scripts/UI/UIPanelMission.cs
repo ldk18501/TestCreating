@@ -40,7 +40,8 @@ public class UIPanelMission : UIPanel
         UIPanelManager.Instance.HidePanel("UIPanelMission").DoOnHideCompleted((panel) =>
         {
             Debug.Log("closed!");
-            
+            UIPanelManager.Instance.GetPanel("UIGameHUD").Repaint();
+
         });
     }
     
