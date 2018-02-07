@@ -96,7 +96,6 @@ public class UIPanelConstruction : UIPanel
 
 
 			// 生产物品放入背包
-
 			GameData.AddItemToBag (DataCenter.Instance.dictItem [_dataTask.Product.strId], _dataTask.Product.nCount);
 
 		}
@@ -160,18 +159,17 @@ public class UIPanelConstruction : UIPanel
 
 		// 目标生产物品
 		Item it = DataCenter.Instance.dictItem[_dataTask.Product.strId];
-
-		// 检查库存数量
-		int store = GameData.GetItemHave( it );
-
-        Debug.Log("store = " + store);
+        
 
         BubbleConstructNeed bubble = _objBubble.GetComponent<BubbleConstructNeed>();
         
 		// 任务名字
 		bubble.name = _dataTask.Name;
 
-		Debug.Log(bubble.name);
+        // 检查目标产品库存数量
+        bubble.txtHave.text = GameData.GetItemHave(it).ToString();
+
+        Debug.Log(bubble.name);
 
         // 道具名字
         bubble.txtName.text = it.Name;

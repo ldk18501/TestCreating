@@ -1595,6 +1595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mLayer: 1
   _mTestSortingOrder: 0
+  nTestPlyaerLv: 1
   nPlayerLvlInfoCount: 3
   trsPlayerLvlInfoRoot: {fileID: 224725617027620786}
   objSlotItem: {fileID: 1338678800939042, guid: 0f94a32c62a52584da94c8a6ff74832a,

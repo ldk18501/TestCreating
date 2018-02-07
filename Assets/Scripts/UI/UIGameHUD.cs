@@ -7,6 +7,9 @@ using TMPro;
 
 public class UIGameHUD : UIPanel
 {
+    [Header("TestInfo")]
+    public int nTestPlyaerLv = 1;
+
 	// 玩家等级信息
     public int nPlayerLvlInfoCount = 3;
     public Transform trsPlayerLvlInfoRoot;
@@ -38,6 +41,9 @@ public class UIGameHUD : UIPanel
 
         EventCenter.Instance.RegisterGameEvent("OpenPlayerLvlInfo", OnPlayerLvlInfoShow);
         EventCenter.Instance.RegisterGameEvent("ClosePlayerLvlInfo", OnPlayerLvlInfoHide);
+
+        GameData.nPlayerLv = nTestPlyaerLv;
+
         StartGame();
     }
 
@@ -74,6 +80,9 @@ public class UIGameHUD : UIPanel
 
         // 玩家等级txt
         tmPlayerLv.text = GameData.nPlayerLv.ToString();
+
+        // 玩家头像列表
+        GenerateHeroList();
     }
 
     protected override void OnPanelShowBegin()
@@ -101,6 +110,12 @@ public class UIGameHUD : UIPanel
 
     void GenerateHeroList()
     {
+        for (int i = 0; i < trsHeroListRoot.childCount; i++)
+        {
+            GameObject.Destroy( trsHeroListRoot.GetChild(i).gameObject );
+        }
+        
+
         for (int i = 0; i < GameData.lstNpcs.Count; i++)
 		{
             if (GameData.lstNpcs[i].UnlockLv <= GameData.nPlayerLv)
@@ -117,7 +132,7 @@ public class UIGameHUD : UIPanel
                 
                 Debug.Log("GameData.lstNpcs.add = " + item.GetComponent<UIRoleInfo>().nRoleTag);
             }
-      }
+        }
     }
 
     void GeneratePlayerLvlInfoList()
