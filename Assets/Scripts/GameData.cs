@@ -21,6 +21,8 @@ namespace smallone
 		// 当前选中的建筑id
 		static public string strCurConstructionId;
 
+        // 当前选中的建筑Data
+
         // 玩家当前选中的Npc列表Tag
         static public int nCurNpcTag;
 
@@ -33,11 +35,6 @@ namespace smallone
 		// 玩家名字
 		static public string strPlayerName;
 
-        // 玩家当前金币
-        static public int nCoin;
-
-        // 玩家当前金水晶
-        static public int nGems;
 
 
         static public int BagCapacity
@@ -203,9 +200,9 @@ namespace smallone
             
             strPlayerName = "SmallOne";
 
-            nGems = 0;
+            Gems = 0;
 
-            nCoin = 1000;
+            Coins = 1000;
             
         }
     }

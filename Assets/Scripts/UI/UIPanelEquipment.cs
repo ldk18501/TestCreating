@@ -286,9 +286,7 @@ public class UIPanelEquipment : UIPanel
 			}
 
 		}
-
-
-
+        
     }
     
 	// 生成界面
@@ -405,7 +403,7 @@ public class UIPanelEquipment : UIPanel
 
 				// 技能是否已经解锁
 				if (trsroot == trsNpcSkillRoot) {
-					if (_npcdata.SkillUnlocklv [i] >= GameData.nPlayerLv) {
+					if (_npcdata.SkillUnlocklv [i] <= GameData.nPlayerLv) {
 						item.imgLock.gameObject.SetActive (false);
 					} else {
 						item.imgLock.gameObject.SetActive (true);

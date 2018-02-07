@@ -68,15 +68,10 @@ public class UIGameHUD : UIPanel
 		UpdatePlayerLv ();
     }
 
-    protected override void LateUpdate()
-    {
-        base.LateUpdate();
-
-    }
-
     protected override void OnPanelRepaint()
     {
         base.OnPanelRepaint();
+
         mCoinNum.text = GameData.Coins.ToString();
 		mDiamondNum.text = GameData.Gems.ToString();
 

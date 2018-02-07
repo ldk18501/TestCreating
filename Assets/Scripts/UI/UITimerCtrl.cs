@@ -15,6 +15,13 @@ public class UITimerCtrl : MonoBehaviour
 
     public System.Action cbOver;
 
+    
+    public int Remain
+    {
+        get { return (int)_fCurrent; }
+    }
+
+
     public float Duration
     {
         get { return _fDuration; }

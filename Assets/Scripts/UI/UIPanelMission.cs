@@ -71,16 +71,18 @@ public class UIPanelMission : UIPanel
             // TODO::临时，任务奖励
             for (int i = 0; i < _npcData.CurNpcTask.Reward.Count; i++)
             {
+                Debug.Log( "Reward:" + i + " ,id: " + _npcData.CurNpcTask.Reward[i].strId + " ,count: " + _npcData.CurNpcTask.Reward[i].nCount);
+
                 // 钱
                 if (DataCenter.Instance.dictItem[_npcData.CurNpcTask.Reward[i].strId].ID == "1")
                 {
-                    GameData.nCoin += _npcData.CurNpcTask.Reward[i].nCount;
+                    GameData.Coins += _npcData.CurNpcTask.Reward[i].nCount;
                 }
 
                 // 水晶
                 if (DataCenter.Instance.dictItem[_npcData.CurNpcTask.Reward[i].strId].ID == "2")
                 {
-                    GameData.nGems += _npcData.CurNpcTask.Reward[i].nCount;
+                    GameData.Gems += _npcData.CurNpcTask.Reward[i].nCount;
                 }
 
                 // 好感度

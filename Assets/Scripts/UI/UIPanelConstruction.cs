@@ -11,15 +11,35 @@ public class UIPanelConstruction : UIPanel
     public GameObject objBubble;
     public GameObject objSlotItem;
 
-    GameObject _objBubble;
+    [Header("CurrentProduct")]
+    public Image imgCurrentProduct;
+    public Text txtTimeRemain;
+    public Button btSpeedUp;
+    public Text txtSpeedUpPrice;
 
-    GameObject _objTimer;
+    [Header("WaitingProduct")]
+    public Image imgWaitingProduct1_bg;
+    public Image imgWaitingProduct1_icon;
+    public Image imgWaitingProduct2_bg;
+    public Image imgWaitingProduct2_icon;
+    public Image imgWaitingProduct3_bg;
+    public Image imgWaitingProduct3_icon;
+
+    [Header("CurrentProduct")]
+    public Button btAddProductList;
+    public Text txtAddProductListPrice;
+
+
+    [Header("others")]
+
 
     public int nSlotListCount = 10;
 
     private BuildingTask _dataTask;
 
-	private bool _bCanProduct;
+    GameObject _objBubble;
+
+    private bool _bCanProduct;
 
     UITimerCtrl timer;
     
@@ -60,6 +80,7 @@ public class UIPanelConstruction : UIPanel
         base.OnPanelShowBegin();
 
         GenerateSlotList();
+        UpdateProductList();
     }
 
     protected override void OnPanelHideCompleted()
@@ -104,18 +125,16 @@ public class UIPanelConstruction : UIPanel
 
 
             // 生产物品放入背包
-            GameData.AddItemToBag (DataCenter.Instance.dictItem [_dataTask.Product.strId], _dataTask.Product.nCount);
+            // GameData.AddItemToBag (DataCenter.Instance.dictItem [_dataTask.Product.strId], _dataTask.Product.nCount);
 
-
-            
-            // 疑问：计时器怎么写？
+            // 计时器
+            // 查找该建筑
             for (int i = 0; i < GameData.lstConstructionObj.Count; i++)
             {
                 if(GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().dataBuilding.ID == GameData.strCurConstructionId)
                 {
                     Debug.Log(GameData.lstConstructionObj[i].name);
-                    GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().timer.SetTimer(1.0f);
-                    GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().timer.StartTimer();
+                    GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().AddProduct( _dataTask ); ;
                     
                     break;
                 }
@@ -169,6 +188,48 @@ public class UIPanelConstruction : UIPanel
 				}
             }
         }        
+    }
+
+    private void Update()
+    {
+        UpdateProductList();
+    }
+
+    // 生成生产队列
+    void UpdateProductList()
+    {
+        Dictionary<string, BuildingTask> task = DataCenter.Instance.dictBuildingTask;
+
+        EntityBuilding entitybuilding = null;
+
+        for (int i = 0; i < GameData.lstConstructionObj.Count; i++)
+        {
+            if (GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().dataBuilding.ID == GameData.strCurConstructionId)
+            {
+                entitybuilding = GameData.lstConstructionObj[i].GetComponent<EntityBuilding>();
+                break;
+            }
+        }
+
+        if (entitybuilding.lstProductItem.Count > 0)
+        {
+            imgCurrentProduct.sprite = entitybuilding.lstProductItem[0].item.IconSprite;
+            txtAddProductListPrice.text = "10";
+            txtTimeRemain.text = entitybuilding.timer.Remain.ToString();
+
+            imgCurrentProduct.gameObject.SetActive(true);
+            txtAddProductListPrice.gameObject.SetActive(true);
+            txtTimeRemain.gameObject.SetActive(true);
+            btSpeedUp.gameObject.SetActive(true);
+        }
+        else
+        {
+            imgCurrentProduct.gameObject.SetActive(false);
+            txtAddProductListPrice.gameObject.SetActive(false);
+            txtTimeRemain.gameObject.SetActive(false);
+            btSpeedUp.gameObject.SetActive(false);
+        }
+
     }
 
 

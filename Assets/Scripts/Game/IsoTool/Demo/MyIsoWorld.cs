@@ -139,10 +139,10 @@ namespace smallone
                 //! 肖：用来记录建筑ID，为了点击建筑可以知道点了啥。。
 				GameData.lstConstructionObj.Add(obj);
 
+                // 计时器
                 EntityBuilding eb = obj.AddMissingComponent<EntityBuilding>();
                 eb.dataBuilding = buildingdata[id];
                 eb.timer = obj.AddMissingComponent<UITimerCtrl>();
-                //计时器
             }
 
             //! 静态存在的建筑
