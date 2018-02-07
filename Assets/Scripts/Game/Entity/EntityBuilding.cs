@@ -111,11 +111,13 @@ namespace smallone
         // 增加生产队列数量
         public bool AddProductList()
         {
-            bool CanAdd = true;
+            bool CanAdd = false;
 
             if (nCurProductList < nMaxProductList)
             {
-                CanAdd = false;
+				nCurProductList++;
+
+                CanAdd = true;
             }
 
             return CanAdd;

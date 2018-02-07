@@ -41,15 +41,18 @@ public class UIPanelConstruction : UIPanel
 
     private bool _bCanProduct;
 
+	private EntityBuilding _entitybuilding;
+
+	private Dictionary<string, BuildingTask> _dicttask;
+
     UITimerCtrl timer;
     
     void OnEnable()
     {
         EventCenter.Instance.RegisterGameEvent("ClosePanel", OnCloseSelf);
-        // EventCenter.Instance.RegisterGameEvent("OpenInventory", OnBagClicked);
+		EventCenter.Instance.RegisterGameEvent("AddProductList", OnAddProductList);
 
 
-        timer = new UITimerCtrl();
 
         BubbleItemInfo();
 
@@ -59,9 +62,10 @@ public class UIPanelConstruction : UIPanel
     {
         if (EventCenter.Instance != null)
         {
-            EventCenter.Instance.UnregisterGameEvent("ClosePanel", OnCloseSelf);
-            // EventCenter.Instance.UnregisterButtonEvent("OpenInventory", OnBagClicked);
+			EventCenter.Instance.UnregisterGameEvent("ClosePanel", OnCloseSelf);
+			EventCenter.Instance.UnregisterGameEvent("AddProductList", OnAddProductList);
         }
+
         GameObject.Destroy(_objBubble);
         
     }
@@ -79,6 +83,17 @@ public class UIPanelConstruction : UIPanel
     {
         base.OnPanelShowBegin();
 
+		_dicttask = DataCenter.Instance.dictBuildingTask;
+
+		for (int i = 0; i < GameData.lstConstructionObj.Count; i++)
+		{
+			if (GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().dataBuilding.ID == GameData.strCurConstructionId)
+			{
+				_entitybuilding = GameData.lstConstructionObj[i].GetComponent<EntityBuilding>();
+				break;
+			}
+		}
+
         GenerateSlotList();
         UpdateProductList();
     }
@@ -94,7 +109,12 @@ public class UIPanelConstruction : UIPanel
         }
     }
 
-
+	void OnAddProductList()
+	{
+		if (_entitybuilding.AddProductList ()) {
+			UpdateProductList ();
+		}
+	}
 
     void OnSlotSelect(bool isSelect, GameObject obj)
     {
@@ -158,13 +178,10 @@ public class UIPanelConstruction : UIPanel
 
     void GenerateSlotList()
     {
-        Dictionary<string, BuildingTask> task = DataCenter.Instance.dictBuildingTask;
-
-
         // 创建可生产道具
-        foreach (string id in task.Keys)
+        foreach (string id in _dicttask.Keys)
         {
-			if( task[id].TableId == GameData.strCurConstructionId && task[id].Lv <= GameData.nPlayerLv )
+			if( _dicttask[id].TableId == GameData.strCurConstructionId && _dicttask[id].Lv <= GameData.nPlayerLv )
             {
                 var obj = GameObject.Instantiate(objSlotItem) as GameObject;
                 obj.transform.SetParent(trsGroup);
@@ -172,18 +189,18 @@ public class UIPanelConstruction : UIPanel
                 obj.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
                 obj.transform.localScale = Vector3.one;
                 
-				string itemID = task[id].Product.strId;
+				string itemID = _dicttask[id].Product.strId;
 				obj.name = id ;
 
 				obj.GetComponent<UISlotItem> ().UpdateShowInfo (DataCenter.Instance.dictItem[itemID]);
 
 				Debug.Log ("itemID = " + obj.GetComponent<UISlotItem> ().item.ID );
 
-				if (task [id].Product.nCount <= 1) {
+				if (_dicttask [id].Product.nCount <= 1) {
 					obj.GetComponent<UISlotItem> ().ShowCount = false;
 				} else {
 
-					obj.GetComponent<UISlotItem> ().txtCount.text = "x " + task [id].Product.nCount;
+					obj.GetComponent<UISlotItem> ().txtCount.text = "x " + _dicttask [id].Product.nCount;
 					obj.GetComponent<UISlotItem> ().ShowCount = true;
 				}
             }
@@ -192,30 +209,24 @@ public class UIPanelConstruction : UIPanel
 
     private void Update()
     {
-        UpdateProductList();
+		// 计时器刷新
+		if (_entitybuilding.lstProductItem.Count > 0)
+		{
+			imgCurrentProduct.sprite = _entitybuilding.lstProductItem[0].item.IconSprite;
+			txtAddProductListPrice.text = "10";
+			txtTimeRemain.text = _entitybuilding.timer.Remain.ToString();
+		}
     }
 
     // 生成生产队列
     void UpdateProductList()
     {
-        Dictionary<string, BuildingTask> task = DataCenter.Instance.dictBuildingTask;
-
-        EntityBuilding entitybuilding = null;
-
-        for (int i = 0; i < GameData.lstConstructionObj.Count; i++)
+		Debug.Log ( _entitybuilding.nCurProductList );
+        if (_entitybuilding.lstProductItem.Count > 0)
         {
-            if (GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().dataBuilding.ID == GameData.strCurConstructionId)
-            {
-                entitybuilding = GameData.lstConstructionObj[i].GetComponent<EntityBuilding>();
-                break;
-            }
-        }
-
-        if (entitybuilding.lstProductItem.Count > 0)
-        {
-            imgCurrentProduct.sprite = entitybuilding.lstProductItem[0].item.IconSprite;
+            imgCurrentProduct.sprite = _entitybuilding.lstProductItem[0].item.IconSprite;
             txtAddProductListPrice.text = "10";
-            txtTimeRemain.text = entitybuilding.timer.Remain.ToString();
+            txtTimeRemain.text = _entitybuilding.timer.Remain.ToString();
 
             imgCurrentProduct.gameObject.SetActive(true);
             txtAddProductListPrice.gameObject.SetActive(true);
@@ -229,6 +240,75 @@ public class UIPanelConstruction : UIPanel
             txtTimeRemain.gameObject.SetActive(false);
             btSpeedUp.gameObject.SetActive(false);
         }
+
+
+		imgWaitingProduct1_bg.gameObject.SetActive(true);
+		if (_entitybuilding.lstProductItem.Count > 1)
+		{
+			imgWaitingProduct1_icon.sprite = _entitybuilding.lstProductItem[1].item.IconSprite;
+			imgWaitingProduct1_icon.gameObject.SetActive(true);
+
+		}
+		else
+		{
+			imgWaitingProduct1_icon.gameObject.SetActive(false);
+
+		}
+
+
+		if(_entitybuilding.nCurProductList > 2)
+		{
+			imgWaitingProduct2_bg.gameObject.SetActive(true);
+			if (_entitybuilding.lstProductItem.Count > 2)
+			{
+				imgWaitingProduct2_icon.sprite = _entitybuilding.lstProductItem[2].item.IconSprite;
+				imgWaitingProduct2_icon.gameObject.SetActive(true);
+
+			}
+			else
+			{
+				imgWaitingProduct2_icon.gameObject.SetActive(false);
+			}
+		}
+		else
+		{
+			imgWaitingProduct2_icon.gameObject.SetActive(false);
+			imgWaitingProduct2_bg.gameObject.SetActive(false);
+		}
+
+
+
+		if(_entitybuilding.nCurProductList > 3)
+		{
+			btAddProductList.gameObject.SetActive (false);
+			txtAddProductListPrice.gameObject.SetActive (false);
+
+			imgWaitingProduct3_bg.gameObject.SetActive(true);
+			if(_entitybuilding.lstProductItem.Count > 3)
+			{
+				imgWaitingProduct3_icon.sprite = _entitybuilding.lstProductItem[3].item.IconSprite;
+				imgWaitingProduct3_icon.gameObject.SetActive(true);
+			}
+			else
+			{
+				imgWaitingProduct3_icon.gameObject.SetActive(false);
+
+			}
+
+
+		}
+		else
+		{
+			txtAddProductListPrice.text = "100";
+			btAddProductList.gameObject.SetActive (true);
+			txtAddProductListPrice.gameObject.SetActive (true);
+
+			imgWaitingProduct3_icon.gameObject.SetActive(false);
+			imgWaitingProduct3_bg.gameObject.SetActive(false);
+			
+		}
+
+
 
     }
 
