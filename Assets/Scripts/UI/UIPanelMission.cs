@@ -55,7 +55,7 @@ public class UIPanelMission : UIPanel
 
     void OnRefuseTask()
     {
-        GameData.NewNpcTask(_npcData);
+		_npcData.CurNpcTask = null;
 
         OnCloseSelf();
     }
@@ -193,7 +193,7 @@ public class UIPanelMission : UIPanel
             Debug.Log("NpcID = " + _npcData.ID + ", NpcFavorLv = " + _npcData.CurfavorabilityLv + ", NpcFavorExp = " + _npcData.CurfavorabilityExp);
             Debug.Log("PlayerLv = " + GameData.nPlayerLv + ", PlayerExp = " + GameData.nPlayerLvExp);
 
-            GameData.NewNpcTask(_npcData);
+			_npcData.CurNpcTask = null;
             OnCloseSelf();
         }
     }
@@ -210,11 +210,11 @@ public class UIPanelMission : UIPanel
 
         _bIsPlayerLvUp = false;
 
-        // 如果没有任务，刷新一个任务
-        if(_npcData.CurNpcTask == null)
-        {
-            GameData.NewNpcTask(_npcData);
-        }
+//        // 如果没有任务，刷新一个任务
+//        if(_npcData.CurNpcTask == null)
+//        {
+//            GameData.NewNpcTask(_npcData);
+//        }
 
         InitNeedList();
     }
@@ -238,54 +238,54 @@ public class UIPanelMission : UIPanel
     {
         
         NPCTask task = _npcData.CurNpcTask;
-        // 生成需求道具
-        for (int i = 0; i < task.Require.Count; i++)
-        {
-            var need = GameObject.Instantiate(objNeedSlot) as GameObject;
-            need.name = objNeedSlot.name;
-            need.transform.SetParent(trsNeedListRoot);
-            need.transform.localScale = Vector3.one;
 
-            need.AddMissingComponent<Button>().onClick.AddListener(() => { OnItemClicked(objNeedSlot); });
+		if (task != null) {
+			
+			// 生成需求道具
+			for (int i = 0; i < task.Require.Count; i++) {
+				var need = GameObject.Instantiate (objNeedSlot) as GameObject;
+				need.name = objNeedSlot.name;
+				need.transform.SetParent (trsNeedListRoot);
+				need.transform.localScale = Vector3.one;
 
-            Debug.Log("NpcId = " + GameData.nCurNpcTag + "taskId = " + task.ID + " :  task.requireid : " + task.Require[i].strId);
+				need.AddMissingComponent<Button> ().onClick.AddListener (() => {
+					OnItemClicked (objNeedSlot);
+				});
 
-            Item item = DataCenter.Instance.dictItem[task.Require[i].strId];
-            need.GetComponent<SlotMissionNeed>().UpdataItemInfo(item, task.Require[i].nCount);
+				Debug.Log ("NpcId = " + GameData.nCurNpcTag + " ,taskId = " + task.ID + " ,task.requireid = " + task.Require [i].strId);
 
-            // TODO::太粗暴，要改，检查需求数量是否足够
-            int count = 0;
-            for (int j = 0; j < GameData.lstBagItems.Count; j++)
-            {
-                if( GameData.lstBagItems[j].ID == task.Require[i].strId )
-                {
-                    count++;
-                }
-            }
-            if(count < task.Require[i].nCount)
-            {
-                _bIsTaskOk = false;
-            }
+				Item item = DataCenter.Instance.dictItem [task.Require [i].strId];
+				need.GetComponent<SlotMissionNeed> ().UpdataItemInfo (item, task.Require [i].nCount);
 
-        }
+				// TODO::太粗暴，要改，检查需求数量是否足够
+				int count = 0;
+				for (int j = 0; j < GameData.lstBagItems.Count; j++) {
+					if (GameData.lstBagItems [j].ID == task.Require [i].strId) {
+						count++;
+					}
+				}
+				if (count < task.Require [i].nCount) {
+					_bIsTaskOk = false;
+				}
+
+			}
 
 
-        // 生成奖励
-        for (int i = 0; i < task.Reward.Count; i++)
-        {
-            var need = GameObject.Instantiate(objRewardItem) as GameObject;
-            need.name = objRewardItem.name;
-            need.transform.SetParent(trsRewardRoot);
-            need.transform.localScale = Vector3.one;
+			// 生成奖励
+			for (int i = 0; i < task.Reward.Count; i++) {
+				var need = GameObject.Instantiate (objRewardItem) as GameObject;
+				need.name = objRewardItem.name;
+				need.transform.SetParent (trsRewardRoot);
+				need.transform.localScale = Vector3.one;
 
-            Item item = DataCenter.Instance.dictItem[task.Reward[i].strId];
+				Item item = DataCenter.Instance.dictItem [task.Reward [i].strId];
 
-            Debug.Log("NpcId = " + GameData.nCurNpcTag + "taskId = " + task.ID + " :  task.requireid : " + task.Reward[i].strId);
+				Debug.Log ("NpcId = " + GameData.nCurNpcTag + " ,taskId = " + task.ID + " :  task.requireid : " + task.Reward [i].strId);
 
-            need.GetComponent<SlotNpcTaskReward>().imgIcon.sprite = item.IconSprite;
-            need.GetComponent<SlotNpcTaskReward>().txtNum.text = task.Reward[i].nCount.ToString();
-        }
-
+				need.GetComponent<SlotNpcTaskReward> ().imgIcon.sprite = item.IconSprite;
+				need.GetComponent<SlotNpcTaskReward> ().txtNum.text = task.Reward [i].nCount.ToString ();
+			}
+		}
 
     }
 

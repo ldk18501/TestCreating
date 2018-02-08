@@ -31,6 +31,7 @@ namespace smallone
         public int CurPower;
         public int CurEmotion;
         public NPCTask CurNpcTask;
+		public bool IsUnlocked;
 
         public string ID
         {

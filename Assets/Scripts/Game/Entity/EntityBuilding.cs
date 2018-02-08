@@ -84,6 +84,8 @@ namespace smallone
         {
             Debug.Log("hehe");
 
+			_timer.StopTimer(true);
+
             ProductFinish();
         }
         
@@ -119,7 +121,6 @@ namespace smallone
         // 任务完成
         public void ProductFinish()
         {
-            _timer.StopTimer(true);
 
             Debug.Log(" 完成生产ItemId : " + lstProductItem[0].item.ID);
 

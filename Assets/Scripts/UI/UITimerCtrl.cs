@@ -83,6 +83,9 @@ public class UITimerCtrl : MonoBehaviour
             if (cbOver != null)
                 cbOver.Invoke();
         }).Kill(complete);
+
+		_fDuration = 0;
+
         if (imgTimer)
             imgTimer.DOKill(complete);
     }

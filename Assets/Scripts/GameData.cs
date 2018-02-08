@@ -158,6 +158,12 @@ namespace smallone
             }
 
             int rand = UnityEngine.Random.Range(0, count);
+
+			if (count == 0) {
+				npc.CurNpcTask = null;
+				return;
+			}
+
             count = 0;
 
             foreach (string id in dicttask.Keys)
@@ -173,7 +179,10 @@ namespace smallone
                                 if (count == rand)
                                 {
                                     npc.CurNpcTask = dicttask[id];
-                                    break;
+
+
+									Debug.Log(" NpcId = " + npc.ID + ": NpcTaskCount = " + count);
+                                    return;
                                 }
                                 else
                                 {
@@ -185,7 +194,6 @@ namespace smallone
                 }
             }
 
-            Debug.Log(" NpcId = " + npc.ID + ": NpcTaskCount = " + count);
 
         }
 
@@ -223,7 +231,8 @@ namespace smallone
 				lstNpcs[i].CurfavorabilityExp = 0;
 				lstNpcs[i].CurPower = lstNpcs[i].Power;
                 lstNpcs[i].CurEmotion = 50;
-                lstNpcs[i].CurNpcTask = null;
+				lstNpcs[i].CurNpcTask = null;
+				lstNpcs[i].IsUnlocked = false;
 
                 // 装备信息
                 for (int j = 0; j < lstNpcs[i].EquipType.Count; j++)

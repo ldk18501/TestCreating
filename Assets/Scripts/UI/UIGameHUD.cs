@@ -110,58 +110,62 @@ public class UIGameHUD : UIPanel
 
     void GenerateHeroList()
     {
-        for (int i = 0; i < trsHeroListRoot.childCount; i++)
-        {
-            GameObject.Destroy( trsHeroListRoot.GetChild(i).gameObject );
-        }
+//        for (int i = 0; i < trsHeroListRoot.childCount; i++)
+//        {
+//            GameObject.Destroy( trsHeroListRoot.GetChild(i).gameObject );
+//        }
         
 
         for (int i = 0; i < GameData.lstNpcs.Count; i++)
 		{
-            if (GameData.lstNpcs[i].UnlockLv <= GameData.nPlayerLv)
+			if (GameData.lstNpcs[i].UnlockLv <= GameData.nPlayerLv && GameData.lstNpcs[i].IsUnlocked == false)
             {
+				GameData.lstNpcs [i].IsUnlocked = true;
+				
                 var item = GameObject.Instantiate(objRoleSlot) as GameObject;
 
 
                 item.name = GameData.lstNpcs[i].Name;
                 item.transform.SetParent(trsHeroListRoot);
 				item.transform.localScale = Vector3.one;
-				Debug.Log ("NpcTag" + i);
+
                 UIRoleInfo role = item.GetComponent<UIRoleInfo>();
 
-                role.nRoleTag = i;
-                role.btRole.onClick.AddListener(() => { OnHeroClicked(item); });
-                role.btMission.onClick.AddListener(() => { OnMissionClicked(item); });
 
-                if(GameData.lstNpcs[i].CurNpcTask == null)
-                {
-                    GameData.NewNpcTask(GameData.lstNpcs[i]);
 
-                }
+				role.nRoleTag = i;
+				role.btRole.onClick.AddListener(() => { OnHeroClicked(item); });
+				role.btMission.onClick.AddListener(() => { OnMissionClicked(item); });
+				role.SetNpcInfo ( GameData.lstNpcs[i].ID );
+				role.timer = item.AddMissingComponent<UITimerCtrl> ();
+
 
 
                 // NPC任务道具需求显示
-                string itemid = null;
-                bool IsAlready = true;
-                int count = GameData.lstNpcs[i].CurNpcTask.Require.Count;
+				if (GameData.lstNpcs [i].CurNpcTask != null) 
+				{
 
-                for (int j = 0; j < count; j++)
-                {
-                    itemid = GameData.lstNpcs[i].CurNpcTask.Require[j].strId;
-                    
-                    if (GameData.GetItemHave( DataCenter.Instance.dictItem[itemid] ) < GameData.lstNpcs[i].CurNpcTask.Require[j].nCount)
-                    {
-                        role.imgMissionIcom.sprite = DataCenter.Instance.dictItem[itemid].IconSprite;
-                        IsAlready = false;
-                        break;
-                    }
-                }
+					string itemid = null;
+					bool IsAlready = true;
+					int count = GameData.lstNpcs[i].CurNpcTask.Require.Count;
 
-                if (IsAlready)
-                {
-                    role.imgMissionIcom.sprite = DataCenter.Instance.dictItem[GameData.lstNpcs[i].CurNpcTask.Require[count-1].strId].IconSprite;
-                }
+					for (int j = 0; j < count; j++)
+					{
+						itemid = GameData.lstNpcs[i].CurNpcTask.Require[j].strId;
 
+						if (GameData.GetItemHave( DataCenter.Instance.dictItem[itemid] ) < GameData.lstNpcs[i].CurNpcTask.Require[j].nCount)
+						{
+							role.imgMissionIcom.sprite = DataCenter.Instance.dictItem[itemid].IconSprite;
+							IsAlready = false;
+							break;
+						}
+					}
+
+					if (IsAlready)
+					{
+						role.imgMissionIcom.sprite = DataCenter.Instance.dictItem[GameData.lstNpcs[i].CurNpcTask.Require[count-1].strId].IconSprite;
+					}
+				}
 
 
                 Debug.Log("GameData.lstNpcs.add = " + item.GetComponent<UIRoleInfo>().nRoleTag);
@@ -171,6 +175,11 @@ public class UIGameHUD : UIPanel
 
     void GeneratePlayerLvlInfoList()
     {
+		for (int i = 0; i < trsPlayerLvlInfoRoot.childCount; i++) {
+			GameObject.Destroy (trsPlayerLvlInfoRoot.GetChild(i).gameObject);
+		}
+
+
 		// TODO::玩家等级需要判断最高玩家等级
 		string playerlvl = ( GameData.nPlayerLv + 1 ).ToString();
 
@@ -190,6 +199,8 @@ public class UIGameHUD : UIPanel
 			item.GetComponent<UISlotItem> ().ShowScore = false;
             item.GetComponent<UISlotItem>().ShowCount = false;
             item.GetComponent<UISlotItem>().ShowScore = false;
+
+
         }
 
         // 玩家升级信息：解锁任务
