@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: afa5a9ead629b4276adf430cd7295ca6
-timeCreated: 1517540499
+timeCreated: 1518084662
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -79,7 +79,7 @@ TextureImporter:
   - buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: 30
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -89,7 +89,7 @@ TextureImporter:
   - buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: 34
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -101,7 +101,7 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape: []
-  spritePackingTag: 
+  spritePackingTag: UIIconAtlas
   userData: 
   assetBundleName: 
   assetBundleVariant: 

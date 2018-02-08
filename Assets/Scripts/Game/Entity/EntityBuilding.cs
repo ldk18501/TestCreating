@@ -1,23 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace smallone
 {
-	public class ProductItem {
-		public Item item;
-        public int nCount;
-        public int nRemainTime;
-		public ProductItem(Item it, int count, int remaintime = 0) {
-            item = it;
-            nCount = count;
-			nRemainTime = remaintime;
-		}
-	}
-
     public class EntityBuilding : Entity
     {
+        public class ProductItem
+        {
+            public Item item;
+            public int nCount;
+            public int nRemainTime;
+            public ProductItem(Item it, int count, int remaintime = 0)
+            {
+                item = it;
+                nCount = count;
+                nRemainTime = remaintime;
+            }
+        }
+
         //! 肖：想要用来记录建筑的id，为了点击该建筑，知道id
         public BuildingData dataBuilding;
 
@@ -26,7 +29,11 @@ namespace smallone
         public int nCurProductList;
         public int nMaxProductList;
 
-        public UITimerCtrl timer;
+        public GameObject objTimer;
+        public Text txtTime;
+
+        private UITimerCtrl _timer;
+        
 
         // Use this for initialization
         void Start()
@@ -34,23 +41,42 @@ namespace smallone
             nCurProductList = 2;
             nMaxProductList = 4;
             lstProductItem = new List<ProductItem>();
+            _timer = this.GetComponent<UITimerCtrl>();
+            if (_timer)
+            {
+                _timer.imgTimer.fillAmount = 0;
+            }
+            if(objTimer)
+            {
+                objTimer.SetActive(false);
+            }
+
         }
 
         // Update is called once per frame
         void Update()
         {
+            if(txtTime && _timer)
+            {
+                if(_timer.nRemain > 0)
+                {
+                    txtTime.text = _timer.strTimeRemain;
+                }
+                
+            }
         }
 
         public void StartBuildingTimer(float time)
         {
 
-            if (timer)
+            if (_timer)
             {
 
                 Debug.Log(" 开始生产ItemId : " + lstProductItem[0].item.ID);
 
-                timer.SetTimer(time, OnTimerStop);
-                timer.StartTimer();
+                objTimer.SetActive(true);
+                _timer.SetTimer(time, OnTimerStop);
+                _timer.StartTimer();
             }
         }
 
@@ -93,6 +119,8 @@ namespace smallone
         // 任务完成
         public void ProductFinish()
         {
+            _timer.StopTimer(true);
+
             Debug.Log(" 完成生产ItemId : " + lstProductItem[0].item.ID);
 
             // 放入背包
@@ -106,6 +134,14 @@ namespace smallone
             {
                 StartBuildingTimer( lstProductItem[0].nRemainTime );
             }
+            else
+            {
+                objTimer.SetActive(false);
+            }
+
+            // 刷新GAMEHUD
+            UIPanelManager.Instance.GetPanel("UIGameHUD").Repaint();
+
         }
 
         // 增加生产队列数量

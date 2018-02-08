@@ -148,18 +148,7 @@ public class UIPanelConstruction : UIPanel
             // GameData.AddItemToBag (DataCenter.Instance.dictItem [_dataTask.Product.strId], _dataTask.Product.nCount);
 
             // 计时器
-            // 查找该建筑
-            for (int i = 0; i < GameData.lstConstructionObj.Count; i++)
-            {
-                if(GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().dataBuilding.ID == GameData.strCurConstructionId)
-                {
-                    Debug.Log(GameData.lstConstructionObj[i].name);
-                    GameData.lstConstructionObj[i].GetComponent<EntityBuilding>().AddProduct( _dataTask ); ;
-                    
-                    break;
-                }
-            }
-            
+            _entitybuilding.AddProduct( _dataTask );
         }
     }
 
@@ -209,24 +198,24 @@ public class UIPanelConstruction : UIPanel
 
     private void Update()
     {
-		// 计时器刷新
-		if (_entitybuilding.lstProductItem.Count > 0)
-		{
-			imgCurrentProduct.sprite = _entitybuilding.lstProductItem[0].item.IconSprite;
-			txtAddProductListPrice.text = "10";
-			txtTimeRemain.text = _entitybuilding.timer.Remain.ToString();
-		}
+        // 计时器刷新
+        UpdateProductList();
     }
 
     // 生成生产队列
     void UpdateProductList()
     {
-		Debug.Log ( _entitybuilding.nCurProductList );
+        if(_entitybuilding == null)
+        {
+            return;
+        }
+
+
         if (_entitybuilding.lstProductItem.Count > 0)
         {
             imgCurrentProduct.sprite = _entitybuilding.lstProductItem[0].item.IconSprite;
             txtAddProductListPrice.text = "10";
-            txtTimeRemain.text = _entitybuilding.timer.Remain.ToString();
+            txtTimeRemain.text = _entitybuilding.gameObject.GetComponent<UITimerCtrl>().strTimeRemain ;
 
             imgCurrentProduct.gameObject.SetActive(true);
             txtAddProductListPrice.gameObject.SetActive(true);
@@ -275,9 +264,7 @@ public class UIPanelConstruction : UIPanel
 			imgWaitingProduct2_icon.gameObject.SetActive(false);
 			imgWaitingProduct2_bg.gameObject.SetActive(false);
 		}
-
-
-
+        
 		if(_entitybuilding.nCurProductList > 3)
 		{
 			btAddProductList.gameObject.SetActive (false);

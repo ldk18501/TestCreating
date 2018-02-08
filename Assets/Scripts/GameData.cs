@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 namespace smallone
 {
@@ -126,6 +128,66 @@ namespace smallone
 			}
 		}
 
+
+        // 增加NPC任务
+        static public void NewNpcTask(NPCData npc)
+        {
+            // 选择任务
+
+            // 满足条件的数量
+            int count = 0;
+
+            Dictionary<string, NPCTask> dicttask = DataCenter.Instance.dictNPCTask;
+            
+
+            foreach (string id in dicttask.Keys)
+            {
+                if (npc.ID == dicttask[id].NpcId)
+                {
+                    if (GameData.nPlayerLv >= dicttask[id].Lv[0] && GameData.nPlayerLv <= dicttask[id].Lv[1])
+                    {
+                        if (npc.CurfavorabilityLv >= dicttask[id].Favor[0] && npc.CurfavorabilityLv <= dicttask[id].Favor[1])
+                        {
+                            if (npc.CurEmotion >= dicttask[id].Emtion[0] && npc.CurEmotion <= dicttask[id].Emtion[1])
+                            {
+                                count++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            int rand = UnityEngine.Random.Range(0, count);
+            count = 0;
+
+            foreach (string id in dicttask.Keys)
+            {
+                if (npc.ID == dicttask[id].NpcId)
+                {
+                    if (GameData.nPlayerLv >= dicttask[id].Lv[0] && GameData.nPlayerLv <= dicttask[id].Lv[1])
+                    {
+                        if (npc.CurfavorabilityLv >= dicttask[id].Favor[0] && npc.CurfavorabilityLv <= dicttask[id].Favor[1])
+                        {
+                            if (npc.CurEmotion >= dicttask[id].Emtion[0] && npc.CurEmotion <= dicttask[id].Emtion[1])
+                            {
+                                if (count == rand)
+                                {
+                                    npc.CurNpcTask = dicttask[id];
+                                    break;
+                                }
+                                else
+                                {
+                                    count++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            Debug.Log(" NpcId = " + npc.ID + ": NpcTaskCount = " + count);
+
+        }
 
 
 

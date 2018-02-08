@@ -749,8 +749,6 @@ MonoBehaviour:
   hideElements: []
   gameEvents:
   - OpenEquipment
-  - 
-  - 
   animationManager: {fileID: 114686216962753260}
 --- !u!114 &114283640462292310
 MonoBehaviour:
@@ -1073,7 +1071,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 335fef7d9df744a7da971776435620da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e7e4f77620d2aa41af84f3acc06f4df, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1162,6 +1160,7 @@ MonoBehaviour:
   imgAlert: {fileID: 114091944516648344}
   btMission: {fileID: 114530301196120230}
   nRoleTag: 0
+  imgMissionIcom: {fileID: 114580983411777790}
 --- !u!222 &222051151596883982
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1390,7 +1389,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 15.6}
-  m_SizeDelta: {x: 30, y: 50}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224869394145472608
 RectTransform:

@@ -11,6 +11,7 @@ namespace smallone
         protected int _nType;
         protected int _nLvl;
         protected string _strName;
+        protected string _strIconPath;
         protected Sprite _spIcon;
         protected int _nSpanX;
         protected int _nSpanZ;
@@ -40,6 +41,13 @@ namespace smallone
         {
             get { return _strName; }
         }
+
+
+        public string IconPath
+        {
+            get { return _strIconPath; }
+        }
+
 
         public Sprite IconSprite
         {
@@ -90,6 +98,7 @@ namespace smallone
             _nType = int.Parse(data["Type"][index]);
             _nLvl = int.Parse(data["Lv"][index]);
             _strName = data["Name"][index];
+            _strIconPath = data["Icon"][index];
             _nSpanX = int.Parse(data["spanX"][index]);
             _nSpanZ = int.Parse(data["spanZ"][index]);
             _nNodeX = int.Parse(data["nodeX"][index]);
@@ -104,6 +113,8 @@ namespace smallone
             {
                 _objPrefab = Resources.Load<GameObject>(prefab);
             }
+
+            _spIcon = string.IsNullOrEmpty(_strIconPath) ? null : AtlasManager.Instance.GetSprite(_strIconPath);
 
         }
 

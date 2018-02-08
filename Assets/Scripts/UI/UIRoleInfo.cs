@@ -10,6 +10,7 @@ public class UIRoleInfo : MonoBehaviour {
     public Image imgAlert;
     public Button btMission;
 	public int nRoleTag;
+    public Image imgMissionIcom;
 
     // Use this for initialization
     void Start () {

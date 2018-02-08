@@ -122,14 +122,48 @@ public class UIGameHUD : UIPanel
             {
                 var item = GameObject.Instantiate(objRoleSlot) as GameObject;
 
+
                 item.name = GameData.lstNpcs[i].Name;
                 item.transform.SetParent(trsHeroListRoot);
 				item.transform.localScale = Vector3.one;
-				item.GetComponent<UIRoleInfo> ().nRoleTag = i;
 				Debug.Log ("NpcTag" + i);
-                item.GetComponent<UIRoleInfo>().btRole.onClick.AddListener(() => { OnHeroClicked(item); });
-                item.GetComponent<UIRoleInfo>().btMission.onClick.AddListener(() => { OnMissionClicked(item); });
-                
+                UIRoleInfo role = item.GetComponent<UIRoleInfo>();
+
+                role.nRoleTag = i;
+                role.btRole.onClick.AddListener(() => { OnHeroClicked(item); });
+                role.btMission.onClick.AddListener(() => { OnMissionClicked(item); });
+
+                if(GameData.lstNpcs[i].CurNpcTask == null)
+                {
+                    GameData.NewNpcTask(GameData.lstNpcs[i]);
+
+                }
+
+
+                // NPC任务道具需求显示
+                string itemid = null;
+                bool IsAlready = true;
+                int count = GameData.lstNpcs[i].CurNpcTask.Require.Count;
+
+                for (int j = 0; j < count; j++)
+                {
+                    itemid = GameData.lstNpcs[i].CurNpcTask.Require[j].strId;
+                    
+                    if (GameData.GetItemHave( DataCenter.Instance.dictItem[itemid] ) < GameData.lstNpcs[i].CurNpcTask.Require[j].nCount)
+                    {
+                        role.imgMissionIcom.sprite = DataCenter.Instance.dictItem[itemid].IconSprite;
+                        IsAlready = false;
+                        break;
+                    }
+                }
+
+                if (IsAlready)
+                {
+                    role.imgMissionIcom.sprite = DataCenter.Instance.dictItem[GameData.lstNpcs[i].CurNpcTask.Require[count-1].strId].IconSprite;
+                }
+
+
+
                 Debug.Log("GameData.lstNpcs.add = " + item.GetComponent<UIRoleInfo>().nRoleTag);
             }
         }
@@ -154,6 +188,8 @@ public class UIGameHUD : UIPanel
 			// TODO::品质
 			item.GetComponent<UISlotItem> ().ShowQuality = false;
 			item.GetComponent<UISlotItem> ().ShowScore = false;
+            item.GetComponent<UISlotItem>().ShowCount = false;
+            item.GetComponent<UISlotItem>().ShowScore = false;
         }
 
         // 玩家升级信息：解锁任务
@@ -171,10 +207,12 @@ public class UIGameHUD : UIPanel
 			// 疑问：为啥界面中还在显示
 			item.GetComponent<UISlotItem> ().ShowQuality = false;
 			item.GetComponent<UISlotItem> ().ShowScore = false;
-		}
+            item.GetComponent<UISlotItem>().ShowCount = false;
+            item.GetComponent<UISlotItem>().ShowScore = false;
+        }
 
         // 标题信息
-		tmPlayerLvInfoText.text = playerlvldata.Lv.ToString() ; 
+		tmPlayerLvInfoText.text = "Next Lv : " + playerlvldata.Lv.ToString() ; 
 
     }
 

@@ -17,6 +17,8 @@ public class UIPanelMission : UIPanel
 
     private bool _bIsTaskOk;
 
+    private bool _bIsPlayerLvUp;
+
     void OnEnable()
     {
         EventCenter.Instance.RegisterGameEvent("ClosePanel", OnCloseSelf);
@@ -39,6 +41,11 @@ public class UIPanelMission : UIPanel
     {
         UIPanelManager.Instance.HidePanel("UIPanelMission").DoOnHideCompleted((panel) =>
         {
+            if(_bIsPlayerLvUp)
+            {
+                UIPanelManager.Instance.ShowPanel("UIPanelPlayerLevelUp");
+            }
+
             Debug.Log("closed!");
             UIPanelManager.Instance.GetPanel("UIGameHUD").Repaint();
 
@@ -48,7 +55,7 @@ public class UIPanelMission : UIPanel
 
     void OnRefuseTask()
     {
-        UpdateNpcTask();
+        GameData.NewNpcTask(_npcData);
 
         OnCloseSelf();
     }
@@ -158,18 +165,23 @@ public class UIPanelMission : UIPanel
 
                     if (isLvMax)
                     {
+                        // 加经验
                         GameData.nPlayerLvExp = Mathf.Min(
                             GameData.nPlayerLvExp + _npcData.CurNpcTask.Reward[i].nCount
                             , expneed);
                     }
                     else
                     {
+                        // 加经验
                         GameData.nPlayerLvExp += _npcData.CurNpcTask.Reward[i].nCount;
 
+                        // 升级
                         if (GameData.nPlayerLvExp >= expneed)
                         {
                             GameData.nPlayerLvExp -= expneed;
                             GameData.nPlayerLv ++ ;
+
+                            _bIsPlayerLvUp = true;
                         }
                     }
 
@@ -181,7 +193,7 @@ public class UIPanelMission : UIPanel
             Debug.Log("NpcID = " + _npcData.ID + ", NpcFavorLv = " + _npcData.CurfavorabilityLv + ", NpcFavorExp = " + _npcData.CurfavorabilityExp);
             Debug.Log("PlayerLv = " + GameData.nPlayerLv + ", PlayerExp = " + GameData.nPlayerLvExp);
 
-            UpdateNpcTask();
+            GameData.NewNpcTask(_npcData);
             OnCloseSelf();
         }
     }
@@ -196,10 +208,12 @@ public class UIPanelMission : UIPanel
 
         _bIsTaskOk = true;
 
+        _bIsPlayerLvUp = false;
+
         // 如果没有任务，刷新一个任务
         if(_npcData.CurNpcTask == null)
         {
-            UpdateNpcTask();
+            GameData.NewNpcTask(_npcData);
         }
 
         InitNeedList();
@@ -272,66 +286,6 @@ public class UIPanelMission : UIPanel
             need.GetComponent<SlotNpcTaskReward>().txtNum.text = task.Reward[i].nCount.ToString();
         }
 
-
-    }
-
-
-    void UpdateNpcTask()
-    {
-        // 选择任务
-
-        // 满足条件的数量
-        int count = 0;
-
-        Dictionary<string, NPCTask> dicttask = DataCenter.Instance.dictNPCTask;
-
-        foreach (string id in dicttask.Keys)
-        {
-            if (_npcData.ID == dicttask[id].NpcId)
-            {
-                if (GameData.nPlayerLv >= dicttask[id].Lv[0] && GameData.nPlayerLv <= dicttask[id].Lv[1])
-                {
-                    if (_npcData.CurfavorabilityLv >= dicttask[id].Favor[0] && _npcData.CurfavorabilityLv <= dicttask[id].Favor[1])
-                    {
-                        if (_npcData.CurEmotion >= dicttask[id].Emtion[0] && _npcData.CurEmotion <= dicttask[id].Emtion[1])
-                        {
-                            count++;
-                        }
-                    }
-                }
-            }
-        }
-
-        int rand = Random.Range(0, count);
-        count = 0;
-        
-        foreach (string id in dicttask.Keys)
-        {
-            if (_npcData.ID == dicttask[id].NpcId)
-            {
-                if (GameData.nPlayerLv >= dicttask[id].Lv[0] && GameData.nPlayerLv <= dicttask[id].Lv[1])
-                {
-                    if (_npcData.CurfavorabilityLv >= dicttask[id].Favor[0] && _npcData.CurfavorabilityLv <= dicttask[id].Favor[1])
-                    {
-                        if (_npcData.CurEmotion >= dicttask[id].Emtion[0] && _npcData.CurEmotion <= dicttask[id].Emtion[1])
-                        {
-                            if (count == rand)
-                            {
-                                GameData.lstNpcs[GameData.nCurNpcTag].CurNpcTask = dicttask[id];
-                                
-                                break;
-                            }
-                            else
-                            {
-                                count++;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        Debug.Log(" NpcId = " + _npcData.ID +  ": NpcTaskCount = " + count );
 
     }
 

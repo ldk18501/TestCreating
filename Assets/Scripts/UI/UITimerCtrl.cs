@@ -16,9 +16,36 @@ public class UITimerCtrl : MonoBehaviour
     public System.Action cbOver;
 
     
-    public int Remain
+    public int nRemain
     {
         get { return (int)_fCurrent; }
+    }
+
+    public string strTimeRemain
+    {
+        get
+        {
+            int h = nRemain / 3600;
+            int m = nRemain / 60 - h * 60 ;
+            int s = nRemain - m - m * h ;
+
+            string t = null;
+
+            if(h>0)
+            {
+                t = h + "h."+ m +"m";
+            }
+            else if (m > 0)
+            {
+                t = m + "m." + s + "s";
+            }
+            else if (s > 0)
+            {
+                t = s + "s";
+            }
+
+            return t;
+        }
     }
 
 
@@ -27,7 +54,7 @@ public class UITimerCtrl : MonoBehaviour
         get { return _fDuration; }
     }
 
-    public void SetTimer(float time, System.Action cb = null, float initVal = 0, float tarVal = 0)
+    public void SetTimer(float time, System.Action cb = null, float initVal = 0, float tarVal = 1)
     {
         _fCurrent = _fDuration = time;
         cbOver = cb;

@@ -142,7 +142,7 @@ namespace smallone
                 // 计时器
                 EntityBuilding eb = obj.AddMissingComponent<EntityBuilding>();
                 eb.dataBuilding = buildingdata[id];
-                eb.timer = obj.AddMissingComponent<UITimerCtrl>();
+                obj.AddMissingComponent<UITimerCtrl>();
             }
 
             //! 静态存在的建筑
