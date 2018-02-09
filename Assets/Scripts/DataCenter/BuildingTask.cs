@@ -12,6 +12,8 @@ namespace smallone
         protected string _nTableId;
         protected string _strName;
         protected int _nType;
+        protected bool _bNeedPaper;
+        protected string _strPaperId;
         protected int _nLv;
         protected List<int> _lstCountCritWeight;
         protected List<int> _lstQualityCritWeight;
@@ -39,6 +41,18 @@ namespace smallone
         public int Type
         {
             get { return _nType; }
+        }
+
+
+        public bool NeedPaper
+        {
+            get { return _bNeedPaper; }
+        }
+
+
+        public string PaperId
+        {
+            get { return _strPaperId; }
         }
 
         public int Lv
@@ -87,6 +101,24 @@ namespace smallone
             _nTableId = data["TableId"][index];
             _strName = data["Name"][index];
             _nType = int.Parse(data["Type"][index]);
+
+
+
+            string paperneed = data["Needpaper"][index];
+            if(paperneed == "0")
+            {
+                _bNeedPaper = false;
+            }
+            else
+            {
+                _bNeedPaper = true;
+            }
+
+
+            _strPaperId = data["PaperId"][index];
+
+
+
             _nLv = int.Parse(data["Lv"][index]);
 
             _lstCountCritWeight = new List<int>();

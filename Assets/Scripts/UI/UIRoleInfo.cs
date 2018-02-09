@@ -30,12 +30,12 @@ public class UIRoleInfo : MonoBehaviour {
 
 		if (timer) {
 			if (timer.Duration == 0 && dataNpc.CurNpcTask  == null) {
-				// 判断任务刷新时间
+                // 判断任务刷新时间
 
-				float min = float.Parse( dataNpc.ID ) * 5;
-				float max = float.Parse( dataNpc.ID ) * 30;
+                float min = dataNpc.TaskInterval[0];
+				float max = dataNpc.TaskInterval[1];
 
-				float rand = Random.Range ( min , max );
+				float rand = Random.Range (min, max );
 
 				StartMissionTimer (rand);
 
@@ -78,15 +78,14 @@ public class UIRoleInfo : MonoBehaviour {
 	{
 		Debug.Log("hehe");
 
+        timer.StopTimer(true);
 
-		// 如果满足条件，刷新任务
-		GameData.NewNpcTask(dataNpc);
+        // 如果满足条件，刷新任务
+        GameData.NewNpcTask(dataNpc);
 
 		btMission.gameObject.SetActive (true);
 		imgMissionIcom.gameObject.SetActive (true);
-
-
-		timer.StopTimer(true);
+        
 	}
 
 }

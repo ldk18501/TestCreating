@@ -16,6 +16,9 @@ namespace smallone
 		static public List<NPCData> lstNpcs;
         
         static public List<Item> lstBagItems;
+
+        // 记录玩家图纸购买信息
+        static public List<PaperShop> lstPaper;
         
 		// 所有建筑的obj列表
 		static public List<GameObject> lstConstructionObj;
@@ -27,6 +30,9 @@ namespace smallone
 
         // 玩家当前选中的Npc列表Tag
         static public int nCurNpcTag;
+
+        // 玩家当前选中的怪物数据
+        static public MonsterData dataCurSelMonster;
 
         // 玩家当前等级
         static public int nPlayerLv;
@@ -127,8 +133,7 @@ namespace smallone
 				}
 			}
 		}
-
-
+        
         // 增加NPC任务
         static public void NewNpcTask(NPCData npc)
         {
@@ -180,6 +185,7 @@ namespace smallone
                                 {
                                     npc.CurNpcTask = dicttask[id];
 
+                                    UIPanelManager.Instance.GetPanel("UIGameHUD").Repaint();
 
 									Debug.Log(" NpcId = " + npc.ID + ": NpcTaskCount = " + count);
                                     return;
@@ -234,6 +240,9 @@ namespace smallone
 				lstNpcs[i].CurNpcTask = null;
 				lstNpcs[i].IsUnlocked = false;
 
+                // 玩家图纸
+                lstPaper = new List<PaperShop>();
+
                 // 装备信息
                 for (int j = 0; j < lstNpcs[i].EquipType.Count; j++)
                 {
@@ -260,9 +269,11 @@ namespace smallone
             // 当前玩家选择的建筑ID
             strCurConstructionId = null;
 
-            // 当前选中的NPCid
+            // 界面上当前选中的NPCid
             nCurNpcTag = 0;
 
+            // 当前选中的怪物
+            dataCurSelMonster = null;
 
             // TODO:: 临时
             nPlayerLv = 10;

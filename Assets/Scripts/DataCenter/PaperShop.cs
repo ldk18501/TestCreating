@@ -11,7 +11,7 @@ namespace smallone
         protected string _strName;
         protected int _nPlayerLv;
         protected List<ItemPair> _lstPrice;
-        protected int _nTskId;
+        protected string _nTskId;
         protected string _strIcon;
         protected Sprite _spIcon;
         protected string _strInfo;
@@ -37,7 +37,7 @@ namespace smallone
             get { return _lstPrice; }
         }
 
-        public int TskId
+        public string TskId
         {
             get { return _nTskId; }
         }
@@ -75,7 +75,7 @@ namespace smallone
                 }
             }
 
-            _nTskId = int.Parse(data["TaskId"][index]);
+            _nTskId = data["TaskId"][index];
             _strIcon = data["Src"][index];
             _strInfo = data["Info"][index];
 

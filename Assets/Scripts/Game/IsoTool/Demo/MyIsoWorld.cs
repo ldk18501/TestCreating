@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using ISO;
 using Lean.Touch;
+using smallone;
 
 
 // 前言：切忌使用Input.mouse相关方法来处理点击逻辑，应该全部替换成LeanTouch
@@ -48,9 +49,6 @@ namespace smallone
             if (component)
             {
                 Debug.Log(component.transform.name);
-
-                //! 获得当前点击建筑信息
-				GameData.strCurConstructionId = component.GetComponent<EntityBuilding>().dataBuilding.ID;
                 
                 switch (component.transform.name)
                 {
@@ -66,9 +64,19 @@ namespace smallone
                     case "SysthesisFurnace":
                         UIPanelManager.Instance.ShowPanel("UIPanelSyntheticFurnace");
                         break;
+                    case "Monster":
+                        {
+                            GameData.dataCurSelMonster = component.GetComponent<EntityMonster>().dataMonster;
+                            UIPanelManager.Instance.ShowPanel("UIPanelMonster");
+                            break;
+                        }
                     default:
-                        UIPanelManager.Instance.ShowPanel("UIPanelConstruction");
-                        break;
+                        {
+                            //! 获得当前点击建筑信息
+                            GameData.strCurConstructionId = component.GetComponent<EntityBuilding>().dataBuilding.ID;                        
+                            UIPanelManager.Instance.ShowPanel("UIPanelConstruction");
+                            break;
+                        }
                 }
             }
             //else
@@ -166,6 +174,38 @@ namespace smallone
                     obj.SetWalkable(true, gridData);
                 }
             }
+        }
+
+        // TODO::临时刷怪
+        public void InitMonster(Dictionary<string, MonsterData> monsterdata)
+        {
+
+            UpdateScneneFrame();
+            //! 配置表添加建筑
+            foreach (string id in monsterdata.Keys)
+            {
+                Debug.Log("InitMonster ID = "+ monsterdata[id].ID );
+                var obj = GameObject.Instantiate(monsterdata[id].Prefab) as GameObject;
+                IsoObject isoobj = obj.GetComponent<MyIsoObject>();
+                isoobj.world = this;
+
+                buildingScene.AddIsoObject(isoobj);
+                isoobj.SetNodePosition( UnityEngine.Random.Range( 60.0f, 80.0f), UnityEngine.Random.Range(50.0f, 70.0f) );
+                obj.transform.localScale = Vector3.one;
+                obj.name = "Monster";
+                isoobj.SetWalkable(false, gridData);
+
+                isoobj.spanX = 2 ;
+                isoobj.spanZ = 2 ;
+
+                //! 肖：用来记录建筑ID，为了点击建筑可以知道点了啥。。
+                GameData.lstConstructionObj.Add(obj);
+
+                // 计时器
+                EntityMonster eb = obj.AddMissingComponent<EntityMonster>();
+                eb.dataMonster = monsterdata[id];
+            }
+
         }
 
         // Update is called once per frame

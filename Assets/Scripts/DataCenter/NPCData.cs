@@ -20,6 +20,8 @@ namespace smallone
         protected List<int> _lstEquipType;
         protected List<int> _lstCardUnlockLv;
         protected int _nEmotionLimit;
+        protected List<int> _lstTaskEmotion;
+        protected List<int> _lstTaskInterval;
         protected List<int> _lstTalkInterval;
         protected List<int> _lstGiftInterval;
 
@@ -87,6 +89,17 @@ namespace smallone
         {
             get { return _nEmotionLimit; }
         }
+
+        public List<int> TaskEmotion
+        {
+            get { return _lstTaskEmotion; }
+        }
+
+        public List<int> TaskInterval
+        {
+            get { return _lstTaskInterval ; }
+        }
+
 
         public List<int> TalkInterval
         {
@@ -187,6 +200,29 @@ namespace smallone
             }
 
             _nEmotionLimit = int.Parse(data["Emotion"][index]);
+
+
+            _lstTaskEmotion = new List<int>();
+            string te = data["TaskInterval"][index];
+            if (!string.IsNullOrEmpty(te) && te != "-1")
+            {
+                string[] multi = te.Split('|');
+                for (int i = 0; i < multi.Length; i++)
+                {
+                    _lstTaskEmotion.Add(int.Parse(multi[i]));
+                }
+            }
+
+            _lstTaskInterval = new List<int>();
+            string task = data["TaskInterval"][index];
+            if (!string.IsNullOrEmpty(task) && task != "-1")
+            {
+                string[] multi = task.Split('|');
+                for (int i = 0; i < multi.Length; i++)
+                {
+                    _lstTaskInterval.Add(int.Parse(multi[i]));
+                } 
+            }
 
             _lstTalkInterval = new List<int>();
             string talk = data["TalkInterval"][index];

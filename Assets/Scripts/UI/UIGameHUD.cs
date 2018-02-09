@@ -63,9 +63,9 @@ public class UIGameHUD : UIPanel
         _mainLevel = LevelManager.Instance.MainLevel as LevelMain;
         _mainLevel.StartGameLogic();
         
-        GenerateHeroList();
         GeneratePlayerLvlInfoList();
 		UpdatePlayerLv ();
+        GenerateHeroList();
     }
 
     protected override void OnPanelRepaint()
@@ -83,6 +83,8 @@ public class UIGameHUD : UIPanel
 
         // 玩家头像列表
         GenerateHeroList();
+
+        UpdateNpcTaskIcon();
     }
 
     protected override void OnPanelShowBegin()
@@ -91,6 +93,7 @@ public class UIGameHUD : UIPanel
 		mCoinNum.text = GameData.Coins.ToString();
 		mDiamondNum.text = GameData.Gems.ToString ();
         // UIManager.SoundCheck();
+        UpdateNpcTaskIcon();
     }
 
     protected override void OnPanelHideBegin()
@@ -101,6 +104,8 @@ public class UIGameHUD : UIPanel
     protected override void OnPanelShowCompleted()
     {
         base.OnPanelShowCompleted();
+
+
     }
 
     protected override void OnPanelHideCompleted()
@@ -114,7 +119,6 @@ public class UIGameHUD : UIPanel
 //        {
 //            GameObject.Destroy( trsHeroListRoot.GetChild(i).gameObject );
 //        }
-        
 
         for (int i = 0; i < GameData.lstNpcs.Count; i++)
 		{
@@ -130,45 +134,54 @@ public class UIGameHUD : UIPanel
 				item.transform.localScale = Vector3.one;
 
                 UIRoleInfo role = item.GetComponent<UIRoleInfo>();
-
-
-
+                
 				role.nRoleTag = i;
 				role.btRole.onClick.AddListener(() => { OnHeroClicked(item); });
 				role.btMission.onClick.AddListener(() => { OnMissionClicked(item); });
 				role.SetNpcInfo ( GameData.lstNpcs[i].ID );
 				role.timer = item.AddMissingComponent<UITimerCtrl> ();
-
-
-
-                // NPC任务道具需求显示
-				if (GameData.lstNpcs [i].CurNpcTask != null) 
-				{
-
-					string itemid = null;
-					bool IsAlready = true;
-					int count = GameData.lstNpcs[i].CurNpcTask.Require.Count;
-
-					for (int j = 0; j < count; j++)
-					{
-						itemid = GameData.lstNpcs[i].CurNpcTask.Require[j].strId;
-
-						if (GameData.GetItemHave( DataCenter.Instance.dictItem[itemid] ) < GameData.lstNpcs[i].CurNpcTask.Require[j].nCount)
-						{
-							role.imgMissionIcom.sprite = DataCenter.Instance.dictItem[itemid].IconSprite;
-							IsAlready = false;
-							break;
-						}
-					}
-
-					if (IsAlready)
-					{
-						role.imgMissionIcom.sprite = DataCenter.Instance.dictItem[GameData.lstNpcs[i].CurNpcTask.Require[count-1].strId].IconSprite;
-					}
-				}
-
-
+                
                 Debug.Log("GameData.lstNpcs.add = " + item.GetComponent<UIRoleInfo>().nRoleTag);
+            }
+            
+        }
+
+
+
+
+    }
+
+
+    // NPC任务道具需求显示
+    void UpdateNpcTaskIcon()
+    {
+
+        for (int i = 0; i < trsHeroListRoot.childCount; i++)
+        {
+            UIRoleInfo role = trsHeroListRoot.GetChild(i).gameObject.GetComponent<UIRoleInfo>();
+
+            if (role.dataNpc.CurNpcTask != null)
+            {
+                string itemid = null;
+                bool IsAlready = true;
+                int count = role.dataNpc.CurNpcTask.Require.Count;
+
+                for (int j = 0; j < count; j++)
+                {
+                    itemid = role.dataNpc.CurNpcTask.Require[j].strId;
+
+                    if (GameData.GetItemHave(DataCenter.Instance.dictItem[itemid]) < role.dataNpc.CurNpcTask.Require[j].nCount)
+                    {
+                        role.imgMissionIcom.sprite = DataCenter.Instance.dictItem[itemid].IconSprite;
+                        IsAlready = false;
+                        break;
+                    }
+                }
+
+                if (IsAlready)
+                {
+                    role.imgMissionIcom.sprite = DataCenter.Instance.dictItem[role.dataNpc.CurNpcTask.Require[count - 1].strId].IconSprite;
+                }
             }
         }
     }

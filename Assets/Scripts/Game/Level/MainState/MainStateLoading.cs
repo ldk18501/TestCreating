@@ -19,6 +19,7 @@ namespace smallone
             //! 加载
             LoadBuildings();
             LoadNpcs();
+            LoadMonsters();
 
             //! 关闭Loading，显示欢迎
             UIPanelManager.Instance.HidePanel("UILoading");
@@ -43,6 +44,10 @@ namespace smallone
             _owner.MainWorld.InitBuildings(DataCenter.Instance.dictBuilding);
         }
 
+        void LoadMonsters()
+        {
+            _owner.MainWorld.InitMonster(DataCenter.Instance.dictMonster);
+        }
     }
 
 }

@@ -170,29 +170,50 @@ public class UIPanelConstruction : UIPanel
         // 创建可生产道具
         foreach (string id in _dicttask.Keys)
         {
-			if( _dicttask[id].TableId == GameData.strCurConstructionId && _dicttask[id].Lv <= GameData.nPlayerLv )
+            // 查找是否已经购买图纸
+            bool IsHave = false;
+            for (int i = 0; i < GameData.lstPaper.Count; i++)
             {
-                var obj = GameObject.Instantiate(objSlotItem) as GameObject;
-                obj.transform.SetParent(trsGroup);
-
-                obj.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
-                obj.transform.localScale = Vector3.one;
-                
-				string itemID = _dicttask[id].Product.strId;
-				obj.name = id ;
-
-				obj.GetComponent<UISlotItem> ().UpdateShowInfo (DataCenter.Instance.dictItem[itemID]);
-
-				Debug.Log ("itemID = " + obj.GetComponent<UISlotItem> ().item.ID );
-
-				if (_dicttask [id].Product.nCount <= 1) {
-					obj.GetComponent<UISlotItem> ().ShowCount = false;
-				} else {
-
-					obj.GetComponent<UISlotItem> ().txtCount.text = "x " + _dicttask [id].Product.nCount;
-					obj.GetComponent<UISlotItem> ().ShowCount = true;
-				}
+                if(_dicttask[id].NeedPaper)
+                {
+                    if (GameData.lstPaper[i].ID == _dicttask[id].PaperId)
+                    {
+                        IsHave = true;
+                        break;
+                    }
+                }
             }
+
+            if(!_dicttask[id].NeedPaper || IsHave)
+            {
+                if (_dicttask[id].TableId == GameData.strCurConstructionId && _dicttask[id].Lv <= GameData.nPlayerLv)
+                {
+                    var obj = GameObject.Instantiate(objSlotItem) as GameObject;
+                    obj.transform.SetParent(trsGroup);
+
+                    obj.AddMissingComponent<UISelectableItem>().cbSelect = OnSlotSelect;
+                    obj.transform.localScale = Vector3.one;
+
+                    string itemID = _dicttask[id].Product.strId;
+                    obj.name = id;
+
+                    obj.GetComponent<UISlotItem>().UpdateShowInfo(DataCenter.Instance.dictItem[itemID]);
+
+                    Debug.Log("itemID = " + obj.GetComponent<UISlotItem>().item.ID);
+
+                    if (_dicttask[id].Product.nCount <= 1)
+                    {
+                        obj.GetComponent<UISlotItem>().ShowCount = false;
+                    }
+                    else
+                    {
+
+                        obj.GetComponent<UISlotItem>().txtCount.text = "x " + _dicttask[id].Product.nCount;
+                        obj.GetComponent<UISlotItem>().ShowCount = true;
+                    }
+                }
+            }
+
         }        
     }
 

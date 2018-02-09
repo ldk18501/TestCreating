@@ -48,8 +48,8 @@ public class UIPanelMission : UIPanel
 
             Debug.Log("closed!");
             UIPanelManager.Instance.GetPanel("UIGameHUD").Repaint();
-
         });
+
     }
     
 
@@ -62,8 +62,8 @@ public class UIPanelMission : UIPanel
 
     void OnMissionClear()
     {
-        // 粗暴做法：检查道具数量是否够
 
+        // 粗暴做法：检查道具数量是否够
         if (_bIsTaskOk)
         {
 			// 扣除道具

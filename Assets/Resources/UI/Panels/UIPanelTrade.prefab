@@ -350,11 +350,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mLayer: 2
   _mTestSortingOrder: 0
-  nGoodList: 5
   objBubble: {fileID: 1008444141088122, guid: 76c9eab8da7457a4783de090a7e8fd54, type: 2}
   trsGoodListRoot: {fileID: 224148890636618948}
   objGoodSlot: {fileID: 1275085586330724, guid: ad8f5b993da0fac47ace7d9b94105328,
     type: 2}
+  txtTitle: {fileID: 114459083233065620}
 --- !u!114 &114170601974010468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1500,8 +1500,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224711565385580020}
   - {fileID: 224462106618144662}
+  - {fileID: 224711565385580020}
   - {fileID: 224430110187623010}
   - {fileID: 224554618916965484}
   m_Father: {fileID: 0}
@@ -1544,7 +1544,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224387346941781340}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1638,7 +1638,7 @@ RectTransform:
   - {fileID: 224846566643711050}
   - {fileID: 224582880044372178}
   m_Father: {fileID: 224387346941781340}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

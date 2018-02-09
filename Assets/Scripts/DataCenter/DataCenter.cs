@@ -15,6 +15,7 @@ namespace smallone
         public Dictionary<string, PaperShop> dictPaperShop;
         public Dictionary<string, PlayerLvlData> dictPlyerLvlData;
         public Dictionary<string, Languages> dictLanguages;
+        public Dictionary<string, MonsterData> dictMonster;
 
         void Awake()
         {
@@ -27,8 +28,8 @@ namespace smallone
             dictPaperShop = SerializationManager.LoadDictFromCSV<PaperShop>("Id", "Data/PaperShop");
             dictPlyerLvlData = SerializationManager.LoadDictFromCSV<PlayerLvlData>("PlayerLv", "Data/PlayerLvl");
             dictLanguages = SerializationManager.LoadDictFromCSV<Languages>("Id", "Data/Language");
-
-
+            dictMonster = SerializationManager.LoadDictFromCSV<MonsterData>("Id", "Data/Monster");
+            
         }
     }
 }

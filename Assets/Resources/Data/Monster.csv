@@ -1,0 +1,11 @@
+﻿Id,Name,Lv,Power,LootList,VictoryLoot,LoseLoot,Prefab,Info
+1,MonsterId_Name_1,1,100,30601_0|31001_0|31101_0|31102_0,1|2|3|4,4,Prefabs/Temp/Monster,MonsterId_Info_1
+2,MonsterId_Name_2,2,200,30602_0|31002_0|31103_0|31104_0,5|6|7|8,8,Prefabs/Temp/Monster,MonsterId_Info_2
+3,MonsterId_Name_3,3,300,30603_0|31003_0|31105_0|31106_0,9|10|11|12,12,Prefabs/Temp/Monster,MonsterId_Info_3
+4,MonsterId_Name_4,4,400,30604_0|31004_0|31107_0|31108_0,13|14|15|16,16,Prefabs/Temp/Monster,MonsterId_Info_4
+5,MonsterId_Name_5,5,500,30605_0|31005_0|31109_0|31110_0,17|18|19|20,20,Prefabs/Temp/Monster,MonsterId_Info_5
+6,MonsterId_Name_6,6,600,30606_0|31006_0|311011_0,21|22|23,23,Prefabs/Temp/Monster,MonsterId_Info_6
+7,MonsterId_Name_7,7,700,30607_0|31007_0|311012_0,24|25|26,26,Prefabs/Temp/Monster,MonsterId_Info_7
+8,MonsterId_Name_8,8,800,30608_0|31008_0|311013_0,27|28|29,29,Prefabs/Temp/Monster,MonsterId_Info_8
+9,MonsterId_Name_9,9,900,30609_0|31009_0|311014_0,30|31|32,32,Prefabs/Temp/Monster,MonsterId_Info_9
+10,MonsterId_Name_10,10,1000,30610_0|31010_0|311015_0,33|34|35,35,Prefabs/Temp/Monster,MonsterId_Info_10

@@ -40,6 +40,7 @@ MonoBehaviour:
   - elementName: UIPanelGuide
   - elementName: UIPanelInventory
   - elementName: UIPanelMission
+  - elementName: UIPanelMonster
   - elementName: UIPanelPlayerLevelUp
   - elementName: UIPanelSyntheticFurnace
   - elementName: UIPanelTrade
